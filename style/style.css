@@ -58,31 +58,26 @@ nav a.cta {
 }
 
 .hero {
-  background-image: url(../images/t50drone1.jpg);
-  background-size: cover;
-  background-position: center;
-  padding: 6em 2em;
-  text-align: center;
-  color: #2e472e;
   position: relative;
-  height: 2500px;
-}
-
-
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-  z-index: 1;
+  height: 500px;
+  background-image: url("../images/t50drone1.jpg");
+  background-size: cover;
+  background-position: center right; /* kép jobbra tolva */
+  padding: 4em 2em;
+  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 .hero-text {
   position: relative;
   z-index: 2;
+  color: #2e472e;
+  background: rgba(255, 255, 255, 0.6); /* opcionális halvány háttér */
+  padding: 1em 2em;
+  border-radius: 10px;
+  max-width: 600px;
+  margin-left: 5%;
 }
 
 .hero h1 {
@@ -92,9 +87,40 @@ nav a.cta {
 
 .hero p {
   font-size: 1.2em;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
+
+/* eltávolítva a világos overlay réteg */
+.hero::after {
+  display: none;
+}
+
+/* Reszponzív nézet telefonokra */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 3em 1.5em;
+    text-align: center;
+    background-position: center;
+  }
+
+  .hero-text {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    background: rgba(255, 255, 255, 0.8); /* picit erősebb mobilon az olvashatóságért */
+  }
+
+  .hero h1 {
+    font-size: 1.8em;
+  }
+
+  .hero p {
+    font-size: 1em;
+  }
+}
+
 
 footer {
   background-color: #e8f5e9;
