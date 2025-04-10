@@ -65,6 +65,7 @@ nav a.cta {
   text-align: center;
   color: #2e472e;
   position: relative;
+  height 500px;
 }
 
 .hero::after {
