@@ -76,13 +76,14 @@ nav a.cta {
 
 .hero-text {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   color: #2e472e;
   background: rgba(255, 255, 255, 0.5);
   padding: 1em 2em;
   border-radius: 10px;
   max-width: 600px;
   margin-left: 1%;
+    margin-top: -50px
   opacity: 0;
   transform: translateX(-100px);
   transition: all 1s ease-out;
