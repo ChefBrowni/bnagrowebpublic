@@ -60,12 +60,12 @@ nav a.cta {
 .hero {
   background-image: url("../images/t50drone1.jpg");
   background-size: cover;
-  background-position: 85% center; /* számítógépen kicsit jobbra tolva (~15%) */
+  background-position: 65% center; /* számítógépen kicsit jobbra tolva (~15%) */
   padding: 6em 2em;
   text-align: left;
   display: flex;
   align-items: center;
-  height: 500px;
+  height: 650px;
   position: relative;
   flex-direction: row;
 }
@@ -78,11 +78,11 @@ nav a.cta {
   position: relative;
   z-index: 2;
   color: #2e472e;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 1em 2em;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1em 1em;
   border-radius: 10px;
   max-width: 600px;
-  margin-left: 5%;
+  margin-left: 1%;
   opacity: 0;
   transform: translateX(-100px);
   transition: all 1s ease-out;
@@ -125,7 +125,7 @@ footer a:hover {
   .hero-text {
     margin: 1em auto;
     padding: 1em;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(3px);
     transform: translateX(0);
     opacity: 1;
