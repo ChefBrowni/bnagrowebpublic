@@ -60,13 +60,14 @@ nav a.cta {
 .hero {
   background-image: url("../images/t50drone1.jpg");
   background-size: cover;
-  background-position: center right;
+  background-position: 85% center; /* számítógépen kicsit jobbra tolva (~15%) */
   padding: 6em 2em;
   text-align: left;
   display: flex;
   align-items: center;
   height: 500px;
   position: relative;
+  flex-direction: row;
 }
 
 .hero::after {
@@ -87,20 +88,10 @@ nav a.cta {
   transition: all 1s ease-out;
 }
 
+/* animáció aktiválása JS-ből */
 .hero-text.animate {
   transform: translateX(0);
   opacity: 1;
-}
-
-.hero h1 {
-  font-size: 2.5em;
-  margin-bottom: 0.5em;
-}
-
-.hero p {
-  font-size: 1.2em;
-  max-width: 100%;
-  margin: 0;
 }
 
 footer {
@@ -122,30 +113,20 @@ footer a:hover {
 
 /* Reszponzív nézet */
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  nav {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5em;
-    margin-top: 1em;
-  }
-
   .hero {
     flex-direction: column;
     justify-content: flex-end;
     height: auto;
-    background-position: center top;
+    background-position: center center; /* mobilon a kép lényege középre kerül */
+    padding: 3em 1.5em;
+    text-align: center;
   }
 
   .hero-text {
     margin: 1em auto;
     padding: 1em;
     background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(3px);
     transform: translateX(0);
     opacity: 1;
   }
