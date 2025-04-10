@@ -60,7 +60,7 @@ nav a.cta {
 .hero {
   background-image: url("../images/t50drone1.jpg");
   background-size: cover;
-  background-position: 60% center; /* számítógépen kicsit jobbra tolva (~15%) */
+  background-position: 50% center; /* számítógépen kicsit jobbra tolva (~15%) */
   padding: 6em 2em;
   text-align: left;
   display: flex;
@@ -81,9 +81,8 @@ nav a.cta {
   background: rgba(255, 255, 255, 0.5);
   padding: 1em 2em;
   border-radius: 10px;
-  max-width: 600px;
+  max-width: 500px;
   margin-left: 1%;
-    margin-top: -50px
   opacity: 0;
   transform: translateX(-100px);
   transition: all 1s ease-out;
