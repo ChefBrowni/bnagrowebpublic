@@ -58,7 +58,7 @@ nav a.cta {
 }
 
 .hero {
-  background-image: url(..\images\t50drone1.jpg);
+  background-image: url(../images/t50drone1.jpg);
   background-size: cover;
   background-position: center;
   padding: 6em 2em;
