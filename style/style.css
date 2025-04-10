@@ -58,10 +58,14 @@ nav a.cta {
 }
 
 .hero {
-  background-image: url("../images/t50drone1.jpg");
+  background-image: url(../images/t50drone1.jpg);
   background-size: cover;
   background-position: center;
-  height: 500px;
+  padding: 6em 2em;
+  text-align: center;
+  color: #2e472e;
+  position: relative;
+  height: 2500px;
 }
 
 
