@@ -93,4 +93,17 @@ function revealStepsOnScroll() {
 
 window.addEventListener('scroll', revealStepsOnScroll);
 revealStepsOnScroll(); // első betöltésnél is
+
+// ➕ Itt generáljuk a nyilakat automatikusan:
+ const steps = document.querySelectorAll('.workflow-steps .step');
+ steps.forEach((step, index) => {
+   if (index < steps.length - 1) {
+     const arrow = document.createElement('div');
+     arrow.className = 'arrow';
+     arrow.textContent = '→';
+     step.parentNode.insertBefore(arrow, step.nextSibling);
+   }
+ });
+
+
 });
