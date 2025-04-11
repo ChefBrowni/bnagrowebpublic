@@ -499,3 +499,74 @@ footer a:hover {
     gap: 2em;
   }
 }
+
+
+.workflow-section {
+  padding: 4em 2em;
+  background: #ffffff;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2em;
+  color: #2e472e;
+  margin-bottom: 2em;
+}
+
+.workflow-steps {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2em;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.step {
+  background: #f7f7f3;
+  padding: 2em 1.5em;
+  border-radius: 12px;
+  width: 220px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.step .icon {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.step h3 {
+  font-size: 1.1em;
+  margin-bottom: 0.3em;
+  color: #5a8c4c;
+}
+
+.step p {
+  font-size: 0.9em;
+  color: #444;
+}
+
+.arrow {
+  font-size: 2em;
+  align-self: center;
+  color: #5a8c4c;
+}
+
+@media (max-width: 768px) {
+  .workflow-steps {
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  .arrow {
+    transform: rotate(90deg);
+  }
+
+  .step {
+    width: 100%;
+  }
+}
