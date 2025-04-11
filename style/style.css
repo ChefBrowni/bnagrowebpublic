@@ -545,9 +545,9 @@ footer a:hover {
   background: #f7f7f3;
   padding: 2em 1.5em;
   border-radius: 12px;
-  flex: 1 1 0;
+  flex: 0 1 250px;
   min-width: 0;
-  max-width: none;
+  max-width: 250px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   position: relative;
   opacity: 0;
@@ -594,7 +594,6 @@ footer a:hover {
 @media (max-width: 768px) {
   .workflow-steps {
     flex-direction: column;
-    flex-wrap: nowrap; /* mobilon is csak 1 sor lefelé */
     align-items: center;
     gap: 1.5em;
   }
