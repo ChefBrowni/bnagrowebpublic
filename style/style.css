@@ -151,7 +151,7 @@ nav a.cta {
   flex-wrap: wrap;
   align-items: center;
   gap: 2em;
-  max-width: 1200px;
+  max-width: 2200px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
@@ -192,7 +192,7 @@ nav a.cta {
   top: 0;
   left: 0;
   z-index: 1;
-
+}
 
   .survey-text {
     flex: 1 1 45%;
