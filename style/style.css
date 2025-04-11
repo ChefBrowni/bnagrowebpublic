@@ -1,4 +1,6 @@
-/* Alap stílus */
+/* ------------------------------ */
+/*           ALAP STÍLUSOK       */
+/* ------------------------------ */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,6 +18,9 @@ body {
   flex-wrap: wrap;
 }
 
+/* ------------------------------ */
+/*             HEADER            */
+/* ------------------------------ */
 header {
   background-color: #ffffff;
   border-bottom: 1px solid #ddd;
@@ -94,6 +99,9 @@ nav a.cta {
   }
 }
 
+/* ------------------------------ */
+/*         HERO SZEKCIÓ          */
+/* ------------------------------ */
 .hero {
   background-image: url("../images/t50drone1.jpg");
   background-size: cover;
@@ -125,6 +133,12 @@ nav a.cta {
   transform: translateX(-100px);
   transition: all 1s ease-out;
 }
+
+.hero-text.animate {
+  transform: translateX(0);
+  opacity: 1;
+}
+
 .consult-btn {
   position: absolute;
   bottom: 2em;
@@ -145,11 +159,9 @@ nav a.cta {
   background-color: #e68900;
 }
 
-.hero-text.animate {
-  transform: translateX(0);
-  opacity: 1;
-}
-
+/* ------------------------------ */
+/*     DROPDOWN (Hero alatt)     */
+/* ------------------------------ */
 .dropdown-container {
   margin-top: 2em;
   width: 100%;
@@ -196,8 +208,9 @@ nav a.cta {
   border-radius: 6px;
   padding: 0 1em;
 }
+
 .dropdown-content.active {
-  max-height: 2000px; /* elég magas a legtöbb szöveghez */
+  max-height: 2000px;
   padding: 1em;
 }
 
@@ -208,6 +221,7 @@ nav a.cta {
 .arrow_hero.open {
   transform: translateX(-50%) rotate(180deg);
 }
+
 .dropdown-subheader {
   display: flex;
   align-items: center;
@@ -247,9 +261,9 @@ nav a.cta {
   padding: 1em;
 }
 
-
-
-
+/* ------------------------------ */
+/*         SURVEY SZEKCIÓ        */
+/* ------------------------------ */
 .section-spacer {
   width: 100vw;
   height: 100px;
@@ -330,6 +344,9 @@ nav a.cta {
   font-weight: bold;
 }
 
+/* ------------------------------ */
+/*             FOOTER            */
+/* ------------------------------ */
 footer {
   background-color: #e8f5e9;
   padding: 2em 0;
@@ -347,63 +364,9 @@ footer a:hover {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  nav {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5em;
-    margin-top: 1em;
-  }
-
-  .hero {
-    flex-direction: column;
-    justify-content: flex-end;
-    height: auto;
-    background-position: center center;
-    padding: 3em 1.5em;
-    text-align: center;
-  }
-
-  .hero-text {
-    margin: 1em auto;
-    padding: 1em;
-    background: rgba(255, 255, 255, 0.85);
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  .hero h1 {
-    font-size: 1.8em;
-  }
-
-  .hero p {
-    font-size: 1em;
-  }
-
-  .survey-section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .survey-image,
-  .survey-text {
-    width: 100%;
-    max-width: none;
-    margin: 0 auto 1em auto;
-    min-height: 300px;
-  }
-
-  .survey-text {
-    padding: 1.5em;
-  }
-}
-
+/* ------------------------------ */
+/*         STATISZTIKÁK         */
+/* ------------------------------ */
 .stats-section {
   background-color: #f7f7f3;
   padding: 4em 1em;
@@ -500,51 +463,9 @@ footer a:hover {
   }
 }
 
-
-.workflow-steps {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 1.5em;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-  padding: 0 2em;
-}
-
-.workflow-steps {
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1em;
-}
-.step {
-  flex: 0 1 220px;
-  max-width: 220px;
-}
-
-.arrow {
-  font-size: 2em;
-  align-self: center;
-  color: #5a8c4c;
-  z-index: 2;
-  opacity: 0;
-  transition: all 0.8s ease-out;
-}
-
-.arrow.show {
-  opacity: 1;
-}
-
-/* Statisztika szekció margó javítás telefonra */
-@media (max-width: 480px) {
-  .stats-section {
-    padding-bottom: 6em;
-  }
-}
-
-/* Workflow szekció alap stílus */
+/* ------------------------------ */
+/*         WORKFLOW SZEKCIÓ      */
+/* ------------------------------ */
 .workflow-steps {
   display: flex;
   justify-content: space-between;
@@ -589,7 +510,9 @@ footer a:hover {
   opacity: 1;
 }
 
-/* Tablet és telefon nézet */
+/* ------------------------------ */
+/*       RESPONSIVE NÉZETEK      */
+/* ------------------------------ */
 @media (max-width: 1024px) {
   .workflow-steps {
     flex-direction: column;
@@ -606,5 +529,11 @@ footer a:hover {
   .arrow {
     transform: rotate(90deg);
     margin: 1em 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-section {
+    padding-bottom: 6em;
   }
 }
