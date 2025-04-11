@@ -501,39 +501,12 @@ footer a:hover {
 }
 
 
-.workflow-section {
-  padding: 5em 2em;
-  background: #ffffff;
-  text-align: center;
-  position: relative;
-}
-
-.workflow-section::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  right: 5%;
-  height: 4px;
-  background: linear-gradient(to right, #cde7c3, #d9f0c5);
-  z-index: 0;
-  border-radius: 2px;
-}
-
-.section-title {
-  font-size: 2.2em;
-  color: #2e472e;
-  margin-bottom: 3em;
-  z-index: 2;
-  position: relative;
-}
-
 .workflow-steps {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
   gap: 1.5em;
-  flex-wrap: nowrap; /* <- ne törje sort */
+  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -546,7 +519,6 @@ footer a:hover {
   padding: 2em 1.5em;
   border-radius: 12px;
   flex: 0 1 250px;
-  min-width: 0;
   max-width: 250px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   position: relative;
@@ -555,27 +527,9 @@ footer a:hover {
   transition: all 0.8s ease-out;
 }
 
-
-
 .step.show {
   opacity: 1;
   transform: translateY(0);
-}
-
-.step .icon {
-  font-size: 2.2em;
-  margin-bottom: 0.5em;
-}
-
-.step h3 {
-  font-size: 1.1em;
-  margin-bottom: 0.3em;
-  color: #5a8c4c;
-}
-
-.step p {
-  font-size: 0.9em;
-  color: #444;
 }
 
 .arrow {
