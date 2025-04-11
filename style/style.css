@@ -97,21 +97,23 @@ nav a.cta {
 .section-spacer {
   height: 100px;
   background: white;
+  background-image: url("../images/topo-line-green.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .survey-section {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 4em 2em;
   background-color: #f7f7f7;
 }
 
 .survey-image {
-  flex: 1 1 40%;
-  max-width: 600px;
-  min-width: 280px;
+  flex: 0 0 50%;
   height: 400px;
   background-image: url("../images/sect2_background.png");
   background-size: cover;
@@ -122,8 +124,7 @@ nav a.cta {
 }
 
 .survey-text {
-  flex: 1 1 40%;
-  max-width: 500px;
+  flex: 0 0 45%;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(4px);
   padding: 2em;
