@@ -125,7 +125,7 @@ nav a.cta {
 
 .survey-section {
   padding: 6em 2em;
-  background-image: url("../images/sect2_background2.png");
+  background-image: url("../images/sect2_background.png");
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -151,7 +151,7 @@ nav a.cta {
   flex-wrap: wrap;
   align-items: center;
   gap: 2em;
-  max-width: 2200px;
+  max-width: 2800px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
