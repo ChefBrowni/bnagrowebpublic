@@ -126,8 +126,14 @@ nav a.cta {
   padding: 4em 2em;
   background-image: url("../images/sect2_background2.png");
   background-size: cover;
-  background-position: center;
+  background-position: 50% center;
+  padding: 6em 2em;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  height: 650px;
   position: relative;
+  flex-direction: row;
 }
 
 .survey-section::before {
