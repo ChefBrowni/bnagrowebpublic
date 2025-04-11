@@ -124,25 +124,24 @@ nav a.cta {
 
 
 .survey-section {
-  padding: 6em 2em;
+
   background-image: url("../images/sect2_background.png");
   background-size: cover;
-  background-position: center center;
+  background-position: center;
+  aspect-ratio: 16 / 9;
   position: relative;
-  align-items: flex-start;
-  height: 1650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
 }
-}
+
 
 .survey-section::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(2px);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
   z-index: 0;
 }
 
