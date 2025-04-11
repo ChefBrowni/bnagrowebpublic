@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     surveyText.classList.add("slide-in-right");
   }
 
+  // Hamburger menü nyitás/zárás
   document.querySelector('.menu-toggle').addEventListener('click', () => {
     document.getElementById('main-nav').classList.toggle('active');
     const navLinks = document.querySelectorAll('#main-nav a');
@@ -23,4 +24,16 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+
+  // Rólunk lenyíló szöveg kattintásra
+  const dropdownHeader = document.querySelector(".dropdown-header");
+  const dropdownContent = document.querySelector(".dropdown-content");
+  const arrow = document.querySelector(".arrow");
+
+  if (dropdownHeader && dropdownContent && arrow) {
+    dropdownHeader.addEventListener("click", () => {
+      dropdownContent.classList.toggle("active");
+      arrow.classList.toggle("open");
+    });
+  }
 });

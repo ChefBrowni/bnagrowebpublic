@@ -191,11 +191,23 @@ nav a.cta {
 .dropdown-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease;
+  transition: max-height 0.4s ease, padding 0.3s ease;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 6px;
   padding: 0 1em;
-  color: #333;
+}
+
+.dropdown-content.active {
+  max-height: 500px;
+  padding: 1em;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrow.open {
+  transform: translateX(-50%) rotate(180deg);
 }
 
 .dropdown-container:hover .dropdown-content {
