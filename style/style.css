@@ -373,6 +373,7 @@ footer a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column; /* Hozzáadva a korrekt elrendezéshez */
 }
 
 .stats-wrapper.center {
@@ -383,6 +384,7 @@ footer a:hover {
   flex-wrap: wrap;
   max-width: 900px;
   width: 100%;
+  margin-bottom: 5em; /* 🔧 Ez az új sor oldja meg az átlógást */
 }
 
 .stat-circle {
