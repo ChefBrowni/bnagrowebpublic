@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Belső lenyíló szekciók: Permetezés, Felmérés
+  // Belső lenyíló szekciók: Permetezés, Felmérés
   const subHeaders = document.querySelectorAll('.dropdown-subheader');
 
   subHeaders.forEach(header => {
@@ -58,6 +59,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const arrow = header.querySelector('.sub-arrow');
 
     header.addEventListener('click', () => {
+      // Bezár minden másik nyitott almenüt
+      subHeaders.forEach(otherHeader => {
+        const otherContent = otherHeader.nextElementSibling;
+        const otherArrow = otherHeader.querySelector('.sub-arrow');
+
+        if (otherHeader !== header) {
+          otherContent.classList.remove('active');
+          otherArrow.classList.remove('open');
+        }
+      });
+
+      // Majd toggle a jelenlegire
       subContent.classList.toggle('active');
       arrow.classList.toggle('open');
     });
