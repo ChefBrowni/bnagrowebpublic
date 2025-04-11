@@ -13,4 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (surveyText) {
     surveyText.classList.add("slide-in-right");
   }
+
+  document.querySelector('.menu-toggle').addEventListener('click', () => {
+     document.querySelector('nav').classList.toggle('active');
+   })
 });
