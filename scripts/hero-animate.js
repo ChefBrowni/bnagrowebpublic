@@ -25,18 +25,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Rólunk lenyíló szöveg kattintásra
-  const dropdownHeader = document.querySelector(".dropdown-header");
-  const dropdownContent = document.querySelector(".dropdown-content");
-  const arrow = document.querySelector(".arrow");
+  // Minden .dropdown-header lenyíló kezelés (pl. Rólunk, Gépeink stb.)
+  const dropdownHeaders = document.querySelectorAll(".dropdown-header");
 
-  if (dropdownHeader && dropdownContent && arrow) {
-    dropdownHeader.addEventListener("click", () => {
+  dropdownHeaders.forEach(header => {
+    const dropdownContent = header.nextElementSibling;
+    const arrow = header.querySelector(".arrow");
+
+    header.addEventListener("click", () => {
       dropdownContent.classList.toggle("active");
       arrow.classList.toggle("open");
     });
-  }
+  });
 
+  // Belső lenyíló szekciók: Permetezés, Felmérés
   const subHeaders = document.querySelectorAll('.dropdown-subheader');
 
   subHeaders.forEach(header => {
@@ -48,7 +50,4 @@ document.addEventListener("DOMContentLoaded", function () {
       arrow.classList.toggle('open');
     });
   });
-
-
-
 });
