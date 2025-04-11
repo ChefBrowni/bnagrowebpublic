@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ➕ Először generáljuk a nyilakat a step-ek közé (utolsó után nem)
   // 🔁 Generáljuk a nyilakat automatikusan a step-ek közé
   const steps = document.querySelectorAll('.workflow-steps .step');
   steps.forEach((step, index) => {

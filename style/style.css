@@ -201,11 +201,11 @@ nav a.cta {
   padding: 1em;
 }
 
-.arrow {
+.arrow_hero {
   transition: transform 0.3s ease;
 }
 
-.arrow.open {
+.arrow_hero.open {
   transform: translateX(-50%) rotate(180deg);
 }
 .dropdown-subheader {
@@ -514,22 +514,14 @@ footer a:hover {
   padding: 0 2em;
 }
 
-.step {
-  background: #f7f7f3;
-  padding: 2em 1.5em;
-  border-radius: 12px;
-  flex: 0 1 250px;
-  max-width: 250px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  position: relative;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
+.workflow-steps {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
 }
-
-.step.show {
-  opacity: 1;
-  transform: translateY(0);
+.step {
+  flex: 0 1 220px;
+  max-width: 220px;
 }
 
 .arrow {
@@ -558,7 +550,7 @@ footer a:hover {
     box-sizing: border-box;
   }
 
-  .arrow {
+  .workflow-arrow {
     transform: rotate(90deg);
     align-self: center;
     margin: 1em 0;
