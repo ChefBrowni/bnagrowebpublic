@@ -150,6 +150,64 @@ nav a.cta {
   opacity: 1;
 }
 
+.dropdown-container {
+  margin-top: 2em;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+.dropdown-header {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  color: #2e472e;
+}
+
+.line-with-arrow {
+  background-color: #111;
+  height: 2px;
+  position: relative;
+  cursor: pointer;
+}
+
+.line-with-arrow .arrow {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f7f7f3;
+  padding: 0 6px;
+  color: #111;
+  font-size: 0.8em;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  padding: 0 1em;
+  color: #333;
+}
+
+.dropdown-container:hover .dropdown-content {
+  max-height: 200px;
+  padding: 1em;
+}
+
+.dropdown-container:hover .arrow {
+  transform: translateX(-50%) rotate(180deg);
+}
+
+
 .section-spacer {
   width: 100vw;
   height: 100px;
