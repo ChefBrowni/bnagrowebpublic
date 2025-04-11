@@ -175,22 +175,33 @@ nav a.cta {
   z-index: 2;
 }
 
-.survey-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.survey-image {
   position: relative;
-  z-index: 1;
+  flex: 1 1 55%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.survey-text {
-  flex: 1 1 50%;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(2px);
-  padding: 1.5em 2em;
-  border-radius: 10px;
-}
+.survey-image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+
+  .survey-text {
+    flex: 1 1 45%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(2px);
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
 
 .survey-text h2 {
   font-size: 2em;
@@ -288,10 +299,24 @@ footer a:hover {
     flex-direction: column;
   }
 
+  .survey-image, .survey-text {
+    width: 100%;
+  }
+
   .survey-text {
     margin-top: 1em;
   }
 
+  .survey-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+}
   .survey-image::after {
     display: none;
   }
