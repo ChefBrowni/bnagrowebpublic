@@ -33,6 +33,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const arrow = header.querySelector(".arrow");
 
     header.addEventListener("click", () => {
+      // Először zárjon be minden más nyitott
+      dropdownHeaders.forEach(otherHeader => {
+        const otherContent = otherHeader.nextElementSibling;
+        const otherArrow = otherHeader.querySelector(".arrow");
+
+        if (otherHeader !== header) {
+          otherContent.classList.remove("active");
+          otherArrow.classList.remove("open");
+        }
+      });
+
+      // Ezután nyissa/zárja ezt a konkrétat
       dropdownContent.classList.toggle("active");
       arrow.classList.toggle("open");
     });
