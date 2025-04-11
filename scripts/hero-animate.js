@@ -36,4 +36,19 @@ document.addEventListener("DOMContentLoaded", function () {
       arrow.classList.toggle("open");
     });
   }
+
+  const subHeaders = document.querySelectorAll('.dropdown-subheader');
+
+  subHeaders.forEach(header => {
+    const subContent = header.nextElementSibling;
+    const arrow = header.querySelector('.sub-arrow');
+
+    header.addEventListener('click', () => {
+      subContent.classList.toggle('active');
+      arrow.classList.toggle('open');
+    });
+  });
+
+
+
 });

@@ -208,6 +208,44 @@ nav a.cta {
 .arrow.open {
   transform: translateX(-50%) rotate(180deg);
 }
+.dropdown-subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1em;
+  cursor: pointer;
+  background: #eee;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+}
+
+.sub-line-with-arrow {
+  position: relative;
+}
+
+.sub-arrow {
+  font-size: 0.8em;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+.sub-arrow.open {
+  transform: rotate(90deg);
+}
+
+.dropdown-subcontent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  padding: 0 1em;
+}
+
+.dropdown-subcontent.active {
+  max-height: 800px;
+  padding: 1em;
+}
 
 
 .section-spacer {
