@@ -36,8 +36,4 @@ document.addEventListener("DOMContentLoaded", function () {
       arrow.classList.toggle("open");
     });
   }
-  dropdownHeader.addEventListener("click", () => {
-  dropdownContent.classList.toggle("active");
-  arrow.classList.toggle("open");
-});
 });
