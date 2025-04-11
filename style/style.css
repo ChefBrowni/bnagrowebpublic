@@ -594,6 +594,8 @@ footer a:hover {
 @media (max-width: 768px) {
   .workflow-steps {
     flex-direction: column;
+    flex-wrap: nowrap; /* mobilon is csak 1 sor lefelé */
+    align-items: center;
     gap: 1.5em;
   }
 

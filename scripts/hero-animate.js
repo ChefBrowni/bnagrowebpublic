@@ -25,6 +25,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // ➕ Először generáljuk a nyilakat a step-ek közé (utolsó után nem)
+  const stepElements = document.querySelectorAll('.workflow-steps .step');
+  stepElements.forEach((step, index) => {
+    if (index < stepElements.length - 1) {
+      const arrow = document.createElement('div');
+      arrow.className = 'arrow';
+      arrow.textContent = '→';
+      step.parentNode.insertBefore(arrow, step.nextSibling);
+    }
+  });
+
+  // ➕ Ezután jöhet az animáció scrollra – így már érzékeli a generált nyilakat is
+  function revealStepsOnScroll() {
+    const steps = document.querySelectorAll('.step');
+    const arrows = document.querySelectorAll('.arrow');
+    const triggerPoint = window.innerHeight * 0.85;
+
+    steps.forEach((step, index) => {
+      const top = step.getBoundingClientRect().top;
+      if (top < triggerPoint && !step.classList.contains('show')) {
+        step.classList.add('show');
+        if (arrows[index]) arrows[index].classList.add('show');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealStepsOnScroll);
+  revealStepsOnScroll(); // első betöltésnél is
+
   // Minden .dropdown-header lenyíló kezelés (pl. Rólunk, Gépeink stb.)
   const dropdownHeaders = document.querySelectorAll(".dropdown-header");
 
@@ -33,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const arrow = header.querySelector(".arrow");
 
     header.addEventListener("click", () => {
-      // Először zárjon be minden más nyitott
       dropdownHeaders.forEach(otherHeader => {
         const otherContent = otherHeader.nextElementSibling;
         const otherArrow = otherHeader.querySelector(".arrow");
@@ -44,13 +72,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // Ezután nyissa/zárja ezt a konkrétat
       dropdownContent.classList.toggle("active");
       arrow.classList.toggle("open");
     });
   });
 
-  // Belső lenyíló szekciók: Permetezés, Felmérés
   // Belső lenyíló szekciók: Permetezés, Felmérés
   const subHeaders = document.querySelectorAll('.dropdown-subheader');
 
@@ -59,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const arrow = header.querySelector('.sub-arrow');
 
     header.addEventListener('click', () => {
-      // Bezár minden másik nyitott almenüt
       subHeaders.forEach(otherHeader => {
         const otherContent = otherHeader.nextElementSibling;
         const otherArrow = otherHeader.querySelector('.sub-arrow');
@@ -70,40 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // Majd toggle a jelenlegire
       subContent.classList.toggle('active');
       arrow.classList.toggle('open');
     });
   });
-
-  // Scrollra jelenjenek meg a workflow kártyák
-function revealStepsOnScroll() {
-  const steps = document.querySelectorAll('.step');
-  const arrows = document.querySelectorAll('.arrow');
-  const triggerPoint = window.innerHeight * 0.85;
-
-  steps.forEach((step, index) => {
-    const top = step.getBoundingClientRect().top;
-    if (top < triggerPoint) {
-      step.classList.add('show');
-      if (arrows[index]) arrows[index].classList.add('show');
-    }
-  });
-}
-
-window.addEventListener('scroll', revealStepsOnScroll);
-revealStepsOnScroll(); // első betöltésnél is
-
-// ➕ Itt generáljuk a nyilakat automatikusan:
- const steps = document.querySelectorAll('.workflow-steps .step');
- steps.forEach((step, index) => {
-   if (index < steps.length - 1) {
-     const arrow = document.createElement('div');
-     arrow.className = 'arrow';
-     arrow.textContent = '→';
-     step.parentNode.insertBefore(arrow, step.nextSibling);
-   }
- });
-
-
 });
