@@ -129,6 +129,8 @@ nav a.cta {
   background-size: cover;
   background-position: center center;
   position: relative;
+  align-items: flex-start;
+  height: 1650px;
 }
 }
 
