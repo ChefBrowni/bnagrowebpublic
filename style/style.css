@@ -89,122 +89,51 @@ nav a.cta {
   transition: all 1s ease-out;
 }
 
-/* Animáció - hero szöveg */
 .hero-text.animate {
   transform: translateX(0);
   opacity: 1;
 }
 
-/* Animáció - survey szekció */
-.slide-in-left {
-  opacity: 0;
-  transform: translateX(-100px);
-  animation: slideInLeft 1s ease-out forwards;
+.section-spacer {
+  height: 100px;
+  background: white;
 }
-
-@keyframes slideInLeft {
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.slide-in-right {
-  opacity: 0;
-  transform: translateX(100px);
-  animation: slideInRight 1s ease-out forwards;
-}
-
-@keyframes slideInRight {
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 
 .survey-section {
-
-  background-image: url("../images/sect2_background.png");
-  background-size: cover;
-  background-position: center;
-  aspect-ratio: 16 / 9;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2em;
-}
-
-
-.survey-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 0;
-}
-
-.survey-container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 2em;
-  max-width: 2800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+  justify-content: center;
+  padding: 4em 2em;
+  background-color: #f7f7f7;
 }
 
 .survey-image {
-  flex: 1 1 45%;
-  position: relative;
-}
-
-.survey-image::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -1em;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 90%;
-  background: linear-gradient(to bottom, #5a8c4c 0%, #8bc34a 100%);
-  border-radius: 0 1em 1em 0;
-  z-index: 2;
-}
-
-.survey-image {
-  position: relative;
-  flex: 1 1 55%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
+  flex: 1 1 40%;
+  max-width: 600px;
+  min-width: 280px;
+  height: 400px;
+  background-image: url("../images/sect2_background.png");
+  background-size: cover;
+  background-position: center;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-right: 2em;
 }
 
-.survey-image img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  z-index: 1;
+.survey-text {
+  flex: 1 1 40%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  color: #2e472e;
 }
-
-  .survey-text {
-    flex: 1 1 45%;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(2px);
-    padding: 2em;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
 
 .survey-text h2 {
   font-size: 2em;
-  color: #2e472e;
   margin-bottom: 0.5em;
 }
 
@@ -254,7 +183,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Reszponzív nézet */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -294,29 +222,22 @@ footer a:hover {
     font-size: 1em;
   }
 
-  .survey-container {
+  .survey-section {
     flex-direction: column;
   }
 
-  .survey-image, .survey-text {
+  .survey-image,
+  .survey-text {
     width: 100%;
+    max-width: none;
+    margin: 0 auto 1em auto;
+  }
+
+  .survey-image {
+    height: 300px;
   }
 
   .survey-text {
-    margin-top: 1em;
-  }
-
-  .survey-image img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-}
-  .survey-image::after {
-    display: none;
+    padding: 1.5em;
   }
 }
