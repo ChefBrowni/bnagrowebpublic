@@ -537,7 +537,60 @@ footer a:hover {
   opacity: 1;
 }
 
-@media (max-width: 768px) {
+/* Statisztika szekció margó javítás telefonra */
+@media (max-width: 480px) {
+  .stats-section {
+    padding-bottom: 6em;
+  }
+}
+
+/* Workflow szekció alap stílus */
+.workflow-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  padding: 0 2em;
+}
+
+.step {
+  flex: 0 1 220px;
+  max-width: 220px;
+  background: #f7f7f3;
+  padding: 2em 1.5em;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.step.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.arrow {
+  font-size: 2em;
+  align-self: center;
+  color: #5a8c4c;
+  z-index: 2;
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.arrow.show {
+  opacity: 1;
+}
+
+/* Tablet és telefon nézet */
+@media (max-width: 1024px) {
   .workflow-steps {
     flex-direction: column;
     align-items: center;
@@ -550,9 +603,8 @@ footer a:hover {
     box-sizing: border-box;
   }
 
-  .workflow-arrow {
+  .arrow {
     transform: rotate(90deg);
-    align-self: center;
     margin: 1em 0;
   }
 }
