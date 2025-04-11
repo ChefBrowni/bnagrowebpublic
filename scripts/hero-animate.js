@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.querySelector('.menu-toggle').addEventListener('click', () => {
-     document.querySelector('nav').classList.toggle('active');
-   })
+    document.getElementById('main-nav').classList.toggle('active');
+    const navLinks = document.querySelectorAll('#main-nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('main-nav').classList.remove('active');
+      });
+    });
+  });
 });
