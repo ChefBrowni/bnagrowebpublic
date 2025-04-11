@@ -457,6 +457,19 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
+  .dropdown-content,
+  .dropdown-subcontent {
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+  }
+
+  .hero-text {
+    width: 100%;
+    max-width: 100%;
+    margin: 1em auto;
+    padding: 1em;
+  }
   .stats-wrapper.center {
     flex-direction: column;
     gap: 2em;
