@@ -75,4 +75,22 @@ document.addEventListener("DOMContentLoaded", function () {
       arrow.classList.toggle('open');
     });
   });
+
+  // Scrollra jelenjenek meg a workflow kártyák
+function revealStepsOnScroll() {
+  const steps = document.querySelectorAll('.step');
+  const arrows = document.querySelectorAll('.arrow');
+  const triggerPoint = window.innerHeight * 0.85;
+
+  steps.forEach((step, index) => {
+    const top = step.getBoundingClientRect().top;
+    if (top < triggerPoint) {
+      step.classList.add('show');
+      if (arrows[index]) arrows[index].classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealStepsOnScroll);
+revealStepsOnScroll(); // első betöltésnél is
 });

@@ -502,40 +502,64 @@ footer a:hover {
 
 
 .workflow-section {
-  padding: 4em 2em;
+  padding: 5em 2em;
   background: #ffffff;
   text-align: center;
+  position: relative;
+}
+
+.workflow-section::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 4px;
+  background: linear-gradient(to right, #cde7c3, #d9f0c5);
+  z-index: 0;
+  border-radius: 2px;
 }
 
 .section-title {
-  font-size: 2em;
+  font-size: 2.2em;
   color: #2e472e;
-  margin-bottom: 2em;
+  margin-bottom: 3em;
+  z-index: 2;
+  position: relative;
 }
 
 .workflow-steps {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 2em;
-  flex-wrap: wrap;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
 }
 
 .step {
   background: #f7f7f3;
   padding: 2em 1.5em;
   border-radius: 12px;
-  width: 220px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  width: 100%;
+  max-width: 250px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   position: relative;
-  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.step.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .step .icon {
-  font-size: 2em;
+  font-size: 2.2em;
   margin-bottom: 0.5em;
 }
 
@@ -554,19 +578,26 @@ footer a:hover {
   font-size: 2em;
   align-self: center;
   color: #5a8c4c;
+  z-index: 2;
+  opacity: 0;
+  transition: all 0.8s ease-out;
 }
 
-@media (max-width: 768px) {
+.arrow.show {
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
   .workflow-steps {
     flex-direction: column;
-    gap: 1.5em;
+    align-items: center;
   }
 
   .arrow {
     transform: rotate(90deg);
   }
 
-  .step {
-    width: 100%;
+  .workflow-section::before {
+    display: none;
   }
 }
