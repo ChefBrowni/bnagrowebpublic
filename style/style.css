@@ -191,15 +191,13 @@ nav a.cta {
 .dropdown-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.3s ease;
+  transition: max-height 0.5s ease, padding 0.4s ease;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 6px;
   padding: 0 1em;
 }
-
-/* EDDIG csak 200–300px volt, ez kevés lehet tableten */
 .dropdown-content.active {
-  max-height: 1000px;
+  max-height: 2000px; /* elég magas a legtöbb szöveghez */
   padding: 1em;
 }
 
@@ -208,15 +206,6 @@ nav a.cta {
 }
 
 .arrow.open {
-  transform: translateX(-50%) rotate(180deg);
-}
-
-.dropdown-container:hover .dropdown-content {
-  max-height: 200px;
-  padding: 1em;
-}
-
-.dropdown-container:hover .arrow {
   transform: translateX(-50%) rotate(180deg);
 }
 
