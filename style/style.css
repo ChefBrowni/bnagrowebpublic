@@ -102,6 +102,59 @@ footer {
   color: #4c4c4c;
 }
 
+.survey-points {
+  margin-top: 1.5em;
+  padding-left: 1.2em;
+  list-style: none;
+}
+
+.survey-points li {
+  margin-bottom: 1em;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #2e472e;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.survey-points li::before {
+  content: \"✔\";
+  position: absolute;
+  left: 0;
+  color: #5a8c4c;
+  font-weight: bold;
+}
+
+
+/* Animáció - balról jobbra (kép) */
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Animáció - jobbról balra (szöveg) */
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideInRight 1s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
 footer a {
   color: #5a8c4c;
   text-decoration: none;
