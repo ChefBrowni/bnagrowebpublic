@@ -101,7 +101,7 @@ nav a.cta {
   background-image: url("../images/topo-line-green.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 100% auto;
 }
 
 .survey-section {
@@ -117,12 +117,12 @@ nav a.cta {
 .survey-image,
 .survey-text {
   flex: 0 0 48%;
-  height: 100%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 12px;
+  overflow: hidden;
+  min-height: 400px;
 }
 
 .survey-image {
@@ -130,6 +130,7 @@ nav a.cta {
   background-size: cover;
   background-position: center;
   margin-right: 2em;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .survey-text {
@@ -137,6 +138,7 @@ nav a.cta {
   backdrop-filter: blur(4px);
   padding: 2em;
   color: #2e472e;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .survey-text h2 {
@@ -239,7 +241,6 @@ footer a:hover {
     width: 100%;
     max-width: none;
     margin: 0 auto 1em auto;
-    height: auto;
     min-height: 300px;
   }
 
