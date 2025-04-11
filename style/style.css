@@ -544,7 +544,8 @@ footer a:hover {
   background: #f7f7f3;
   padding: 2em 1.5em;
   border-radius: 12px;
-  width: 100%;
+  flex: 1 1 0;
+  min-width: 200px;
   max-width: 250px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   position: relative;
@@ -552,6 +553,7 @@ footer a:hover {
   transform: translateY(30px);
   transition: all 0.8s ease-out;
 }
+
 
 .step.show {
   opacity: 1;
