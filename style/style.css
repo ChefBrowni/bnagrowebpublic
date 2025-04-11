@@ -591,18 +591,15 @@ footer a:hover {
   opacity: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .workflow-steps {
     flex-direction: column;
-    gap: 1.5em;
+    align-items: center;
   }
 
   .arrow {
     transform: rotate(90deg);
-    align-self: center;
-    margin: 1em 0;
   }
-}
 
   .workflow-section::before {
     display: none;
