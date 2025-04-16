@@ -16,6 +16,6 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    die("Adatbázis kapcsolódási hiba: " . $e->getMessage());
+    die("Adatbázis kapcsolódási hiba:( ): " . $e->getMessage());
 }
 ?>
