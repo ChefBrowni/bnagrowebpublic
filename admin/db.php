@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $host = 'localhost:3306';
 $db   = 'bnbkhuwx_email_kampany'; // ez a te adatbázisod neve
 $user = 'bnbkhuwx_barna';         // ezt írd át!
@@ -19,7 +15,7 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
-    echo "✅ Sikeres kapcsolódás az adatbázishoz!";
+    //echo "✅ Sikeres kapcsolódás az adatbázishoz!";
 } catch (\PDOException $e) {
     die("❌ Adatbázis kapcsolódási hiba: " . $e->getMessage());
 }
