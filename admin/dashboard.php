@@ -1,5 +1,10 @@
 <?php
 require 'session_check.php';
+require 'db.php';
+
+// Lekérjük a kontaktokat a teszttáblából
+$stmt = $pdo->query("SELECT * FROM kontaktok_test ORDER BY id ASC");
+$kontaktok = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -13,23 +18,44 @@ require 'session_check.php';
         <div class="container-fluid">
             <a class="navbar-brand" href="#">BNBK Admin</a>
             <div class="d-flex">
-                <span class="navbar-text me-3">
-                    Üdv, <?= htmlspecialchars($_SESSION['username']) ?>!
-                </span>
+                <span class="navbar-text me-3">Üdv, <?= htmlspecialchars($_SESSION['username']) ?>!</span>
                 <a href="logout.php" class="btn btn-outline-light btn-sm">Kijelentkezés</a>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <h2 class="mb-4">Admin Kezdőlap</h2>
-        <p class="lead">Innen fogod vezérelni a levelek kiküldését és a kontaktokat.</p>
+        <h2 class="mb-4">Teszt kontaktlista</h2>
 
-        <div class="card bg-secondary text-white">
-            <div class="card-body">
-                <h5 class="card-title">Fejlesztés alatt</h5>
-                <p class="card-text">Hamarosan megjelenik a kontaktlista, a küldés gomb és a statisztika.</p>
-            </div>
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Név</th>
+                        <th>Megye</th>
+                        <th>E-mail</th>
+                        <th>Művelet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($kontaktok) === 0): ?>
+                        <tr><td colspan="5" class="text-center">Nincs adat</td></tr>
+                    <?php else: ?>
+                        <?php foreach ($kontaktok as $kontakt): ?>
+                            <tr>
+                                <td><?= $kontakt['id'] ?></td>
+                                <td><?= htmlspecialchars($kontakt['nev']) ?></td>
+                                <td><?= htmlspecialchars($kontakt['megye']) ?></td>
+                                <td><?= htmlspecialchars($kontakt['email']) ?></td>
+                                <td>
+                                    <button class="btn btn-outline-light btn-sm" disabled>Küldés</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
