@@ -19,7 +19,8 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
+    echo "✅ Sikeres kapcsolódás az adatbázishoz!";
 } catch (\PDOException $e) {
-    die("Adatbázis kapcsolódási hiba:( ): " . $e->getMessage());
+    die("❌ Adatbázis kapcsolódási hiba: " . $e->getMessage());
 }
 ?>
