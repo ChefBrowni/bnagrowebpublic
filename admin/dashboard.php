@@ -49,7 +49,11 @@ $kontaktok = $stmt->fetchAll();
                                 <td><?= htmlspecialchars($kontakt['megye']) ?></td>
                                 <td><?= htmlspecialchars($kontakt['email']) ?></td>
                                 <td>
-                                    <button class="btn btn-outline-light btn-sm" disabled>Küldés</button>
+                                    <form method="post" action="send_single.php">
+                                        <input type="hidden" name="nev" value="<?= htmlspecialchars($kontakt['nev']) ?>">
+                                        <input type="hidden" name="email" value="<?= htmlspecialchars($kontakt['email']) ?>">
+                                        <button type="submit" class="btn btn-outline-light btn-sm">Küldés</button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
