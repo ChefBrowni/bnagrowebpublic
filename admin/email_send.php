@@ -36,3 +36,4 @@ try {
 } catch (Exception $e) {
     echo "❌ Hiba a küldéskor: {$mail->ErrorInfo}";
 }
+?>
