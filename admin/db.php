@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $host = 'localhost:3306';
 $db   = 'bnbkhuwx_email_kampany'; // ez a te adatbázisod neve
 $user = 'bnbkhuwx_barna';         // ezt írd át!
