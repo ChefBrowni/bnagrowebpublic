@@ -1,9 +1,7 @@
 <?php
 require 'smtp_config.php';
-if (!file_exists(__DIR__ . '/newsletter/bnbk_svg_hirlevel_szoveg_nelkul.html')) {
-    exit('❌ A HTML fájl nem található!');
-}
-
+echo 'Aktuális mappa: ' . __DIR__;
+exit;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
