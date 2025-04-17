@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $mail = new PHPMailer(true);
-    $mail->CharSet = 'UTF-8'; // <- ez kell az ékezetekhez
+    $mail->CharSet = 'UTF-8'; // ékezetek miatt
 
     try {
         $mail->isSMTP();
@@ -32,40 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->addAddress($email, $nev);
 
         $mail->isHTML(true);
-        $mail->Subject = 'Multispektrális felmérés drónnal – BNBK Agro';
+        $mail->Subject = 'Drónos megoldások a mezőgazdaságban – BNBK Agro';
 
-        // A Canva-kép URL-je (már legyen feltöltve a tárhelyedre!)
-        $kep_url = 'https://bnbk.hu/newsletter/multispektral-email.jpg';
+        // HTML fájl betöltése (a newsletter mappában van)
+        $html_body = file_get_contents(__DIR__ . '/newsletter/bnbk_svg_hirlevel_szoveg_nelkul.html');
+        $mail->Body = $html_body;
 
-        // Profi, reszponzív HTML e-mail tartalom
-        $mail->isHTML(true);
-      $mail->Subject = 'Drónos megoldások a mezőgazdaságban – BNBK Agro';
-
-      $kep_url = 'https://bnbk.hu/newsletter/multispektral-email.jpg'; // <-- IDE jön a feltöltött képed URL-je
-
-      $mail->Body = '
-      <table style="width:100%; max-width:700px; margin:auto; font-family:Arial, sans-serif; background:#fef9f4; color:#333;">
-          <tr>
-              <td style="padding:20px;">
-                  <h2 style="text-align:center; color:#000;">Drónos megoldások a mezőgazdaságban</h2>
-                  <p style="text-align:left; font-size:14px; color:#444;">
-                      Tisztelt Hölgyem / Uram!
-                  </p>
-                  <img src="' . $kep_url . '" alt="Multispektrális felmérés" style="width:100%; height:auto; border-radius:8px; margin:20px 0;">
-                  <p style="margin-top:30px;">
-                      Üdvözlettel,<br>
-                      <strong>BNBK Agro Mezőgazdasági Kft.</strong><br>
-                      <a href="mailto:marketing@bnbk.hu" style="color:#2f855a;">marketing@bnbk.hu</a>
-                  </p>
-                  <p style="font-size:12px; color:#777; text-align:center; margin-top:40px;">
-                      Ha nem szeretnél több e-mailt kapni tőlünk, <a href="#" style="color:#999;">iratkozz le itt</a>.
-                  </p>
-              </td>
-          </tr>
-      </table>
-      ';
-
-      $mail->AltBody = 'Tisztelt Hölgyem / Uram! Ez egy e-mail a BNBK Agro rendszertől.';
+        // Biztonsági AltBody szöveg (nem jelenik meg ha rendesen támogatja a HTML-t)
+        $mail->AltBody = 'Tisztelt Hölgyem / Uram! Kérjük, engedélyezze a HTML megjelenítést az e-mailben.';
 
         $mail->send();
         echo "✅ E-mail sikeresen elküldve $nev részére ($email).<br><br>";
@@ -77,3 +51,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo '❌ Nem megfelelő kérés.';
 }
+?>
