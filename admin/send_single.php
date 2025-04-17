@@ -1,7 +1,6 @@
 <?php
 require 'smtp_config.php';
-echo 'Aktuális mappa: ' . __DIR__;
-exit;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
