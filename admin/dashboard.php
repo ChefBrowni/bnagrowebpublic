@@ -41,7 +41,7 @@ $page = $_GET['page'] ?? 'testsend';
         <?php if ($page === 'testsend'): ?>
             <?php
             // Lekérjük a kontaktokat a teszttáblából
-            $stmt = $pdo->query("SELECT * FROM kontaktok_test ORDER BY id ASC");
+            $stmt = $pdo->query("SELECT * FROM kontaktok ORDER BY id ASC");
             $kontaktok = $stmt->fetchAll();
             ?>
             <h2 class="mb-4">Teszt kontaktlista</h2>
