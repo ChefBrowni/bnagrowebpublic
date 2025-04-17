@@ -21,14 +21,18 @@ body {
 /* ------------------------------ */
 /*             HEADER            */
 /* ------------------------------ */
-h.site-header {
+.site-header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8); /* vagy sima #000 */
+  background-color: #2f855a; /* zöld induláskor */
   color: white;
   z-index: 1000;
-  padding: 15px 0;
+  transition: background-color 0.4s ease;
+}
+
+.site-header.transparent {
+  background-color: transparent;
 }
 
 .site-header .container {
@@ -37,13 +41,13 @@ h.site-header {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 15px 20px;
 }
 
 .site-header .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #81c784; /* zöld szín */
+  color: white;
 }
 
 .site-header .main-nav a {
@@ -55,12 +59,13 @@ h.site-header {
 }
 
 .site-header .main-nav a:hover {
-  color: #81c784; /* zöld hover */
+  color: #a5d6a7;
 }
 
 body {
-  padding-top: 70px; /* hogy ne takarja ki a hero-t a fix fejléc */
+  padding-top: 80px; /* hogy ne lógjon a fejléc alá */
 }
+
 
 .logo {
   font-size: 1.5em;

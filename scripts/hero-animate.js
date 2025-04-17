@@ -99,4 +99,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener('scroll', revealStepsOnScroll);
   revealStepsOnScroll(); // első betöltéskor is fut
+
+  // 🟢 Menü háttér vezérlés
+  const header = document.querySelector('.site-header');
+  let scrollTimeout;
+
+  window.addEventListener('scroll', () => {
+    header.classList.remove('transparent');
+
+    clearTimeout(scrollTimeout);
+
+    scrollTimeout = setTimeout(() => {
+      header.classList.add('transparent');
+    }, 1500);
+  });
 });
