@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Subject = 'Drónos megoldások a mezőgazdaságban – BNBK Agro';
 
         // HTML fájl betöltése (a newsletter mappában van)
-        $html_body = file_get_contents(__DIR__ . '../newsletter/bnbk_svg_hirlevel_szoveg_nelkul.html');
+        $html_body = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/newsletter/bnbk_svg_hirlevel_szoveg_nelkul.html');
         $mail->Body = $html_body;
 
         // Biztonsági AltBody szöveg (nem jelenik meg ha rendesen támogatja a HTML-t)
