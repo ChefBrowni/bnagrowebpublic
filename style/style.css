@@ -21,12 +21,45 @@ body {
 /* ------------------------------ */
 /*             HEADER            */
 /* ------------------------------ */
-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #ddd;
-  padding: 1em 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  position: relative;
+h.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8); /* vagy sima #000 */
+  color: white;
+  z-index: 1000;
+  padding: 15px 0;
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.site-header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #81c784; /* zöld szín */
+}
+
+.site-header .main-nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.site-header .main-nav a:hover {
+  color: #81c784; /* zöld hover */
+}
+
+body {
+  padding-top: 70px; /* hogy ne takarja ki a hero-t a fix fejléc */
 }
 
 .logo {
