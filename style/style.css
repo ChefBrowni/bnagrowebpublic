@@ -103,16 +103,15 @@ nav a.cta {
 /*         HERO SZEKCIÓ          */
 /* ------------------------------ */
 .hero {
-  background-image: url("../images/t50drone1.jpg");
+  background-image: url('../images/hero.svg');
   background-size: cover;
-  background-position: 50% center;
-  padding: 6em 2em;
-  text-align: left;
-  display: flex;
-  align-items: flex-start;
-  height: 650px;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
   position: relative;
-  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero::after {
