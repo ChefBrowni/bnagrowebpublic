@@ -28,9 +28,30 @@ try {
 
     // Tartalom
     $mail->isHTML(true);
-    $mail->Subject = 'Teszt e-mail a BNBK rendszerből';
-    $mail->Body    = '<b>Szia!</b><br>Ez egy teszt e-mail a BNBK rendszerből.';
-    $mail->AltBody = 'Szia! Ez egy teszt e-mail a BNBK rendszerből.';
+  $mail->Subject = 'Multispektrális felmérés drónnal – BNBK Agro';
+
+  $mail->Body = '
+  <table style="width:100%; max-width:600px; margin:auto; font-family:Arial, sans-serif; background:#fef9f4; color:#333;">
+      <tr>
+          <td style="padding:20px;">
+              <h2 style="text-align:center; color:#000;">BNBK Agro Kft</h2>
+              <h3 style="text-align:center;">MULTISPEKTRÁLIS FELMÉRÉS DRÓNNAL</h3>
+              <p style="text-align:center; font-size:14px; color:#444;">A drónnal készített multispektrális felmérések segítenek a növény- és talajállapot pontos, célzott felmérésében – hogy csak ott avatkozzon be, ahol valóban szükséges.</p>
+              <hr>
+              <img src="https://bnbk.hu/newsletter/multispektral-email.jpg" alt="Multispektrális felmérés" style="max-width:100%; border-radius:8px; margin:20px 0;">
+              <p style="font-size:14px;">További információért vagy ajánlatért forduljon hozzánk bizalommal.</p>
+              <p style="margin-top:30px;">
+                  Üdvözlettel,<br>
+                  <strong>BNBK Agro Mezőgazdasági Kft.</strong><br>
+                  <a href="mailto:marketing@bnbk.hu" style="color:#2f855a;">marketing@bnbk.hu</a>
+              </p>
+              <p style="font-size:12px; color:#777; text-align:center; margin-top:40px;">
+                  Ha nem szeretnél több e-mailt kapni tőlünk, <a href="#" style="color:#999;">iratkozz le itt</a>.
+              </p>
+          </td>
+      </tr>
+  </table>
+  ';
 
     $mail->send();
     echo '✅ E-mail sikeresen elküldve!';
