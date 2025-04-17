@@ -38,33 +38,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $kep_url = 'https://bnbk.hu/newsletter/multispektral-email.jpg';
 
         // Profi, reszponzív HTML e-mail tartalom
-        $mail->Body = '
-        <table style="width:100%; max-width:600px; margin:auto; font-family:Arial, sans-serif; background:#fef9f4; color:#333;">
-            <tr>
-                <td style="padding:20px;">
-                    <h2 style="text-align:center; color:#000;">BNBK Agro Kft</h2>
-                    <h3 style="text-align:center;">MULTISPEKTRÁLIS FELMÉRÉS DRÓNNAL</h3>
-                    <p style="text-align:center; font-size:14px; color:#444;">
-                        Kedves ' . htmlspecialchars($nev) . '!<br>
-                        A drónnal készített multispektrális felmérések segítenek a növény- és talajállapot pontos, célzott felmérésében – hogy csak ott avatkozzon be, ahol valóban szükséges.
-                    </p>
-                    <hr>
-                    <img src="' . $kep_url . '" alt="Multispektrális felmérés" style="max-width:100%; border-radius:8px; margin:20px 0;">
-                    <p style="font-size:14px;">További információért vagy ajánlatért forduljon hozzánk bizalommal.</p>
-                    <p style="margin-top:30px;">
-                        Üdvözlettel,<br>
-                        <strong>BNBK Agro Mezőgazdasági Kft.</strong><br>
-                        <a href="mailto:marketing@bnbk.hu" style="color:#2f855a;">marketing@bnbk.hu</a>
-                    </p>
-                    <p style="font-size:12px; color:#777; text-align:center; margin-top:40px;">
-                        Ha nem szeretnél több e-mailt kapni tőlünk, <a href="#" style="color:#999;">iratkozz le itt</a>.
-                    </p>
-                </td>
-            </tr>
-        </table>
-        ';
+        $mail->isHTML(true);
+      $mail->Subject = 'Drónos megoldások a mezőgazdaságban – BNBK Agro';
 
-        $mail->AltBody = 'Szia ' . $nev . '! Ez egy teszt e-mail a BNBK rendszertől.';
+      $kep_url = 'https://bnbk.hu/newsletter/multispektral-email.jpg'; // <-- IDE jön a feltöltött képed URL-je
+
+      $mail->Body = '
+      <table style="width:100%; max-width:700px; margin:auto; font-family:Arial, sans-serif; background:#fef9f4; color:#333;">
+          <tr>
+              <td style="padding:20px;">
+                  <h2 style="text-align:center; color:#000;">Drónos megoldások a mezőgazdaságban</h2>
+                  <p style="text-align:left; font-size:14px; color:#444;">
+                      Tisztelt Hölgyem / Uram!
+                  </p>
+                  <img src="' . $kep_url . '" alt="Multispektrális felmérés" style="width:100%; height:auto; border-radius:8px; margin:20px 0;">
+                  <p style="margin-top:30px;">
+                      Üdvözlettel,<br>
+                      <strong>BNBK Agro Mezőgazdasági Kft.</strong><br>
+                      <a href="mailto:marketing@bnbk.hu" style="color:#2f855a;">marketing@bnbk.hu</a>
+                  </p>
+                  <p style="font-size:12px; color:#777; text-align:center; margin-top:40px;">
+                      Ha nem szeretnél több e-mailt kapni tőlünk, <a href="#" style="color:#999;">iratkozz le itt</a>.
+                  </p>
+              </td>
+          </tr>
+      </table>
+      ';
+
+      $mail->AltBody = 'Tisztelt Hölgyem / Uram! Ez egy e-mail a BNBK Agro rendszertől.';
 
         $mail->send();
         echo "✅ E-mail sikeresen elküldve $nev részére ($email).<br><br>";
