@@ -125,48 +125,54 @@ $page = $_GET['page'] ?? '';
 
 <?php elseif ($page === 'kampanyok'): ?>
 
-    <?php
-    $stmt = $pdo->query("
-    SELECT k.id, k.nev,
-           COUNT(DISTINCT m.id) AS megnyitasok,
-           COUNT(DISTINCT c.id) AS kattintasok
+  $stmt = $pdo->query("
+     SELECT k.id, k.nev,
+            COUNT(DISTINCT m.id) AS megnyitasok,
+            COUNT(DISTINCT c.id) AS kattintasok
        FROM kuldesek k
        LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
        LEFT JOIN kattintasok c ON m.email COLLATE utf8mb4_hungarian_ci = c.email COLLATE utf8mb4_hungarian_ci
        GROUP BY k.id
        LIMIT 0, 25
-    ");
-    $kampanyok = $stmt->fetchAll();
-    ?>
-    <h2 class="mb-4">Kampányok</h2>
-    <a href="../aloldalak/kampany_szerkeszto.php" class="btn btn-success mb-3">Új kampány hozzáadása</a>
-    <div class="table-responsive">
-        <table class="table table-dark table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Kampány neve</th><th>Megnyitások</th><th>Kattintások</th><th>Művelet</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (empty($kampanyok)): ?>
-                    <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
-                <?php else: ?>
-                    <?php foreach ($kampanyok as $k): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($k['nev']) ?></td>
-                            <td><?= $k['megnyitasok'] ?></td>
-                            <td><?= $k['kattintasok'] ?></td>
-                            <td>
-                                <button class="btn btn-info btn-sm" disabled>Statisztika</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
+     ");
+     $kampanyok = $stmt->fetchAll();
+ ?>
+ <h2 class="mb-4">Kampányok</h2>
+ <a href="../aloldalak/kampany_szerkeszto.php" class="btn btn-success mb-3">Új kampány hozzáadása</a>
+ <div class="table-responsive">
+     <table class="table table-dark table-bordered table-striped">
+         <thead>
+             <tr>
+                 <th>Kampány neve</th>
+                 <th>Megnyitások</th>
+                 <th>Kattintások</th>
+                 <th>Művelet</th>
+             </tr>
+         </thead>
+         <tbody>
+             <?php if (empty($kampanyok)): ?>
+                 <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
+             <?php else: ?>
+                 <?php foreach ($kampanyok as $k): ?>
+                     <tr>
+                         <td><?= htmlspecialchars($k['nev']) ?></td>
+                         <td><?= (int)$k['megnyitasok'] ?></td>
+                         <td><?= (int)$k['kattintasok'] ?></td>
+                         <td>
+                             <!-- Küldés gomb -->
+                             <a href="send_campaign.php?id=<?= $k['id'] ?>"
+                                class="btn btn-primary btn-sm">
+                                 Küldés
+                             </a>
+                         </td>
+                     </tr>
+                 <?php endforeach; ?>
+             <?php endif; ?>
+         </tbody>
+     </table>
+ </div>
 
-<?php elseif ($page === 'ajanlatkeresek'): ?>
+ <?php elseif ($page === 'ajanlatkeresek'): ?>
 
     <?php
     $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
