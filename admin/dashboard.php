@@ -20,31 +20,33 @@ $page = $_GET['page'] ?? '';
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link <?= $page === 'testsend' ? 'active' : '' ?>" href="dashboard.php?page=testsend">Tesztküldés</a>
+                    <a class="nav-link <?= \$page === 'testsend' ? 'active' : '' ?>" href="dashboard.php?page=testsend">Tesztküldés</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= $page === 'megnyitasok' ? 'active' : '' ?>" href="dashboard.php?page=megnyitasok">Megnyitások</a>
+                    <a class="nav-link <?= \$page === 'megnyitasok' ? 'active' : '' ?>" href="dashboard.php?page=megnyitasok">Megnyitások</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= $page === 'ajanlatkeresek' ? 'active' : '' ?>" href="dashboard.php?page=ajanlatkeresek">Ajánlatkérések</a>
+                    <a class="nav-link <?= \$page === 'ajanlatkeresek' ? 'active' : '' ?>" href="dashboard.php?page=ajanlatkeresek">Ajánlatkérések</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= \$page === 'kampanyok' ? 'active' : '' ?>" href="dashboard.php?page=kampanyok">Kampányok</a>
                 </li>
             </ul>
-            <span class="navbar-text me-3">Üdv, <?= htmlspecialchars($_SESSION['username']) ?>!</span>
+            <span class="navbar-text me-3">Üdv, <?= htmlspecialchars(\$_SESSION['username']) ?>!</span>
             <a href="logout.php" class="btn btn-outline-light btn-sm">Kijelentkezés</a>
         </div>
     </div>
 </nav>
 
 <div class="container">
-<?php
-if ($page === ''): ?>
+<?php if (\$page === ''): ?>
     <h2 class="mb-4">Üdvözlünk a BNBK Adminfelületen!</h2>
     <p>Válassz egy funkciót a fenti menüből a folytatáshoz.</p>
 
-<?php elseif ($page === 'testsend'): ?>
+<?php elseif (\$page === 'testsend'): ?>
     <?php
-    $stmt = $pdo->query("SELECT * FROM kontaktok_test ORDER BY id ASC");
-    $kontaktok = $stmt->fetchAll();
+    \$stmt = \$pdo->query("SELECT * FROM kontaktok_test ORDER BY id ASC");
+    \$kontaktok = \$stmt->fetchAll();
     ?>
     <h2 class="mb-4">Teszt kontaktlista</h2>
     <div class="table-responsive">
@@ -59,19 +61,19 @@ if ($page === ''): ?>
                 </tr>
             </thead>
             <tbody>
-                <?php if (count($kontaktok) === 0): ?>
+                <?php if (count(\$kontaktok) === 0): ?>
                     <tr><td colspan="5" class="text-center">Nincs adat</td></tr>
                 <?php else: ?>
-                    <?php foreach ($kontaktok as $kontakt): ?>
+                    <?php foreach (\$kontaktok as \$kontakt): ?>
                         <tr>
-                            <td><?= $kontakt['id'] ?></td>
-                            <td><?= htmlspecialchars($kontakt['nev']) ?></td>
-                            <td><?= htmlspecialchars($kontakt['megye']) ?></td>
-                            <td><?= htmlspecialchars($kontakt['email']) ?></td>
+                            <td><?= \$kontakt['id'] ?></td>
+                            <td><?= htmlspecialchars(\$kontakt['nev']) ?></td>
+                            <td><?= htmlspecialchars(\$kontakt['megye']) ?></td>
+                            <td><?= htmlspecialchars(\$kontakt['email']) ?></td>
                             <td>
                                 <form method="post" action="send_single.php">
-                                    <input type="hidden" name="nev" value="<?= htmlspecialchars($kontakt['nev']) ?>">
-                                    <input type="hidden" name="email" value="<?= htmlspecialchars($kontakt['email']) ?>">
+                                    <input type="hidden" name="nev" value="<?= htmlspecialchars(\$kontakt['nev']) ?>">
+                                    <input type="hidden" name="email" value="<?= htmlspecialchars(\$kontakt['email']) ?>">
                                     <button type="submit" class="btn btn-outline-light btn-sm">Küldés</button>
                                 </form>
                             </td>
@@ -82,9 +84,9 @@ if ($page === ''): ?>
         </table>
     </div>
 
-<?php elseif ($page === 'megnyitasok'): ?>
+<?php elseif (\$page === 'megnyitasok'): ?>
     <?php
-    $stmt = $pdo->query("
+    \$stmt = \$pdo->query("
       SELECT
           m.email,
           COUNT(DISTINCT m.id) AS megnyitasok,
@@ -94,7 +96,7 @@ if ($page === ''): ?>
           ON m.email COLLATE utf8mb4_general_ci = k.email COLLATE utf8mb4_general_ci
       GROUP BY m.email
   ");
-    $adatok = $stmt->fetchAll();
+    \$adatok = \$stmt->fetchAll();
     ?>
     <h2 class="mb-4">Megnyitások statisztika</h2>
     <div class="table-responsive">
@@ -108,15 +110,15 @@ if ($page === ''): ?>
                 </tr>
             </thead>
             <tbody>
-                <?php if (count($adatok) === 0): ?>
+                <?php if (count(\$adatok) === 0): ?>
                     <tr><td colspan="4" class="text-center">Nincs adat</td></tr>
                 <?php else: ?>
-                    <?php foreach ($adatok as $sor): ?>
+                    <?php foreach (\$adatok as \$sor): ?>
                         <tr>
-                            <td><?= htmlspecialchars($sor['email']) ?></td>
-                            <td><?= $sor['megnyitasok'] ?></td>
-                            <td><?= $sor['kattintasok'] > 0 ? 'Igen' : 'Nem' ?></td>
-                            <td><?= $sor['kattintasok'] ?></td>
+                            <td><?= htmlspecialchars(\$sor['email']) ?></td>
+                            <td><?= \$sor['megnyitasok'] ?></td>
+                            <td><?= \$sor['kattintasok'] > 0 ? 'Igen' : 'Nem' ?></td>
+                            <td><?= \$sor['kattintasok'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -124,10 +126,41 @@ if ($page === ''): ?>
         </table>
     </div>
 
-<?php elseif ($page === 'ajanlatkeresek'): ?>
+<?php elseif (\$page === 'kampanyok'): ?>
     <?php
-    $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
-    $ajanlatok = $stmt->fetchAll();
+    \$stmt = \$pdo->query("SELECT k.id, k.nev, COUNT(m.id) AS megnyitasok, COUNT(c.id) AS kattintasok
+                          FROM kuldesek k
+                          LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
+                          LEFT JOIN kattintasok c ON k.id = c.kuldes_id
+                          GROUP BY k.id");
+    \$kampanyok = \$stmt->fetchAll();
+    ?>
+    <h2 class="mb-4">Kampányok</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Kampány neve</th>
+                    <th>Megnyitások</th>
+                    <th>Kattintások</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach (\$kampanyok as \$k): ?>
+                    <tr>
+                        <td><?= htmlspecialchars(\$k['nev']) ?></td>
+                        <td><?= (int)\$k['megnyitasok'] ?></td>
+                        <td><?= (int)\$k['kattintasok'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+<?php elseif (\$page === 'ajanlatkeresek'): ?>
+    <?php
+    \$stmt = \$pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
+    \$ajanlatok = \$stmt->fetchAll();
     ?>
     <h2 class="mb-4">Ajánlatkérések</h2>
     <div class="table-responsive">
@@ -145,16 +178,16 @@ if ($page === ''): ?>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($ajanlatok as $a): ?>
+                <?php foreach (\$ajanlatok as \$a): ?>
                     <tr>
-                        <td><?= htmlspecialchars($a['nev']) ?></td>
-                        <td><?= htmlspecialchars($a['email']) ?></td>
-                        <td><?= htmlspecialchars($a['telefon']) ?></td>
-                        <td><?= htmlspecialchars($a['szolgaltatas']) ?></td>
-                        <td><?= htmlspecialchars($a['felmeres_tipusok']) ?></td>
-                        <td><?= htmlspecialchars($a['helyseg']) ?></td>
-                        <td><?= htmlspecialchars($a['terulet']) ?></td>
-                        <td><?= htmlspecialchars($a['esedekesseg']) ?></td>
+                        <td><?= htmlspecialchars(\$a['nev']) ?></td>
+                        <td><?= htmlspecialchars(\$a['email']) ?></td>
+                        <td><?= htmlspecialchars(\$a['telefon']) ?></td>
+                        <td><?= htmlspecialchars(\$a['szolgaltatas']) ?></td>
+                        <td><?= htmlspecialchars(\$a['felmeres_tipusok']) ?></td>
+                        <td><?= htmlspecialchars(\$a['helyseg']) ?></td>
+                        <td><?= htmlspecialchars(\$a['terulet']) ?></td>
+                        <td><?= htmlspecialchars(\$a['esedekesseg']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
