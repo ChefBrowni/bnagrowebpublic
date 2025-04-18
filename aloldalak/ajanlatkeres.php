@@ -11,12 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // DEBUG: Ha hibás, írd ki részletesen a választ
     if (!$result['success']) {
-      echo '<div class="alert alert-danger text-center m-5">❌ Hibás reCAPTCHA ellenőrzés.</div>';
-      echo '<pre>';
-      print_r($result); // <<< EZ MEGMUTATJA, HOL A GOND
-      echo '</pre>';
-      exit;
-  }
+        echo '<div class="alert alert-danger text-center m-5">❌ Hibás reCAPTCHA ellenőrzés.</div>';
+        echo '<pre style="background:#f8f9fa; padding:1rem; border-radius:5px; max-width:600px; margin:2rem auto;">';
+        echo "Google válasz:\n\n";
+        print_r($result);
+        echo "</pre>";
+        exit;
+    }
 
     $nev = $_POST['nev'] ?? '';
     $email = $_POST['email'] ?? '';
