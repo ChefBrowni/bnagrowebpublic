@@ -39,11 +39,14 @@ $page = $_GET['page'] ?? '';
 </nav>
 
 <div class="container">
+
 <?php if ($page === ''): ?>
+
     <h2 class="mb-4">Üdvözlünk a BNBK Adminfelületen!</h2>
     <p>Válassz egy funkciót a fenti menüből a folytatáshoz.</p>
 
 <?php elseif ($page === 'testsend'): ?>
+
     <?php
     $stmt = $pdo->query("SELECT * FROM kontaktok_test ORDER BY id ASC");
     $kontaktok = $stmt->fetchAll();
@@ -53,15 +56,11 @@ $page = $_GET['page'] ?? '';
         <table class="table table-dark table-bordered table-striped align-middle">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Név</th>
-                    <th>Megye</th>
-                    <th>E-mail</th>
-                    <th>Művelet</th>
+                    <th>#</th><th>Név</th><th>Megye</th><th>E-mail</th><th>Művelet</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (count($kontaktok) === 0): ?>
+                <?php if (empty($kontaktok)): ?>
                     <tr><td colspan="5" class="text-center">Nincs adat</td></tr>
                 <?php else: ?>
                     <?php foreach ($kontaktok as $kontakt): ?>
@@ -85,17 +84,18 @@ $page = $_GET['page'] ?? '';
     </div>
 
 <?php elseif ($page === 'megnyitasok'): ?>
+
     <?php
     $stmt = $pdo->query("
-      SELECT
+        SELECT
           m.email,
           COUNT(DISTINCT m.id) AS megnyitasok,
           COUNT(DISTINCT k.id) AS kattintasok
-      FROM megnyitasok m
-      LEFT JOIN kattintasok k
+        FROM megnyitasok m
+        LEFT JOIN kattintasok k
           ON m.email COLLATE utf8mb4_general_ci = k.email COLLATE utf8mb4_general_ci
-      GROUP BY m.email
-  ");
+        GROUP BY m.email
+    ");
     $adatok = $stmt->fetchAll();
     ?>
     <h2 class="mb-4">Megnyitások statisztika</h2>
@@ -103,14 +103,11 @@ $page = $_GET['page'] ?? '';
         <table class="table table-dark table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>E-mail</th>
-                    <th>Megnyitások száma</th>
-                    <th>Kattintott?</th>
-                    <th>Kattintások száma</th>
+                    <th>E-mail</th><th>Megnyitások száma</th><th>Kattintott?</th><th>Kattintások száma</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (count($adatok) === 0): ?>
+                <?php if (empty($adatok)): ?>
                     <tr><td colspan="4" class="text-center">Nincs adat</td></tr>
                 <?php else: ?>
                     <?php foreach ($adatok as $sor): ?>
@@ -126,59 +123,51 @@ $page = $_GET['page'] ?? '';
         </table>
     </div>
 
-  <?php elseif ($page === 'kampanyok'): ?>
-      <?php
-      // Az általad megadott SQL lekérdezés
-      $stmt = $pdo->query("
-          SELECT k.id, k.nev,
-              COUNT(DISTINCT m.id) AS megnyitasok,
-              COUNT(DISTINCT c.id) AS kattintasok
-          FROM kuldesek k
-          LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
-          LEFT JOIN kattintasok c ON m.email COLLATE utf8mb4_hungarian_ci = c.email COLLATE utf8mb4_hungarian_ci
-          GROUP BY k.id
-          LIMIT 0, 25
-      ");
-      $kampanyok = $stmt->fetchAll();
-      ?>
-      <h2 class="mb-4">Kampányok</h2>
+<?php elseif ($page === 'kampanyok'): ?>
 
-      <!-- Új kampány hozzáadása gomb -->
-      <a href="../aloldalak/kampany_szerkeszto.php" class="btn btn-success mb-3">Új kampány hozzáadása</a>
-
-      <div class="table-responsive">
-          <table class="table table-dark table-bordered table-striped">
-              <thead>
-                  <tr>
-                      <th>Kampány neve</th>
-                      <th>Megnyitások</th>
-                      <th>Kattintások</th>
-                      <th>Művelet</th>  <!-- Új oszlop a gombok számára -->
-                  </tr>
-              </thead>
-              <tbody>
-                  <?php if (count($kampanyok) === 0): ?>
-                      <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
-                  <?php else: ?>
-                      <?php foreach ($kampanyok as $k): ?>
-                          <tr>
-                              <td><?= htmlspecialchars($k['nev']) ?></td>
-                              <td><?= (int)$k['megnyitasok'] ?></td>
-                              <td><?= (int)$k['kattintasok'] ?></td>
-                              <td>
-                                  <!-- Statisztika gomb, egyelőre nem rakunk bele funkciót -->
-                                  <button class="btn btn-info btn-sm" disabled>Statisztika</button>
-                                  <!-- Gomb a szerkesztéshez -->
-                              </td>
-                          </tr>
-                      <?php endforeach; ?>
-                  <?php endif; ?>
-              </tbody>
-          </table>
-      </div>
-  <?php endif; ?>
+    <?php
+    $stmt = $pdo->query("
+        SELECT k.id, k.nev,
+               COUNT(DISTINCT m.id) AS megnyitasok,
+               COUNT(DISTINCT c.id) AS kattintasok
+        FROM kuldesek k
+        LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
+        LEFT JOIN kattintasok c ON k.id = c.kuldes_id
+        GROUP BY k.id
+        LIMIT 25
+    ");
+    $kampanyok = $stmt->fetchAll();
+    ?>
+    <h2 class="mb-4">Kampányok</h2>
+    <a href="../aloldalak/kampany_szerkeszto.php" class="btn btn-success mb-3">Új kampány hozzáadása</a>
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Kampány neve</th><th>Megnyitások</th><th>Kattintások</th><th>Művelet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($kampanyok)): ?>
+                    <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
+                <?php else: ?>
+                    <?php foreach ($kampanyok as $k): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($k['nev']) ?></td>
+                            <td><?= $k['megnyitasok'] ?></td>
+                            <td><?= $k['kattintasok'] ?></td>
+                            <td>
+                                <button class="btn btn-info btn-sm" disabled>Statisztika</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 
 <?php elseif ($page === 'ajanlatkeresek'): ?>
+
     <?php
     $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
     $ajanlatok = $stmt->fetchAll();
@@ -188,36 +177,34 @@ $page = $_GET['page'] ?? '';
         <table class="table table-dark table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Név</th>
-                    <th>Email</th>
-                    <th>Telefon</th>
-                    <th>Szolgáltatás</th>
-                    <th>Felmérések</th>
-                    <th>Helység</th>
-                    <th>Terület (ha)</th>
-                    <th>Esedékesség</th>
+                    <th>Név</th><th>Email</th><th>Telefon</th><th>Szolgáltatás</th>
+                    <th>Felmérések</th><th>Helység</th><th>Terület (ha)</th><th>Esedékesség</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($ajanlatok as $a): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a['nev']) ?></td>
-                        <td><?= htmlspecialchars($a['email']) ?></td>
-                        <td><?= htmlspecialchars($a['telefon']) ?></td>
-                        <td><?= htmlspecialchars($a['szolgaltatas']) ?></td>
-                        <td><?= htmlspecialchars($a['felmeres_tipusok']) ?></td>
-                        <td><?= htmlspecialchars($a['helyseg']) ?></td>
-                        <td><?= htmlspecialchars($a['terulet']) ?></td>
-                        <td><?= htmlspecialchars($a['esedekesseg']) ?></td>
-                    </tr>
-                <?php endforeach; ?>
+                <?php if (empty($ajanlatok)): ?>
+                    <tr><td colspan="8" class="text-center">Nincs adat</td></tr>
+                <?php else: ?>
+                    <?php foreach ($ajanlatok as $a): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($a['nev']) ?></td>
+                            <td><?= htmlspecialchars($a['email']) ?></td>
+                            <td><?= htmlspecialchars($a['telefon']) ?></td>
+                            <td><?= htmlspecialchars($a['szolgaltatas']) ?></td>
+                            <td><?= htmlspecialchars($a['felmeres_tipusok']) ?></td>
+                            <td><?= htmlspecialchars($a['helyseg']) ?></td>
+                            <td><?= htmlspecialchars($a['terulet']) ?></td>
+                            <td><?= htmlspecialchars($a['esedekesseg']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
+
 <?php endif; ?>
 
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
