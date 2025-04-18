@@ -169,7 +169,6 @@ $page = $_GET['page'] ?? '';
                                   <!-- Statisztika gomb, egyelőre nem rakunk bele funkciót -->
                                   <button class="btn btn-info btn-sm" disabled>Statisztika</button>
                                   <!-- Gomb a szerkesztéshez -->
-                                  <a href="../aloldalak/kampany_szerkeszto.php?id=<?= $k['id'] ?>" class="btn btn-primary btn-sm">Szerkesztés</a>
                               </td>
                           </tr>
                       <?php endforeach; ?>
