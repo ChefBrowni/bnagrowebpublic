@@ -146,20 +146,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <!-- Token generálás meghívása -->
-<script>
-  function loadRecaptcha(siteKey) {
-    grecaptcha.ready(function () {
-      grecaptcha.execute(siteKey, { action: 'submit' }).then(function (token) {
-        document.getElementById('g-recaptcha-response').value = token;
-      });
-    });
-  }
-
-  // Meghívás a site key-el
-  loadRecaptcha('6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8');
-</script>
-
-<!-- Egyéb form logika -->
+<script src="https://www.google.com/recaptcha/api.js?render=6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8"></script>
 <script src="../scripts/ajanlatkeres.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    loadRecaptcha('6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8');
+  });
+</script>
 </body>
 </html>
