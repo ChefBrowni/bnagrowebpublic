@@ -85,14 +85,15 @@ if ($page === ''): ?>
 <?php elseif ($page === 'megnyitasok'): ?>
     <?php
     $stmt = $pdo->query("
-        SELECT
-            m.email,
-            COUNT(DISTINCT m.id) AS megnyitasok,
-            COUNT(DISTINCT k.id) AS kattintasok
-        FROM megnyitasok m
-        LEFT JOIN kattintasok k ON m.email = k.email
-        GROUP BY m.email
-    ");
+      SELECT
+          m.email,
+          COUNT(DISTINCT m.id) AS megnyitasok,
+          COUNT(DISTINCT k.id) AS kattintasok
+      FROM megnyitasok m
+      LEFT JOIN kattintasok k
+          ON m.email COLLATE utf8mb4_general_ci = k.email COLLATE utf8mb4_general_ci
+      GROUP BY m.email
+  ");
     $adatok = $stmt->fetchAll();
     ?>
     <h2 class="mb-4">Megnyitások statisztika</h2>
