@@ -80,7 +80,7 @@ $page = $_GET['page'] ?? 'testsend';
 
         <?php elseif ($page === 'megnyitasok'): ?>
             <?php
-            $stmt = $pdo->query("SELECT email, COUNT(*) as megnyitasok, SUM(CASE WHEN link_kattintas = 1 THEN 1 ELSE 0 END) as kattintasok FROM megnyitasok GROUP BY email");
+            $stmt = $pdo->query("SELECT email, COUNT(*) as megnyitasok, SUM(CASE WHEN link = 1 THEN 1 ELSE 0 END) as kattintasok FROM megnyitasok GROUP BY email");
             $adatok = $stmt->fetchAll();
             ?>
             <h2 class="mb-4">Megnyitások statisztika</h2>
