@@ -1,11 +1,13 @@
 <?php
 require '../admin/db.php';
-$recaptcha_secret = '6Lc21RwrAAAAAj5B_LTUIMp2T7syxgH4_w-4OKC';
+
+// Új SECRET kulcs
+$recaptcha_secret = '6LeS3BwrAAAAAEVJpEc2EJt_s5yJTUMIzsQrcPp-';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['g-recaptcha-response'] ?? '';
 
-    // reCAPTCHA ellenőrzés CURL-lel
+    // reCAPTCHA ellenőrzés cURL-lel
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
     curl_setopt($ch, CURLOPT_POST, true);
@@ -25,17 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     curl_close($ch);
     $result = json_decode($response, true);
 
-    // DEBUG – válasz kiírása, ha nem sikerült
     if (!$result || !isset($result['success']) || !$result['success']) {
         echo '<div class="alert alert-danger text-center m-5">❌ Hibás reCAPTCHA ellenőrzés.</div>';
-        echo '<pre style="background:#f8f9fa; padding:1rem; border-radius:5px; max-width:600px; margin:2rem auto;">';
-        echo "Google válasz:\n\n";
-        print_r($result);
-        echo "</pre>";
+        echo '<pre>'.print_r($result, true).'</pre>';
         exit;
     }
 
-    // További POST adat feldolgozás
+    // Adatok összegyűjtése
     $nev = $_POST['nev'] ?? '';
     $email = $_POST['email'] ?? '';
     $telefon = $_POST['telefon'] ?? '';
@@ -44,13 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $helyseg = $_POST['helyseg'] ?? '';
     $terulet = $_POST['terulet'] ?? '';
     $esedekesseg = $_POST['esedekesseg'] ?? '';
-
     $felmeres_szoveg = !empty($felmeres_tipusok) ? implode(', ', $felmeres_tipusok) : null;
 
     $stmt = $mysqli->prepare("INSERT INTO ajanlatkeresek
         (nev, email, telefon, szolgaltatas, felmeres_tipusok, helyseg, terulet, esedekesseg)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-
     $stmt->bind_param("ssssssss", $nev, $email, $telefon, $szolgaltatas, $felmeres_szoveg, $helyseg, $terulet, $esedekesseg);
 
     if ($stmt->execute()) {
@@ -62,13 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
   <title>Ajánlatkérés – BNBK Agro</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://www.google.com/recaptcha/api.js?render=6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8"></script>
 </head>
 <body class="bg-light">
 
@@ -76,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <h1 class="mb-4 text-center">Ajánlatkérés</h1>
   <form method="POST" action="" class="bg-white p-4 shadow rounded" novalidate>
 
-    <!-- reCAPTCHA token -->
     <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
     <div class="mb-3">
@@ -145,14 +140,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </form>
 </div>
 
-<!-- Token generálás meghívása -->
-<script src="https://www.google.com/recaptcha/api.js?render=6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8"></script>
+<!-- Google reCAPTCHA API -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LeS3BwrAAAAALjcg68UGnwQ3CBOHjHiXvPhnlZO"></script>
+
+<!-- Egyedi JS -->
 <script src="../scripts/ajanlatkeres.js"></script>
+
+<!-- Token generálás garantáltan betöltés után -->
 <script>
-  // Garantáltan csak akkor fusson le, ha minden betöltődött
   window.addEventListener('load', function () {
-    loadRecaptcha('6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8');
+    loadRecaptcha('6LeS3BwrAAAAALjcg68UGnwQ3CBOHjHiXvPhnlZO');
   });
 </script>
+
 </body>
 </html>

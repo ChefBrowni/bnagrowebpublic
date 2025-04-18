@@ -1,13 +1,11 @@
-// reCAPTCHA v3 betöltése
 function loadRecaptcha(siteKey) {
   grecaptcha.ready(function () {
-    grecaptcha.execute(siteKey, { action: 'submit' }).then(function (token) {
+    grecaptcha.execute(siteKey, { action: 'ajanlatkeres' }).then(function (token) {
       document.getElementById('g-recaptcha-response').value = token;
     });
   });
 }
 
-// Valós idejű email szintaxis ellenőrzés
 function validateEmail() {
   const emailField = document.getElementById('email');
   const feedback = document.getElementById('email-feedback');
@@ -23,7 +21,6 @@ function validateEmail() {
   }
 }
 
-// Felmérés mező megjelenítése
 function toggleFelmeres(value) {
   const felmeres = document.getElementById('felmeres-tipusok');
   felmeres.style.display = value === 'Felmérés' ? 'block' : 'none';
