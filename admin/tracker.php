@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-require 'admin/db.php'; // vagy ahol az adatbáziskapcsolat van
+require 'db.php'; // vagy ahol az adatbáziskapcsolat van
 
 // E-mail cím kinyerése GET paraméterből
 $email = $_GET['email'] ?? null;
