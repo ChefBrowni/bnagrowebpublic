@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <a href="' . $kattintas_link . '" style="display:inline-block; padding:10px 20px; background:#2f855a; color:#fff; text-decoration:none; border-radius:4px;">Ajánlatkérés</a>';
 
         // 👁 Megnyitáskövető pixel (csak 1x töltődik be, az e-mail nyitásakor)
-        $tracker_pixel = '<img src="https://bnbk.hu/admin/tracker.php?email=' . urlencode($email) . '" width="1" height="1" style="display:none;" alt="">';
+        $tracker_pixel = '<img src="https://bnbk.hu/admin/tracker.php?email=' . urlencode($email) . '&r=' . uniqid() . '" width="1" height="1" style="display:none;" alt="">';
 
         $html_body .= $tracker_pixel . '</body></html>';
 
