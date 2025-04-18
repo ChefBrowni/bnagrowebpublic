@@ -31,7 +31,7 @@ if (empty($kontakts)) {
 }
 
 $hiba = [];
-$ok = [];
+$ok   = [];
 
 foreach ($kontakts as $c) {
     $nev   = $c['nev'];
@@ -52,6 +52,7 @@ foreach ($kontakts as $c) {
         $mail->setFrom(MAIL_FROM, MAIL_FROM_NAME);
         $mail->addAddress($email, $nev);
 
+        // HTML levél
         $mail->isHTML(true);
         $mail->Subject = $kampany['targy'];
 
@@ -67,23 +68,33 @@ foreach ($kontakts as $c) {
                      . '?email=' . urlencode($email)
                      . '&kuldes_id=' . $kuldes_id;
 
-        // 5. E-mail törzs összeállítása
-        $body = '<!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>' . htmlspecialchars($kampany['nev']) . '</title></head>
-<body style="font-family:Arial,sans-serif; background:#f9f9f9; padding:20px;">
-  <h1 style="color:#2f855a;">' . htmlspecialchars($kampany['nev']) . '</h1>
-  <p>' . nl2br(htmlspecialchars($kampany['elotartalom'])) . '</p>';
-
+        // 5. Kép CID‐beágyazása, ha van
+        $cid = '';
         if (!empty($kampany['kep_url'])) {
-            $body .= '<p><img src="' . htmlspecialchars($kampany['kep_url']) . '" alt="" style="max-width:100%;"></p>';
+            // Feltételezzük, hogy kep_url valami olyasmi: '/images/foo.png'
+            $relative = ltrim($kampany['kep_url'], '/');
+            $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/' . $relative;
+            if (file_exists($imagePath)) {
+                $cid = 'img_' . $kuldes_id;
+                $mail->addEmbeddedImage($imagePath, $cid);
+            }
+        }
+
+        // 6. E-mail törzs összeállítása
+        $body  = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="font-family:Arial,sans-serif; background:#f9f9f9; padding:20px;">';
+        $body .= '<h1 style="color:#2f855a;">' . htmlspecialchars($kampany['nev']) . '</h1>';
+        $body .= '<p>' . nl2br(htmlspecialchars($kampany['elotartalom'])) . '</p>';
+
+        if ($cid) {
+            $body .= '<p><img src="cid:' . $cid . '" alt="" style="max-width:100%;"></p>';
         }
 
         $body .= '<p><a href="' . $click_url . '" style="display:inline-block; padding:10px 20px; background:#2f855a; color:#fff; text-decoration:none; border-radius:4px;">Ajánlatkérés</a></p>';
         $body .= '<p>' . nl2br(htmlspecialchars($kampany['utotartalom'])) . '</p>';
 
-        // A pixelet a </body> elé illesztjük
-        $body .= '<img src="' . $pixel_url . '" width="1" height="1" style="display:none;" alt=""></body></html>';
+        // Pixel a </body> elé
+        $body .= '<img src="' . $pixel_url . '" width="1" height="1" style="display:none;" alt="">';
+        $body .= '</body></html>';
 
         $mail->Body    = $body;
         $mail->AltBody = strip_tags($kampany['elotartalom']) . "\n\n" . strip_tags($kampany['utotartalom']);
@@ -95,7 +106,7 @@ foreach ($kontakts as $c) {
     }
 }
 
-// 6. Visszajelzés
+// 7. Visszajelzés megjelenítése
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -109,12 +120,12 @@ foreach ($kontakts as $c) {
     <h2 class="mb-4">Kampány kiküldés eredménye</h2>
     <?php if ($ok): ?>
       <div class="alert alert-success">
-        <strong><?= count($ok) ?></strong> e-mail elküldve sikeresen.
+        <strong><?= count($ok) ?></strong> e-mail sikeresen kiküldve.
       </div>
     <?php endif; ?>
     <?php if ($hiba): ?>
       <div class="alert alert-danger">
-        <p><strong>Hibák</strong></p>
+        <p><strong>Hibák:</strong></p>
         <ul>
           <?php foreach ($hiba as $addr => $err): ?>
             <li><?= htmlspecialchars($addr) ?>: <?= htmlspecialchars($err) ?></li>
