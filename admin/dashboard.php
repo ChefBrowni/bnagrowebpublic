@@ -128,17 +128,24 @@ $page = $_GET['page'] ?? '';
 
   <?php elseif ($page === 'kampanyok'): ?>
       <?php
+      // Az általad megadott SQL lekérdezés
       $stmt = $pdo->query("
-      SELECT k.id, k.nev, COUNT(DISTINCT m.id) AS megnyitasok, COUNT(DISTINCT c.id) AS kattintasok
-FROM kuldesek k
-LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
-LEFT JOIN kattintasok c ON m.email COLLATE utf8mb4_hungarian_ci = c.email COLLATE utf8mb4_hungarian_ci
-GROUP BY k.id
-LIMIT 0, 25
+          SELECT k.id, k.nev,
+              COUNT(DISTINCT m.id) AS megnyitasok,
+              COUNT(DISTINCT c.id) AS kattintasok
+          FROM kuldesek k
+          LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
+          LEFT JOIN kattintasok c ON m.email COLLATE utf8mb4_hungarian_ci = c.email COLLATE utf8mb4_hungarian_ci
+          GROUP BY k.id
+          LIMIT 0, 25
       ");
       $kampanyok = $stmt->fetchAll();
       ?>
       <h2 class="mb-4">Kampányok</h2>
+
+      <!-- Új kampány hozzáadása gomb -->
+      <a href="../aloldalak/kampany_szerkeszto.php" class="btn btn-success mb-3">Új kampány hozzáadása</a>
+
       <div class="table-responsive">
           <table class="table table-dark table-bordered table-striped">
               <thead>
@@ -146,7 +153,7 @@ LIMIT 0, 25
                       <th>Kampány neve</th>
                       <th>Megnyitások</th>
                       <th>Kattintások</th>
-                      <th>Művelet</th>  <!-- Új oszlop a gomb számára -->
+                      <th>Művelet</th>  <!-- Új oszlop a gombok számára -->
                   </tr>
               </thead>
               <tbody>
@@ -159,7 +166,9 @@ LIMIT 0, 25
                               <td><?= (int)$k['megnyitasok'] ?></td>
                               <td><?= (int)$k['kattintasok'] ?></td>
                               <td>
-                                  <!-- Gomb hozzáadása -->
+                                  <!-- Statisztika gomb, egyelőre nem rakunk bele funkciót -->
+                                  <button class="btn btn-info btn-sm" disabled>Statisztika</button>
+                                  <!-- Gomb a szerkesztéshez -->
                                   <a href="../aloldalak/kampany_szerkeszto.php?id=<?= $k['id'] ?>" class="btn btn-primary btn-sm">Szerkesztés</a>
                               </td>
                           </tr>
