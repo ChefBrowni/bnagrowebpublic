@@ -129,7 +129,7 @@ $page = $_GET['page'] ?? '';
 <?php elseif ($page === 'kampanyok'): ?>
     <?php
     $stmt = $pdo->query("
-       SSELECT k.id, k.nev, COUNT(DISTINCT m.id) AS megnyitasok, COUNT(DISTINCT c.id) AS kattintasok
+       SELECT k.id, k.nev, COUNT(DISTINCT m.id) AS megnyitasok, COUNT(DISTINCT c.id) AS kattintasok
 FROM kuldesek k
 LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
 LEFT JOIN kattintasok c ON m.email COLLATE utf8mb4_hungarian_ci = c.email COLLATE utf8mb4_hungarian_ci
