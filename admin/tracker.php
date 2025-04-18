@@ -1,7 +1,6 @@
 <?php
 file_put_contents('tracker_debug.log', date('Y-m-d H:i:s') . ' - tracker hívás: ' . ($_GET['email'] ?? 'nincs email') . PHP_EOL, FILE_APPEND);
 
-
 require 'db.php';
 
 $email = $_GET['email'] ?? null;
@@ -9,22 +8,32 @@ $email = $_GET['email'] ?? null;
 if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $ip = $_SERVER['REMOTE_ADDR'] ?? 'ismeretlen';
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'nincs user-agent';
+    $link = null;
 
     try {
-        // FIGYELEM: a 'link' mezőt kihagyjuk, ha NULL-t nem enged
-        $link = null;
+        $stmt = $pdo->prepare("
+            INSERT INTO megnyitasok (email, ip_cim, user_agent, link)
+            VALUES (?, ?, ?, ?)
+        ");
 
-    $stmt = $pdo->prepare("
-        INSERT INTO megnyitasok (email, ip_cim, user_agent, link)
-        VALUES (?, ?, ?, ?)
-    ");
-    $stmt->execute([$email, $ip, $userAgent, $link]);
+        if (!$stmt) {
+            $error = $pdo->errorInfo();
+            file_put_contents('tracker_debug.log', '⛔ Prepare hiba: ' . $error[2] . PHP_EOL, FILE_APPEND);
+        }
+
+        $success = $stmt->execute([$email, $ip, $userAgent, $link]);
+
+        if (!$success) {
+            $error = $stmt->errorInfo();
+            file_put_contents('tracker_debug.log', '⛔ Execute hiba: ' . implode(', ', $error) . PHP_EOL, FILE_APPEND);
+        }
+
     } catch (PDOException $e) {
-        error_log("📛 TRACKER ERROR: " . $e->getMessage());
+        file_put_contents('tracker_debug.log', '📛 KIVÉTEL: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
     }
 }
 
-// Válaszként 1x1 px átlátszó PNG-t küldünk
+// 1x1 px átlátszó PNG válasz
 header('Content-Type: image/png');
 header('Cache-Control: no-cache, no-store, must-revalidate');
 header('Expires: 0');
