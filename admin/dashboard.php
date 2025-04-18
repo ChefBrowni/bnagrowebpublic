@@ -82,40 +82,48 @@ $page = $_GET['page'] ?? '';
             </table>
         </div>
 
-    <?php elseif ($page === 'megnyitasok'): ?>
-        <?php
-        $stmt = $pdo->query("
-            SELECT m.email,
-                   COUNT(m.id) AS megnyitasok,
-                   (SELECT COUNT(*) FROM kattintasok k WHERE k.email = m.email) AS kattintasok
-            FROM megnyitasok m
-            GROUP BY m.email
-        ");
-        $adatok = $stmt->fetchAll();
-        ?>
-        <h2 class="mb-4">Megnyitások statisztika</h2>
-        <div class="table-responsive">
-            <table class="table table-dark table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>E-mail</th>
-                    <th>Megnyitások száma</th>
-                    <th>Kattintott?</th>
-                    <th>Kattintások száma</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($adatok as $sor): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($sor['email']) ?></td>
-                        <td><?= $sor['megnyitasok'] ?></td>
-                        <td><?= $sor['kattintasok'] > 0 ? 'Igen' : 'Nem' ?></td>
-                        <td><?= $sor['kattintasok'] ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+      <?php elseif ($page === 'megnyitasok'): ?>
+          <?php
+          // Megnyitások és kattintások külön táblából, e-mail alapján
+          $stmt = $pdo->query("
+              SELECT
+                  m.email,
+                  COUNT(DISTINCT m.id) AS megnyitasok,
+                  COUNT(DISTINCT k.id) AS kattintasok
+              FROM megnyitasok m
+              LEFT JOIN kattintasok k ON m.email = k.email
+              GROUP BY m.email
+          ");
+          $adatok = $stmt->fetchAll();
+          ?>
+          <h2 class="mb-4">Megnyitások statisztika</h2>
+          <div class="table-responsive">
+              <table class="table table-dark table-bordered table-striped">
+                  <thead>
+                      <tr>
+                          <th>E-mail</th>
+                          <th>Megnyitások száma</th>
+                          <th>Kattintott?</th>
+                          <th>Kattintások száma</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <?php if (count($adatok) === 0): ?>
+                          <tr><td colspan="4" class="text-center">Nincs adat</td></tr>
+                      <?php else: ?>
+                          <?php foreach ($adatok as $sor): ?>
+                              <tr>
+                                  <td><?= htmlspecialchars($sor['email']) ?></td>
+                                  <td><?= $sor['megnyitasok'] ?></td>
+                                  <td><?= $sor['kattintasok'] > 0 ? 'Igen' : 'Nem' ?></td>
+                                  <td><?= $sor['kattintasok'] ?></td>
+                              </tr>
+                          <?php endforeach; ?>
+                      <?php endif; ?>
+                  </tbody>
+              </table>
+          </div>
+      <?php endif; ?>
 
     <?php elseif ($page === 'ajanlatkeresek'): ?>
         <?php
