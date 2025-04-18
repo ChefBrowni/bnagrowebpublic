@@ -9,8 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$recaptcha_secret&response=$token");
     $result = json_decode($response, true);
 
+    // DEBUG: Ha hibás, írd ki részletesen a választ
     if (!$result['success']) {
         echo '<div class="alert alert-danger text-center m-5">❌ Hibás reCAPTCHA ellenőrzés.</div>';
+        echo '<pre style="background:#f8f9fa;padding:1rem;border-radius:5px;margin:1rem auto;max-width:600px">';
+        print_r($result);
+        echo '</pre>';
         exit;
     }
 
@@ -55,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <h1 class="mb-4 text-center">Ajánlatkérés</h1>
   <form method="POST" action="" class="bg-white p-4 shadow rounded" novalidate>
 
+    <!-- reCAPTCHA token -->
     <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
     <div class="mb-3">
@@ -126,11 +131,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
   grecaptcha.ready(function () {
-    grecaptcha.execute('YOUR_SITE_KEY', { action: 'submit' }).then(function (token) {
+    grecaptcha.execute('6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8', { action: 'submit' }).then(function (token) {
       document.getElementById('g-recaptcha-response').value = token;
     });
   });
 </script>
+
 <script src="../scripts/ajanlatkeres.js"></script>
 </body>
 </html>
