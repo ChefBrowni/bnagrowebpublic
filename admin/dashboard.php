@@ -129,14 +129,12 @@ $page = $_GET['page'] ?? '';
   <?php elseif ($page === 'kampanyok'): ?>
       <?php
       $stmt = $pdo->query("
-          SELECT k.id, k.nev,
-              COUNT(DISTINCT m.id) AS megnyitasok,
-              COUNT(DISTINCT c.id) AS kattintasok
-          FROM kuldesek k
-          LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
-          LEFT JOIN kattintasok c ON k.id = c.kuldes_id
-          GROUP BY k.id
-          LIMIT 0, 25
+      SELECT k.id, k.nev, COUNT(DISTINCT m.id) AS megnyitasok, COUNT(DISTINCT c.id) AS kattintasok
+FROM kuldesek k
+LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
+LEFT JOIN kattintasok c ON m.email COLLATE utf8mb4_hungarian_ci = c.email COLLATE utf8mb4_hungarian_ci
+GROUP BY k.id
+LIMIT 0, 25
       ");
       $kampanyok = $stmt->fetchAll();
       ?>
