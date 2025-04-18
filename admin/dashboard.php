@@ -146,22 +146,23 @@ $page = $_GET['page'] ?? '';
                 </tr>
             </thead>
             <tbody>
-          <?php if (count($kampanyok) === 0): ?>
-              <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
-          <?php else: ?>
-              <?php foreach ($kampanyok as $k): ?>
-                  <tr>
-                      <td>
-                          <a href="dashboard.php?page=kampanyszerkeszto&id=<?= $k['id'] ?>" class="text-white text-decoration-underline">
-                              <?= htmlspecialchars($k['nev']) ?>
-                          </a>
-                      </td>
-                      <td><?= (int)$k['megnyitasok'] ?></td>
-                      <td><?= (int)$k['kattintasok'] ?></td>
-                  </tr>
-              <?php endforeach; ?>
-          <?php endif; ?>
-      </tbody>
+        <?php if (count($kampanyok) === 0): ?>
+            <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
+        <?php else: ?>
+            <?php foreach ($kampanyok as $k): ?>
+                <tr>
+                    <td>
+                        <!-- Itt módosítjuk az elérési utat a relatív útvonalra -->
+                        <a href="../aloldalak/kampany_szerkeszto.php?id=<?= $k['id'] ?>" class="text-white text-decoration-underline">
+                            <?= htmlspecialchars($k['nev']) ?>
+                        </a>
+                    </td>
+                    <td><?= (int)$k['megnyitasok'] ?></td>
+                    <td><?= (int)$k['kattintasok'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </tbody>
         </table>
     </div>
 
