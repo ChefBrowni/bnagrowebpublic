@@ -1,0 +1,22 @@
+# —————————————————————
+# /htaccess a webrootban
+# —————————————————————
+
+# 1) Ne lehessen böngészőből listázni egy könyvtár tartalmát
+Options -Indexes
+
+# 2) Rejtett fájlokra (ponttal kezdődő) ne lehessen rálépni
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# 3) Engedélyezzük a mod_rewrite-ot
+RewriteEngine On
+
+# 4) Ha a kért útvonal létezik fájlként vagy mappaként, szolgáljuk ki simán
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 5) Egyéb kéréseket irányítsuk át a front-controller‑re (index.php)
+RewriteRule ^ index.php [L]
