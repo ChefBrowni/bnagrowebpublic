@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $mail = new PHPMailer(true);
-    $mail->CharSet = 'UTF-8'; // ékezetek miatt
+    $mail->CharSet = 'UTF-8';
 
     try {
         $mail->isSMTP();
@@ -34,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isHTML(true);
         $mail->Subject = 'Drónos megoldások a mezőgazdaságban – BNBK Agro';
 
-        // 📩 Kattintáskövető link összeállítása
+        // 🔗 Kattintáskövető link (külön kattintás log)
         $eredeti_url = 'https://bnbk.hu/aloldalak/ajanlatkeres.php';
         $kattintas_link = 'https://bnbk.hu/admin/click.php?email=' . urlencode($email) . '&link=' . urlencode($eredeti_url);
 
-        // 📨 E-mail HTML sablon (egyszerű)
+        // ✉️ HTML e-mail sablon
         $html_body = '<!DOCTYPE html>
 <html>
 <head>
@@ -47,17 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body style="font-family:Arial,sans-serif; background:#f9f9f9; padding:20px;">
   <h1 style="color:#2f855a;">BNBK Agro Kft – Teszt e-mail</h1>
-  <p>Kedves Ügyfelünk!</p>
+  <p>Kedves ' . htmlspecialchars($nev) . '!</p>
   <p>Ez egy teszt e-mail a rendszer működésének ellenőrzésére.</p>
-  <a href="' . $kattintas_link . '" style="display:inline-block; padding:10px 20px; background:#2f855a; color:#fff; text-decoration:none; border-radius:4px;">Ajánlatkérés</a>
-</body>
-</html>';
+  <a href="' . $kattintas_link . '" style="display:inline-block; padding:10px 20px; background:#2f855a; color:#fff; text-decoration:none; border-radius:4px;">Ajánlatkérés</a>';
 
-        // 👁 Megnyitáskövető pixel beillesztése <body> vége elé
+        // 👁 Megnyitáskövető pixel (csak 1x töltődik be, az e-mail nyitásakor)
         $tracker_pixel = '<img src="https://bnbk.hu/admin/tracker.php?email=' . urlencode($email) . '" width="1" height="1" style="display:none;" alt="">';
-        $html_body = str_replace('</body>', $tracker_pixel . '</body>', $html_body);
 
-        // 📤 Beállítások lezárása
+        $html_body .= $tracker_pixel . '</body></html>';
+
         $mail->Body = $html_body;
         $mail->AltBody = 'Tisztelt Hölgyem / Uram! Kérjük, engedélyezze a HTML megjelenítést az e-mailben.';
 
@@ -71,5 +69,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo '❌ Nem megfelelő kérés.';
 }
-
 ?>

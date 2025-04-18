@@ -2,7 +2,7 @@
 require 'session_check.php';
 require 'db.php';
 
-$page = $_GET['page'] ?? 'testsend';
+$page = $_GET['page'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -37,7 +37,11 @@ $page = $_GET['page'] ?? 'testsend';
     </nav>
 
     <div class="container">
-        <?php if ($page === 'testsend'): ?>
+        <?php if ($page === ''): ?>
+            <h2 class="mb-4">Üdvözlünk a BNBK Adminfelületen!</h2>
+            <p>Válassz egy funkciót a fenti menüből a folytatáshoz.</p>
+
+        <?php elseif ($page === 'testsend'): ?>
             <?php
             $stmt = $pdo->query("SELECT * FROM kontaktok_test ORDER BY id ASC");
             $kontaktok = $stmt->fetchAll();
@@ -80,14 +84,7 @@ $page = $_GET['page'] ?? 'testsend';
 
         <?php elseif ($page === 'megnyitasok'): ?>
             <?php
-            $stmt = $pdo->query("
-                  SELECT
-                      email,
-                      COUNT(*) AS megnyitasok,
-                      COUNT(CASE WHEN link IS NOT NULL AND link != '' THEN 1 END) AS kattintasok
-                  FROM megnyitasok
-                  GROUP BY email
-              ");
+            $stmt = $pdo->query("SELECT email, COUNT(*) AS megnyitasok, COUNT(CASE WHEN link IS NOT NULL AND link != '' THEN 1 END) AS kattintasok FROM megnyitasok GROUP BY email");
             $adatok = $stmt->fetchAll();
             ?>
             <h2 class="mb-4">Megnyitások statisztika</h2>

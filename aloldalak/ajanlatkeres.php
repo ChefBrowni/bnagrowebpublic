@@ -150,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  <!--Egyedi JS-->-->
 <script src="../scripts/ajanlatkeres.js"></script>
 
- <!--Token generálás garantáltan betöltés után-->-->-->
+ <!--Token generálás garantáltan betöltés után-->
 <script>
   window.addEventListener('load', function () {
     loadRecaptcha('6LeS3BwrAAAAALjcg68UGnwQ3CBOHjIHXvPhnlZO');
