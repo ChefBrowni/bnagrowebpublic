@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
     //    'secret' => $recaptcha_secret,
       //  'response' => $token
-    ]));
+  //  ]));
 
 
     // Adatok összegyűjtése
