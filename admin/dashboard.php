@@ -143,6 +143,7 @@ $page = $_GET['page'] ?? '';
                     <th>Kampány neve</th>
                     <th>Megnyitások</th>
                     <th>Kattintások</th>
+                    <th>Akció</th>
                 </tr>
             </thead>
             <tbody>
@@ -159,6 +160,10 @@ $page = $_GET['page'] ?? '';
                     </td>
                     <td><?= (int)$k['megnyitasok'] ?></td>
                     <td><?= (int)$k['kattintasok'] ?></td>
+                    <td>
+                        <!-- Szerkesztés link -->
+                        <a href="../aloldalak/kampany_szerkeszto.php?id=<?= $k['id'] ?>" class="btn btn-warning btn-sm">Szerkesztés</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php endif; ?>
