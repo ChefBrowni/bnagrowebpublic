@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  <!--Token generálás garantáltan betöltés után-->-->-->
 <script>
   window.addEventListener('load', function () {
-    loadRecaptcha('6LeS3BwrAAAAALjcg68UGnwQ3CBOHjHiXvPhnlZO');
+    loadRecaptcha('6LeS3BwrAAAAALjcg68UGnwQ3CBOHjIHXvPhnlZO');
   });
 </script>
 
