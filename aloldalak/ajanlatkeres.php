@@ -123,19 +123,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   </form>
 </div>
-
-<!-- Google reCAPTCHA API -->
+<!--
+ Google reCAPTCHA API
 <script src="https://www.google.com/recaptcha/api.js?render=6LeS3BwrAAAAALjcg68UGnwQ3CBOHjHiXvPhnlZO"></script>
 
-<!-- Egyedi JS -->
+ Egyedi JS
 <script src="../scripts/ajanlatkeres.js"></script>
 
-<!-- Token generálás garantáltan betöltés után -->
+ Token generálás garantáltan betöltés után
 <script>
   window.addEventListener('load', function () {
     loadRecaptcha('6LeS3BwrAAAAALjcg68UGnwQ3CBOHjHiXvPhnlZO');
   });
-</script>
+</script>-->
 
 </body>
 </html>
