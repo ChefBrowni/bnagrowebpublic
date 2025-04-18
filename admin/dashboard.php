@@ -38,7 +38,7 @@ $page = $_GET['page'] ?? '';
 
     <div class="container">
         <?php if ($page === ''): ?>
-            <h2 class="mb-4">Üdvözlünk a BNBK Adminfelületen!</h2>
+            <h2 class="mb-4">Üdvözlük a BNBK Adminfelületen!</h2>
             <p>Válassz egy funkciót a fenti menüből a folytatáshoz.</p>
 
         <?php elseif ($page === 'testsend'): ?>
@@ -84,7 +84,10 @@ $page = $_GET['page'] ?? '';
 
         <?php elseif ($page === 'megnyitasok'): ?>
             <?php
-            $stmt = $pdo->query("SELECT email, COUNT(*) AS megnyitasok, COUNT(CASE WHEN link IS NOT NULL AND link != '' THEN 1 END) AS kattintasok FROM megnyitasok WHERE link IS NULL OR link = '' GROUP BY email");
+            $stmt = $pdo->query("SELECT m.email, COUNT(m.id) AS megnyitasok, COUNT(k.id) AS kattintasok
+                                  FROM megnyitasok m
+                                  LEFT JOIN kattintasok k ON m.email = k.email
+                                  GROUP BY m.email");
             $adatok = $stmt->fetchAll();
             ?>
             <h2 class="mb-4">Megnyitások statisztika</h2>
