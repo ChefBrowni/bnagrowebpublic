@@ -1,6 +1,8 @@
 <?php
 require '../admin/db.php';
 $recaptcha_secret = '6Lc21RwrAAAAAj5B_LTUIMp2T7syxgH4_w-4OKC';
+echo file_get_contents("https://www.google.com");
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['g-recaptcha-response'] ?? '';
