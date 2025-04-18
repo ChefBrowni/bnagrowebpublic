@@ -1,7 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+file_put_contents('tracker_debug.log', date('Y-m-d H:i:s') . ' - tracker hívás: ' . ($_GET['email'] ?? 'nincs email') . PHP_EOL, FILE_APPEND);
+
 
 require 'db.php';
 
@@ -13,11 +12,12 @@ if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     try {
         // FIGYELEM: a 'link' mezőt kihagyjuk, ha NULL-t nem enged
-        $stmt = $pdo->prepare("
-            INSERT INTO megnyitasok (email, ip_cim, user_agent)
-            VALUES (?, ?, ?)
-        ");
-        $stmt->execute([$email, $ip, $userAgent]);
+        $link = null; // vagy ''
+$stmt = $pdo->prepare("
+    INSERT INTO megnyitasok (email, ip_cim, user_agent, link)
+    VALUES (?, ?, ?, ?)
+");
+$stmt->execute([$email, $ip, $userAgent, $link]);
     } catch (PDOException $e) {
         error_log("📛 TRACKER ERROR: " . $e->getMessage());
     }
