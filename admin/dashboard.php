@@ -1,10 +1,6 @@
 <?php
 require 'session_check.php';
 require 'db.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $page = $_GET['page'] ?? '';
 ?>
 <!DOCTYPE html>
@@ -40,19 +36,19 @@ $page = $_GET['page'] ?? '';
 </nav>
 
 <div class="container">
-    <?php if ($page === ''): ?>
-        <h2 class="mb-4">Üdvözlünk a BNBK Adminfelületen!</h2>
-        <p>Válassz egy funkciót a fenti menüből a folytatáshoz.</p>
+<?php if ($page === ''): ?>
+    <h2 class="mb-4">Üdvözlünk a BNBK Adminfelületen!</h2>
+    <p>Válassz egy funkciót a fenti menüből a folytatáshoz.</p>
 
-    <?php elseif ($page === 'testsend'): ?>
-        <?php
-        $stmt = $pdo->query("SELECT * FROM kontaktok_test ORDER BY id ASC");
-        $kontaktok = $stmt->fetchAll();
-        ?>
-        <h2 class="mb-4">Teszt kontaktlista</h2>
-        <div class="table-responsive">
-            <table class="table table-dark table-bordered table-striped align-middle">
-                <thead>
+<?php elseif ($page === 'testsend'): ?>
+    <?php
+    $stmt = $pdo->query("SELECT * FROM kontaktok_test ORDER BY id ASC");
+    $kontaktok = $stmt->fetchAll();
+    ?>
+    <h2 class="mb-4">Teszt kontaktlista</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped align-middle">
+            <thead>
                 <tr>
                     <th>#</th>
                     <th>Név</th>
@@ -60,8 +56,8 @@ $page = $_GET['page'] ?? '';
                     <th>E-mail</th>
                     <th>Művelet</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <?php if (count($kontaktok) === 0): ?>
                     <tr><td colspan="5" class="text-center">Nincs adat</td></tr>
                 <?php else: ?>
@@ -81,62 +77,60 @@ $page = $_GET['page'] ?? '';
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
 
-      <?php elseif ($page === 'megnyitasok'): ?>
-          <?php
-          // Megnyitások és kattintások külön táblából, e-mail alapján
-          $stmt = $pdo->query("
-              SELECT
-                  m.email,
-                  COUNT(DISTINCT m.id) AS megnyitasok,
-                  COUNT(DISTINCT k.id) AS kattintasok
-              FROM megnyitasok m
-              LEFT JOIN kattintasok k ON m.email = k.email
-              GROUP BY m.email
-          ");
-          $adatok = $stmt->fetchAll();
-          ?>
-          <h2 class="mb-4">Megnyitások statisztika</h2>
-          <div class="table-responsive">
-              <table class="table table-dark table-bordered table-striped">
-                  <thead>
-                      <tr>
-                          <th>E-mail</th>
-                          <th>Megnyitások száma</th>
-                          <th>Kattintott?</th>
-                          <th>Kattintások száma</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <?php if (count($adatok) === 0): ?>
-                          <tr><td colspan="4" class="text-center">Nincs adat</td></tr>
-                      <?php else: ?>
-                          <?php foreach ($adatok as $sor): ?>
-                              <tr>
-                                  <td><?= htmlspecialchars($sor['email']) ?></td>
-                                  <td><?= $sor['megnyitasok'] ?></td>
-                                  <td><?= $sor['kattintasok'] > 0 ? 'Igen' : 'Nem' ?></td>
-                                  <td><?= $sor['kattintasok'] ?></td>
-                              </tr>
-                          <?php endforeach; ?>
-                      <?php endif; ?>
-                  </tbody>
-              </table>
-          </div>
-      <?php endif; ?>
+<?php elseif ($page === 'megnyitasok'): ?>
+    <?php
+    $stmt = $pdo->query("
+        SELECT
+            m.email,
+            COUNT(DISTINCT m.id) AS megnyitasok,
+            COUNT(DISTINCT k.id) AS kattintasok
+        FROM megnyitasok m
+        LEFT JOIN kattintasok k ON m.email = k.email
+        GROUP BY m.email
+    ");
+    $adatok = $stmt->fetchAll();
+    ?>
+    <h2 class="mb-4">Megnyitások statisztika</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>E-mail</th>
+                    <th>Megnyitások száma</th>
+                    <th>Kattintott?</th>
+                    <th>Kattintások száma</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (count($adatok) === 0): ?>
+                    <tr><td colspan="4" class="text-center">Nincs adat</td></tr>
+                <?php else: ?>
+                    <?php foreach ($adatok as $sor): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($sor['email']) ?></td>
+                            <td><?= $sor['megnyitasok'] ?></td>
+                            <td><?= $sor['kattintasok'] > 0 ? 'Igen' : 'Nem' ?></td>
+                            <td><?= $sor['kattintasok'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 
-    <?php elseif ($page === 'ajanlatkeresek'): ?>
-        <?php
-        $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
-        $ajanlatok = $stmt->fetchAll();
-        ?>
-        <h2 class="mb-4">Ajánlatkérések</h2>
-        <div class="table-responsive">
-            <table class="table table-dark table-bordered table-striped">
-                <thead>
+<?php elseif ($page === 'ajanlatkeresek'): ?>
+    <?php
+    $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
+    $ajanlatok = $stmt->fetchAll();
+    ?>
+    <h2 class="mb-4">Ajánlatkérések</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped">
+            <thead>
                 <tr>
                     <th>Név</th>
                     <th>Email</th>
@@ -147,8 +141,8 @@ $page = $_GET['page'] ?? '';
                     <th>Terület (ha)</th>
                     <th>Esedékesség</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <?php foreach ($ajanlatok as $a): ?>
                     <tr>
                         <td><?= htmlspecialchars($a['nev']) ?></td>
@@ -161,10 +155,10 @@ $page = $_GET['page'] ?? '';
                         <td><?= htmlspecialchars($a['esedekesseg']) ?></td>
                     </tr>
                 <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
