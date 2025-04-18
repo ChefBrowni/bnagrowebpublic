@@ -70,33 +70,41 @@ foreach ($kontakts as $c) {
 
         // 5. Kép CID‐beágyazása, ha van
         $cid = '';
-        if (!empty($kampany['kep_url'])) {
-            // Feltételezzük, hogy kep_url valami olyasmi: '/images/foo.png'
-            $relative = ltrim($kampany['kep_url'], '/');
-            $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/' . $relative;
-            if (file_exists($imagePath)) {
-                $cid = 'img_' . $kuldes_id;
-                $mail->addEmbeddedImage($imagePath, $cid);
-            }
-        }
+  if (!empty($kampany['kep_url'])) {
+      // A kép URL-jéből kinyerjük a fájlnevét
+      $filename = basename($kampany['kep_url']);
+      // Megépítjük a helyi elérési utat a képfájlhoz
+      $localPath = $_SERVER['DOCUMENT_ROOT'] . '/images/' . $filename;
+      if (file_exists($localPath)) {
+          // Egyedi CID
+          $cid = 'img_' . $kuldes_id;
+          // Beágyazzuk a helyi fájlt
+          $mail->addEmbeddedImage(
+              $localPath,
+              $cid,
+              $filename
+          );
+      } else {
+          error_log("Kép nem található: $localPath");
+      }
+  }
 
-        // 6. E-mail törzs összeállítása
-        $body  = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="font-family:Arial,sans-serif; background:#f9f9f9; padding:20px;">';
-        $body .= '<h1 style="color:#2f855a;">' . htmlspecialchars($kampany['nev']) . '</h1>';
-        $body .= '<p>' . nl2br(htmlspecialchars($kampany['elotartalom'])) . '</p>';
+  // … most jön az e-mail törzs összeállítása …
+  $body  = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>';
+  $body .= '<h1>' . htmlspecialchars($kampany['nev']) . '</h1>';
+  $body .= '<p>' . nl2br(htmlspecialchars($kampany['elotartalom'])) . '</p>';
 
-        if ($cid) {
-            $body .= '<p><img src="cid:' . $cid . '" alt="" style="max-width:100%;"></p>';
-        }
+  if ($cid) {
+      // Beágyazott kép CID-del
+      $body .= '<p><img src="cid:' . $cid . '" style="max-width:100%;"></p>';
+  }
 
-        $body .= '<p><a href="' . $click_url . '" style="display:inline-block; padding:10px 20px; background:#2f855a; color:#fff; text-decoration:none; border-radius:4px;">Ajánlatkérés</a></p>';
-        $body .= '<p>' . nl2br(htmlspecialchars($kampany['utotartalom'])) . '</p>';
+  $body .= '<p><a href="' . $click_url . '">Ajánlatkérés</a></p>';
+  $body .= '<p>' . nl2br(htmlspecialchars($kampany['utotartalom'])) . '</p>';
+  // + pixel
+  $body .= '<img src="' . $pixel_url . '" width="1" height="1" style="display:none;"></body></html>';
 
-        // Pixel a </body> elé
-        $body .= '<img src="' . $pixel_url . '" width="1" height="1" style="display:none;" alt="">';
-        $body .= '</body></html>';
-
-        $mail->Body    = $body;
+  $mail->Body = $body;
         $mail->AltBody = strip_tags($kampany['elotartalom']) . "\n\n" . strip_tags($kampany['utotartalom']);
 
         $mail->send();
