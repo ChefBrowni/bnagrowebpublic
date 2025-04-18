@@ -34,11 +34,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isHTML(true);
         $mail->Subject = 'Drónos megoldások a mezőgazdaságban – BNBK Agro';
 
-        // HTML fájl betöltése (a newsletter mappában van)
+        // HTML sablon betöltése
         $html_body = file_get_contents(__DIR__ . '/../newsletter/bnbk_svg_hirlevel_szoveg_nelkul.html');
-        $mail->Body = $html_body;
 
-        // Biztonsági AltBody szöveg (nem jelenik meg ha rendesen támogatja a HTML-t)
+        // 🔗 LINK CSERE kattintáskövetésre
+        $urleredeti = 'https://bnbk.hu/ajanlatkeres';
+        $kattintas_link = 'https://bnbk.hu/admin/click.php?email=' . urlencode($email) . '&link=' . urlencode($urleredeti);
+        $html_body = str_replace($urleredeti, $kattintas_link, $html_body);
+
+        // 👁 Pixel beillesztése megnyitáskövetéshez
+        $tracker_pixel = '<img src="https://bnbk.hu/admin/tracker.php?email=' . urlencode($email) . '" width="1" height="1" style="display:none;" alt="">';
+        $html_body .= $tracker_pixel;
+
+        $mail->Body = $html_body;
         $mail->AltBody = 'Tisztelt Hölgyem / Uram! Kérjük, engedélyezze a HTML megjelenítést az e-mailben.';
 
         $mail->send();
