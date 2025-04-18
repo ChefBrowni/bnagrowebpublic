@@ -12,17 +12,21 @@ if ($email && filter_var($email, FILTER_VALIDATE_EMAIL) && $link) {
     $ip = $_SERVER['REMOTE_ADDR'] ?? 'ismeretlen';
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'nincs user-agent';
 
-    // Mentés a kattintasok táblába
-    $stmt = $pdo->prepare("
-        INSERT INTO kattintasok (email, kattintas_ideje, ip_cim, user_agent, link)
-        VALUES (?, NOW(), ?, ?, ?)
-    ");
-    $stmt->execute([$email, $ip, $userAgent, $link]);
+    try {
+        // Mentés a kattintasok táblába
+        $stmt = $pdo->prepare("
+            INSERT INTO kattintasok (email, kattintas_ideje, ip_cim, user_agent, link)
+            VALUES (?, NOW(), ?, ?, ?)
+        ");
+        $stmt->execute([$email, $ip, $userAgent, $link]);
+    } catch (PDOException $e) {
+        error_log('❌ Kattintás naplózási hiba: ' . $e->getMessage());
+    }
 
-    // Átirányítás a céloldalra
-    header("Location: $link");
+    // Biztonságos átirányítás
+    header("Location: " . filter_var($link, FILTER_SANITIZE_URL));
     exit;
 }
 
+http_response_code(400);
 echo '❌ Hibás vagy hiányzó paraméter.';
-?>
