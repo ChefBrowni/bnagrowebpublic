@@ -5,33 +5,17 @@ require '../admin/db.php';
 $recaptcha_secret = '6LeS3BwrAAAAAEVJpEc2EJt_s5yJTUMIzsQrcPp-';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $token = $_POST['g-recaptcha-response'] ?? '';
+  //  $token = $_POST['g-recaptcha-response'] ?? '';
 
     // reCAPTCHA ellenőrzés cURL-lel
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-        'secret' => $recaptcha_secret,
-        'response' => $token
+    //$ch = curl_init();
+  //  curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+    //curl_setopt($ch, CURLOPT_POST, true);
+    //curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+    //    'secret' => $recaptcha_secret,
+      //  'response' => $token
     ]));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
 
-    if (curl_errno($ch)) {
-        echo '<div class="alert alert-danger text-center m-5">❌ CURL hiba: ' . curl_error($ch) . '</div>';
-        curl_close($ch);
-        exit;
-    }
-
-    curl_close($ch);
-    $result = json_decode($response, true);
-
-    if (!$result || !isset($result['success']) || !$result['success']) {
-        echo '<div class="alert alert-danger text-center m-5">❌ Hibás reCAPTCHA ellenőrzés.</div>';
-        echo '<pre>'.print_r($result, true).'</pre>';
-        exit;
-    }
 
     // Adatok összegyűjtése
     $nev = $_POST['nev'] ?? '';
@@ -72,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <h1 class="mb-4 text-center">Ajánlatkérés</h1>
   <form method="POST" action="" class="bg-white p-4 shadow rounded" novalidate>
 
-    <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+  <!---  <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">  -->
 
     <div class="mb-3">
       <label for="nev" class="form-label">Név</label>
