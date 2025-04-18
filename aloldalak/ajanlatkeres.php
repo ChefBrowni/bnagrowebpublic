@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <!-- Google reCAPTCHA API-->
-<script src="https://www.google.com/recaptcha/api.js?render=6LeS3BwrAAAAALjcg68UGnwQ3CBOHjHiXvPhnlZO"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LeS3BwrAAAAALjcg68UGnwQ3CBOHjIHXvPhnlZO"></script>
 
  <!--Egyedi JS-->-->
 <script src="../scripts/ajanlatkeres.js"></script>
