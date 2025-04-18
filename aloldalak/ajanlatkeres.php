@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // Új SECRET kulcs
-$recaptcha_secret = '6LeS3BwrAAAAAEVJpEc2EJt_s5yJTUMIzsQrcPp-';
+$recaptcha_secret = '6LeS3BwrAAAAAEVJpEc2EJt_s5yJTUMlzsQrcPp-';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['g-recaptcha-response'] ?? '';
