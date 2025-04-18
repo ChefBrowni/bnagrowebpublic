@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Subject = 'Drónos megoldások a mezőgazdaságban – BNBK Agro';
 
         // 📩 Kattintáskövető link összeállítása
-        $eredeti_url = 'https://bnbk.hu/ajanlatkeres';
+        $eredeti_url = 'https://bnbk.hu/aloldalak/ajanlatkeres';
         $kattintas_link = 'https://bnbk.hu/admin/click.php?email=' . urlencode($email) . '&link=' . urlencode($eredeti_url);
 
         // 📨 E-mail HTML sablon (egyszerű)
