@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <div class="mb-3">
       <label class="form-label">Kép feltöltése</label>
-      <input type="file" name="kep_file" class="form-control" accept="image/*">
+      <input type="file" name="kep_file" class="form-control" accept="https://www.bnbk.hu/images*">
       <div class="form-text">JPG, PNG vagy GIF. Ha képfájlt választasz, az URL mező felülíródik.</div>
     </div>
     <div class="mb-3">
