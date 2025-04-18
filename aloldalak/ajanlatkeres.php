@@ -148,9 +148,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- Token generálás meghívása -->
 <script src="https://www.google.com/recaptcha/api.js?render=6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8"></script>
 <script src="../scripts/ajanlatkeres.js"></script>
-
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  // Garantáltan csak akkor fusson le, ha minden betöltődött
+  window.addEventListener('load', function () {
     loadRecaptcha('6Lc21RwrAAAAAKaEr4EsT2jkYRNjXnJ_ZUchZOe8');
   });
 </script>
