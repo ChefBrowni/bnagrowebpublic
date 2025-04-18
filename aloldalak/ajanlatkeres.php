@@ -7,16 +7,16 @@ error_reporting(E_ALL);
 $recaptcha_secret = '6LeS3BwrAAAAAEVJpEc2EJt_s5yJTUMIzsQrcPp-';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  //  $token = $_POST['g-recaptcha-response'] ?? '';
+    $token = $_POST['g-recaptcha-response'] ?? '';
 
-    // reCAPTCHA ellenőrzés cURL-lel
-    //$ch = curl_init();
-  //  curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
-    //curl_setopt($ch, CURLOPT_POST, true);
-    //curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-    //    'secret' => $recaptcha_secret,
-      //  'response' => $token
-  //  ]));
+    reCAPTCHA ellenőrzés cURL-lel
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+        'secret' => $recaptcha_secret,
+       'response' => $token
+    ]));
 
 
     // Adatok összegyűjtése
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <h1 class="mb-4 text-center">Ajánlatkérés</h1>
   <form method="POST" action="" class="bg-white p-4 shadow rounded" novalidate>
 
-  <!---  <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">  -->
+    <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">  
 
     <div class="mb-3">
       <label for="nev" class="form-label">Név</label>
@@ -133,19 +133,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   </form>
 </div>
-<!--
- Google reCAPTCHA API
+
+<!-- Google reCAPTCHA API-->
 <script src="https://www.google.com/recaptcha/api.js?render=6LeS3BwrAAAAALjcg68UGnwQ3CBOHjHiXvPhnlZO"></script>
 
- Egyedi JS
+ <!--<!--Egyedi JS-->-->
 <script src="../scripts/ajanlatkeres.js"></script>
 
- Token generálás garantáltan betöltés után
+ <!--Token generálás garantáltan betöltés után-->-->-->
 <script>
   window.addEventListener('load', function () {
     loadRecaptcha('6LeS3BwrAAAAALjcg68UGnwQ3CBOHjHiXvPhnlZO');
   });
-</script>-->
+</script>
 
 </body>
 </html>
