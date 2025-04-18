@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $errors[] = 'A fájl áthelyezése nem sikerült.';
             } else {
                 // relatív URL-ként mentjük
-                $kep_url = '/images/' . $basename;
+                $kep_url = 'https://bnbk.hu/images/' . $basename;
             }
         }
     }
