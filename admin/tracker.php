@@ -12,22 +12,22 @@ if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'nincs user-agent';
 
     try {
+        // FIGYELEM: a 'link' mezőt kihagyjuk, ha NULL-t nem enged
         $stmt = $pdo->prepare("
-            INSERT INTO megnyitasok (email, ip_cim, user_agent, link)
-            VALUES (?, ?, ?, NULL)
+            INSERT INTO megnyitasok (email, ip_cim, user_agent)
+            VALUES (?, ?, ?)
         ");
         $stmt->execute([$email, $ip, $userAgent]);
     } catch (PDOException $e) {
-        error_log("Tracker hiba: " . $e->getMessage());
+        error_log("📛 TRACKER ERROR: " . $e->getMessage());
     }
 }
 
-// 1x1 átlátszó PNG válasz
+// Válaszként 1x1 px átlátszó PNG-t küldünk
 header('Content-Type: image/png');
 header('Cache-Control: no-cache, no-store, must-revalidate');
 header('Expires: 0');
 
-// Base64 PNG
 echo base64_decode(
     'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAEElEQVQI12NgYGBgAAAABAABJzQnCgAAAABJRU5ErkJggg=='
 );
