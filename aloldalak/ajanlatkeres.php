@@ -30,18 +30,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $esedekesseg = $_POST['esedekesseg'] ?? '';
     $felmeres_szoveg = !empty($felmeres_tipusok) ? implode(', ', $felmeres_tipusok) : null;
 
-    $stmt = $mysqli->prepare("INSERT INTO ajanlatkeresek
+    try {
+    $stmt = $pdo->prepare("INSERT INTO ajanlatkeresek
         (nev, email, telefon, szolgaltatas, felmeres_tipusok, helyseg, terulet, esedekesseg)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssss", $nev, $email, $telefon, $szolgaltatas, $felmeres_szoveg, $helyseg, $terulet, $esedekesseg);
 
-    if ($stmt->execute()) {
-        echo '<div class="alert alert-success text-center m-5">✅ Köszönjük! Ajánlatkérésedet rögzítettük.</div>';
-    } else {
-        echo '<div class="alert alert-danger text-center m-5">❌ Hiba történt: ' . $stmt->error . '</div>';
-    }
+    $stmt->execute([
+        $nev,
+        $email,
+        $telefon,
+        $szolgaltatas,
+        $felmeres_szoveg,
+        $helyseg,
+        $terulet,
+        $esedekesseg
+    ]);
 
-    $stmt->close();
+    echo '<div class="alert alert-success text-center m-5">✅ Köszönjük! Ajánlatkérésedet rögzítettük.</div>';
+} catch (PDOException $e) {
+    echo '<div class="alert alert-danger text-center m-5">❌ Hiba történt: ' . $e->getMessage() . '</div>';
+}
 }
 ?>
 
