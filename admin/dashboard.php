@@ -124,7 +124,7 @@ $page = $_GET['page'] ?? '';
     </div>
 
 <?php elseif ($page === 'kampanyok'): ?>
-
+<?php
   $stmt = $pdo->query("
      SELECT k.id, k.nev,
             COUNT(DISTINCT m.id) AS megnyitasok,
