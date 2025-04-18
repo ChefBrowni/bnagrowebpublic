@@ -12,12 +12,13 @@ if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     try {
         // FIGYELEM: a 'link' mezőt kihagyjuk, ha NULL-t nem enged
-        $link = null; // vagy ''
-$stmt = $pdo->prepare("
-    INSERT INTO megnyitasok (email, ip_cim, user_agent, link)
-    VALUES (?, ?, ?, ?)
-");
-$stmt->execute([$email, $ip, $userAgent, $link]);
+        $link = null;
+
+    $stmt = $pdo->prepare("
+        INSERT INTO megnyitasok (email, ip_cim, user_agent, link)
+        VALUES (?, ?, ?, ?)
+    ");
+    $stmt->execute([$email, $ip, $userAgent, $link]);
     } catch (PDOException $e) {
         error_log("📛 TRACKER ERROR: " . $e->getMessage());
     }
