@@ -1,6 +1,5 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Itt dolgozhatod fel az adatokat (pl. adatbázisba mentés, email küldés stb.)
     $nev = $_POST['nev'] ?? '';
     $telefon = $_POST['telefon'] ?? '';
     $szolgaltatas = $_POST['szolgaltatas'] ?? '';
@@ -9,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $terulet = $_POST['terulet'] ?? '';
     $esedekesseg = $_POST['esedekesseg'] ?? '';
 
-    // Feldolgozás után visszajelzés vagy átirányítás
     echo '<div class="alert alert-success text-center m-5">Köszönjük! Ajánlatkérésedet rögzítettük.</div>';
 }
 ?>
@@ -47,19 +45,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <div class="mb-3" id="felmeres-tipusok" style="display:none;">
-      <label for="felmeres_tipusok" class="form-label">Felmérés típusa (több is választható)</label>
-      <select class="form-select" name="felmeres_tipusok[]" multiple>
-        <option value="Tápanyag-ellátottság felmérés">Tápanyag-ellátottság felmérés</option>
-        <option value="Növényállomány felmérés">Növényállomány felmérés</option>
-        <option value="Stresszállapot felmérés">Stresszállapot felmérés</option>
-        <option value="Gyomosodás felmérés">Gyomosodás felmérés</option>
-        <option value="Tőszámlálás">Tőszámlálás</option>
-        <option value="Vadkár felmérés">Vadkár felmérés</option>
-        <option value="Szőlő- és gyümölcs ültetvény felmérés">Szőlő- és gyümölcs ültetvény felmérés</option>
-        <option value="Zöldségültetvény felmérés">Zöldségültetvény felmérés</option>
-        <option value="Talajindex">Talajindex</option>
-        <option value="Vegetáció">Vegetáció</option>
-      </select>
+      <label class="form-label">Felmérés típusa (több is választható)</label><br>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Tápanyag-ellátottság felmérés" id="tapanyag">
+        <label class="form-check-label" for="tapanyag">Tápanyag-ellátottság felmérés</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Növényállomány felmérés" id="novenyallomany">
+        <label class="form-check-label" for="novenyallomany">Növényállomány felmérés</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Stresszállapot felmérés" id="stressz">
+        <label class="form-check-label" for="stressz">Stresszállapot felmérés</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Gyomosodás felmérés" id="gyom">
+        <label class="form-check-label" for="gyom">Gyomosodás felmérés</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Tőszámlálás" id="toszam">
+        <label class="form-check-label" for="toszam">Tőszámlálás</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Vadkár felmérés" id="vadkar">
+        <label class="form-check-label" for="vadkar">Vadkár felmérés</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Szőlő- és gyümölcs ültetvény felmérés" id="szoloultetveny">
+        <label class="form-check-label" for="szoloultetveny">Szőlő- és gyümölcs ültetvény felmérés</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Zöldségültetvény felmérés" id="zoldsegultetveny">
+        <label class="form-check-label" for="zoldsegultetveny">Zöldségültetvény felmérés</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Talajindex" id="talajindex">
+        <label class="form-check-label" for="talajindex">Talajindex</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="felmeres_tipusok[]" value="Vegetáció" id="vegetacio">
+        <label class="form-check-label" for="vegetacio">Vegetáció</label>
+      </div>
     </div>
 
     <div class="mb-3">
