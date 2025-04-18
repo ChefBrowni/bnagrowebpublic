@@ -126,42 +126,42 @@ $page = $_GET['page'] ?? '';
       <?php endif; ?>
 
     <?php elseif ($page === 'ajanlatkeresek'): ?>
-           <?php
-           $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
-           $ajanlatok = $stmt->fetchAll();
-           ?>
-           <h2 class="mb-4">Ajánlatkérések</h2>
-           <div class="table-responsive">
-               <table class="table table-dark table-bordered table-striped">
-                   <thead>
-                   <tr>
-                       <th>Név</th>
-                       <th>Email</th>
-                       <th>Telefon</th>
-                       <th>Szolgáltatás</th>
-                       <th>Felmérések</th>
-                       <th>Helység</th>
-                       <th>Terület (ha)</th>
-                       <th>Esedékesség</th>
-                   </tr>
-                   </thead>
-                   <tbody>
-                   <?php foreach ($ajanlatok as $a): ?>
-                       <tr>
-                           <td><?= htmlspecialchars($a['nev']) ?></td>
-                           <td><?= htmlspecialchars($a['email']) ?></td>
-                           <td><?= htmlspecialchars($a['telefon']) ?></td>
-                           <td><?= htmlspecialchars($a['szolgaltatas']) ?></td>
-                           <td><?= htmlspecialchars($a['felmeres_tipusok']) ?></td>
-                           <td><?= htmlspecialchars($a['helyseg']) ?></td>
-                           <td><?= htmlspecialchars($a['terulet']) ?></td>
-                           <td><?= htmlspecialchars($a['esedekesseg']) ?></td>
-                       </tr>
-                   <?php endforeach; ?>
-                   </tbody>
-               </table>
-           </div>
-       <?php endif; ?>
+        <?php
+        $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
+        $ajanlatok = $stmt->fetchAll();
+        ?>
+        <h2 class="mb-4">Ajánlatkérések</h2>
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Név</th>
+                    <th>Email</th>
+                    <th>Telefon</th>
+                    <th>Szolgáltatás</th>
+                    <th>Felmérések</th>
+                    <th>Helység</th>
+                    <th>Terület (ha)</th>
+                    <th>Esedékesség</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($ajanlatok as $a): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($a['nev']) ?></td>
+                        <td><?= htmlspecialchars($a['email']) ?></td>
+                        <td><?= htmlspecialchars($a['telefon']) ?></td>
+                        <td><?= htmlspecialchars($a['szolgaltatas']) ?></td>
+                        <td><?= htmlspecialchars($a['felmeres_tipusok']) ?></td>
+                        <td><?= htmlspecialchars($a['helyseg']) ?></td>
+                        <td><?= htmlspecialchars($a['terulet']) ?></td>
+                        <td><?= htmlspecialchars($a['esedekesseg']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
