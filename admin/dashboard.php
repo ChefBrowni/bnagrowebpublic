@@ -1,6 +1,8 @@
 <?php
 require 'session_check.php';
 require 'db.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 $page = $_GET['page'] ?? '';
 ?>
 <!DOCTYPE html>
@@ -129,16 +131,16 @@ $page = $_GET['page'] ?? '';
 <?php elseif ($page === 'kampanyok'): ?>
     <?php
     $stmt = $pdo->query("
-       SELECT k.id,
-              k.nev,
-              COUNT(DISTINCT m.id) AS megnyitasok,
-              COUNT(DISTINCT c.id) AS kattintasok
-       FROM kuldesek k
-       LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
-       LEFT JOIN kattintasok c ON k.id = c.kuldes_id
-       GROUP BY k.id
-       LIMIT 0, 25
-   ");
+      SELECT k.id,
+             k.nev,
+             COUNT(DISTINCT m.id) AS megnyitasok,
+             COUNT(DISTINCT c.id) AS kattintasok
+      FROM kuldesek k
+      LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
+      LEFT JOIN kattintasok c ON k.id = c.kuldes_id
+      GROUP BY k.id
+      LIMIT 0, 25
+  ");
    $kampanyok = $stmt->fetchAll();
    ?>
    <h2 class="mb-4">Kampányok</h2>
