@@ -36,7 +36,8 @@ $page = $_GET['page'] ?? '';
 </nav>
 
 <div class="container">
-<?php if ($page === ''): ?>
+<?php
+if ($page === ''): ?>
     <h2 class="mb-4">Üdvözlünk a BNBK Adminfelületen!</h2>
     <p>Válassz egy funkciót a fenti menüből a folytatáshoz.</p>
 
