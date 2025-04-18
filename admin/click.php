@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require 'db.php';
 
 $email = $_GET['email'] ?? null;
@@ -8,12 +12,15 @@ if ($email && filter_var($email, FILTER_VALIDATE_EMAIL) && $link) {
     $ip = $_SERVER['REMOTE_ADDR'] ?? 'ismeretlen';
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'nincs user-agent';
 
-    // Először megnézzük, hogy volt-e már megnyitás ebből az IP-címről ugyanebben az időpillanatban
-    $stmt = $pdo->prepare("INSERT INTO megnyitasok (email, ip_cim, user_agent, link) VALUES (?, ?, ?, ?)");
+    // Mentés a kattintasok táblába
+    $stmt = $pdo->prepare("
+        INSERT INTO kattintasok (email, kattintas_ideje, ip_cim, user_agent, link)
+        VALUES (?, NOW(), ?, ?, ?)
+    ");
     $stmt->execute([$email, $ip, $userAgent, $link]);
 
-    // Átirányítás az eredeti linkre
-    header("Location: " . $link);
+    // Átirányítás a céloldalra
+    header("Location: $link");
     exit;
 }
 
