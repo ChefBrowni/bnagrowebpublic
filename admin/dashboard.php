@@ -1,8 +1,6 @@
 <?php
 require 'session_check.php';
 require 'db.php';
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 $page = $_GET['page'] ?? '';
 ?>
 <!DOCTYPE html>
@@ -131,16 +129,16 @@ $page = $_GET['page'] ?? '';
 <?php elseif ($page === 'kampanyok'): ?>
     <?php
     $stmt = $pdo->query("
-      SELECT k.id,
-             k.nev,
-             COUNT(DISTINCT m.id) AS megnyitasok,
-             COUNT(DISTINCT c.id) AS kattintasok
-      FROM kuldesek k
-      LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
-      LEFT JOIN kattintasok c ON k.id = c.kuldes_id
-      GROUP BY k.id
-      LIMIT 0, 25
-  ");
+       SELECT k.id,
+              k.nev,
+              COUNT(DISTINCT m.id) AS megnyitasok,
+              COUNT(DISTINCT c.id) AS kattintasok
+       FROM kuldesek k
+       LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
+       LEFT JOIN kattintasok c ON k.id = c.kuldes_id
+       GROUP BY k.id
+       LIMIT 0, 25
+   ");
    $kampanyok = $stmt->fetchAll();
    ?>
    <h2 class="mb-4">Kampányok</h2>
@@ -169,47 +167,7 @@ $page = $_GET['page'] ?? '';
        </table>
    </div>
 <?php endif; ?>
-    </tbody>
-        </table>
-    </div>
 
-<?php elseif ($page === 'ajanlatkeresek'): ?>
-    <?php
-    $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
-    $ajanlatok = $stmt->fetchAll();
-    ?>
-    <h2 class="mb-4">Ajánlatkérések</h2>
-    <div class="table-responsive">
-        <table class="table table-dark table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Név</th>
-                    <th>Email</th>
-                    <th>Telefon</th>
-                    <th>Szolgáltatás</th>
-                    <th>Felmérések</th>
-                    <th>Helység</th>
-                    <th>Terület (ha)</th>
-                    <th>Esedékesség</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($ajanlatok as $a): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($a['nev']) ?></td>
-                        <td><?= htmlspecialchars($a['email']) ?></td>
-                        <td><?= htmlspecialchars($a['telefon']) ?></td>
-                        <td><?= htmlspecialchars($a['szolgaltatas']) ?></td>
-                        <td><?= htmlspecialchars($a['felmeres_tipusok']) ?></td>
-                        <td><?= htmlspecialchars($a['helyseg']) ?></td>
-                        <td><?= htmlspecialchars($a['terulet']) ?></td>
-                        <td><?= htmlspecialchars($a['esedekesseg']) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-<?php endif; ?>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
