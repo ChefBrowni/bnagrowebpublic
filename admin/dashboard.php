@@ -129,50 +129,44 @@ $page = $_GET['page'] ?? '';
 <?php elseif ($page === 'kampanyok'): ?>
     <?php
     $stmt = $pdo->query("
-      SELECT k.id,
-             k.nev,
-             COUNT(DISTINCT m.id) AS megnyitasok,
-             COUNT(DISTINCT c.id) AS kattintasok
-      FROM kuldesek k
-      LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
-      LEFT JOIN kattintasok c ON k.id = c.kuldes_id
-      GROUP BY k.id
-      LIMIT 0, 25
-  ");
-  $kampanyok = $stmt->fetchAll();
-    ?>
-    <h2 class="mb-4">Kampányok</h2>
-    <div class="table-responsive">
-        <table class="table table-dark table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Kampány neve</th>
-                    <th>Megnyitások</th>
-                    <th>Kattintások</th>
-                    <th>Akció</th>
-                </tr>
-            </thead>
-            <tbody>
-        <?php if (count($kampanyok) === 0): ?>
-            <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
-        <?php else: ?>
-            <?php foreach ($kampanyok as $k): ?>
-                <tr>
-                    <td>
-                        <!-- Itt módosítjuk az elérési utat a relatív útvonalra -->
-                        <a href="../aloldalak/kampany_szerkeszto.php?id=<?= $k['id'] ?>" class="text-white text-decoration-underline">
-                            <?= htmlspecialchars($k['nev']) ?>
-                        </a>
-                    </td>
-                    <td><?= (int)$k['megnyitasok'] ?></td>
-                    <td><?= (int)$k['kattintasok'] ?></td>
-                    <td>
-                        <!-- Szerkesztés link -->
-                        <a href="../aloldalak/kampany_szerkeszto.php?id=<?= $k['id'] ?>" class="btn btn-warning btn-sm">Szerkesztés</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php endif; ?>
+       SELECT k.id,
+              k.nev,
+              COUNT(DISTINCT m.id) AS megnyitasok,
+              COUNT(DISTINCT c.id) AS kattintasok
+       FROM kuldesek k
+       LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
+       LEFT JOIN kattintasok c ON k.id = c.kuldes_id
+       GROUP BY k.id
+       LIMIT 0, 25
+   ");
+   $kampanyok = $stmt->fetchAll();
+   ?>
+   <h2 class="mb-4">Kampányok</h2>
+   <div class="table-responsive">
+       <table class="table table-dark table-bordered table-striped">
+           <thead>
+               <tr>
+                   <th>Kampány neve</th>
+                   <th>Megnyitások</th>
+                   <th>Kattintások</th>
+               </tr>
+           </thead>
+           <tbody>
+               <?php if (count($kampanyok) === 0): ?>
+                   <tr><td colspan="3" class="text-center">Nincs kampányadat</td></tr>
+               <?php else: ?>
+                   <?php foreach ($kampanyok as $k): ?>
+                       <tr>
+                           <td><a href="../aloldalak/kampany_szerkeszto.php?id=<?= $k['id'] ?>" class="text-white text-decoration-underline"><?= htmlspecialchars($k['nev']) ?></a></td>
+                           <td><?= (int)$k['megnyitasok'] ?></td>
+                           <td><?= (int)$k['kattintasok'] ?></td>
+                       </tr>
+                   <?php endforeach; ?>
+               <?php endif; ?>
+           </tbody>
+       </table>
+   </div>
+<?php endif; ?>
     </tbody>
         </table>
     </div>
