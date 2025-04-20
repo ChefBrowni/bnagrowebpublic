@@ -1,11 +1,9 @@
-#process {
-  margin-top: 40px; /* vagy amennyit szeretnél */
-}
-
 #process .process-chart {
-  width: 100%;
-  position: relative;
-  padding-top: 56.25%; /* 16:9 arány */
   background: url('../images/folyamat_abra.svg') no-repeat left center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left top;
+  height: 80vh; /* vagy pl. 600px, ha túl nagy ez */
+  width: 100%;
+  margin-top: 3rem;
 }
