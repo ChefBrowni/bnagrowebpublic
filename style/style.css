@@ -2,7 +2,7 @@
    Folyamatábra és álló kép
    ------------------------- */
 #process .process-chart {
-  width: 80%;                /* az eredeti méret 80%-a */
+  width: 90%;                /* az eredeti méret 80%-a */
   aspect-ratio: 16 / 9;      /* megtartjuk a 16:9 arányt */
   background: url('../images/folyamat_abra.svg')
               left center no-repeat;
@@ -20,5 +20,5 @@
 
 /* opcionális: kis belső térköz a sorok között */
 #process .row {
-  gap: 1rem;
+  gap: 3rem;
 }
