@@ -1,18 +1,10 @@
 .equal-height-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 850px; /* próbáld 850-900 között, amíg nem stimmel pontosan */
+  height: 100%;
 }
 
-.process-chart img.full-height {
-  max-height: 100%;
+.full-height {
+  height: 100%;
   width: auto;
   object-fit: contain;
-}
-.image-wrapper img {
-  max-height: 100%;
-  width: auto;
-  object-fit: contain;
-  border-radius: 0.5rem;
+  display: block;
 }
