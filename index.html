@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BNBK Agro</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- külső stíluslap -->
+  <link href="style/style.css" rel="stylesheet">
 </head>
-<body>
+  <body class="bg-light">
+
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-success">
@@ -46,13 +49,18 @@
     </div>
   </section>
   <!-- FOLYAMATÁBRA SZEKCIÓ (háttérként SVG) -->
-  <section id="process" class="py-0 position-relative">
-    <div class="ratio ratio-16x9">
-      <!-- Cseréld le a 'process-diagram.svg'-t a saját SVG fájlod nevére -->
-      <div style="
-        background: url('images/folyamat_abra.svg') left / contain no-repeat;
-        width: 100%; height: 100%;
-      "></div>
+  <section id="process" class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- bal oldali folyamatábra -->
+        <div class="col-12 col-lg-8 mb-4 mb-lg-0">
+          <div class="process-chart"></div>
+        </div>
+        <!-- jobb oldali álló kép -->
+        <div class="col-12 col-lg-4">
+          <div class="process-image"></div>
+        </div>
+      </div>
     </div>
   </section>
 
