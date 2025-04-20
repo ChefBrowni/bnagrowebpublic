@@ -12,15 +12,14 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container">
-      <a class="navbar-brand" href="#">BNBK Agro</a>
+      <a class="navbar-brand" href="#home">BNBK Agro</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#home">Főoldal</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Szolgáltatások</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gallery">Galéria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#process">Folyamatábra</a></li>
           <li class="nav-item"><a class="nav-link" href="#quote">Ajánlatkérés</a></li>
         </ul>
       </div>
@@ -28,53 +27,21 @@
   </nav>
 
   <!-- FŐOLDAL SZEKCIÓ -->
-  <section id="home" class="py-5 text-center bg-light">
+  <section id="home" class="py-5 bg-light text-center">
     <div class="container">
       <h1 class="display-5">Üdvözöljük a BNBK Agro Kft. oldalán!</h1>
-      <p class="lead">Precíziós mezőgazdasági szolgáltatások dróntechnológiával.</p>
+      <p class="lead">Precíziós mezőgazdasági szolgáltatások dróntechnológiával – felmérés, elemzés és megvalósítás egy kézből.</p>
     </div>
   </section>
 
-  <!-- SZOLGÁLTATÁSOK / FOLYAMATÁBRA -->
-  <section id="services" class="py-5">
-    <div class="container">
-      <h2 class="mb-4 text-center">Szolgáltatásaink folyamata</h2>
-      <div class="row gy-4 justify-content-center">
-        <!-- Lépés‑helyek -->
-        <div class="col-12 col-md-4 text-center">
-          <div class="ratio ratio-4x3 bg-secondary"></div>
-          <p class="mt-2">1. Felmérés</p>
-        </div>
-        <div class="col-12 col-md-4 text-center">
-          <div class="ratio ratio-4x3 bg-secondary"></div>
-          <p class="mt-2">2. Elemzés</p>
-        </div>
-        <div class="col-12 col-md-4 text-center">
-          <div class="ratio ratio-4x3 bg-secondary"></div>
-          <p class="mt-2">3. Megvalósítás</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALÉRIA / TELJES SZÉLESSÉGŰ 16:9 KÉPEK -->
-  <section id="gallery" class="py-0">
-    <!-- Kép #1 -->
-    <div class="container-fluid p-0">
-      <div class="ratio ratio-16x9">
-        <!-- Ide jön majd az <img src="images/..." alt=""> -->
-        <div class="bg-secondary w-100 h-100 d-flex align-items-center justify-content-center text-white">
-          Kép helye (16:9)
-        </div>
-      </div>
-    </div>
-    <!-- Kép #2 -->
-    <div class="container-fluid p-0 mt-4">
-      <div class="ratio ratio-16x9">
-        <div class="bg-secondary w-100 h-100 d-flex align-items-center justify-content-center text-white">
-          Kép helye (16:9)
-        </div>
-      </div>
+  <!-- FOLYAMATÁBRA SZEKCIÓ (háttérként SVG) -->
+  <section id="process" class="py-0 position-relative">
+    <div class="ratio ratio-16x9">
+      <!-- Cseréld le a 'process-diagram.svg'-t a saját SVG fájlod nevére -->
+      <div style="
+        background: url('images/process-diagram.svg') center center / contain no-repeat;
+        width: 100%; height: 100%;
+      "></div>
     </div>
   </section>
 
