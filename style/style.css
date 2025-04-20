@@ -1,17 +1,9 @@
-/* -------------------------
-   Folyamatábra és álló kép
-   ------------------------- */
+/* Folyamatábra teljes szélességben, 16:9 arányban, balra rendezve */
 #process .process-chart {
-  background: url('../images/folyamat_abra.svg')
-              left center no-repeat;
-  background-size: contain;
-  margin: 0;                 /* balra rendezés */
-}
-
-#process .process-image {
   width: 100%;
-  aspect-ratio: 3 / 4;      /* álló kép, pl. 3:4 arány */
-  background: url('../images/vertical_image.jpg')
-              center center no-repeat;
-  background-size: contain;
+  position: relative;
+  /* 16:9 arány: magasság = szélesség * 9/16 */
+  padding-top: 56.25%;
+  background: url('../images/folyamat_abra.svg') no-repeat left center;
+  background-size: cover;
 }
