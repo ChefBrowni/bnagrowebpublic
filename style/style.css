@@ -1,9 +1,16 @@
-#process .process-chart {
+/* Folyamatábra: bal oldali blokk */
+.process-chart {
   background: url('../images/folyamat_abra.svg') no-repeat left center;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left top;
-  height: 80vh; /* vagy pl. 600px, ha túl nagy ez */
+  height: 80vh;
   width: 100%;
-  margin-top: 3rem;
+}
+
+/* Jobb oldali álló kép */
+.process-side-image {
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
 }
