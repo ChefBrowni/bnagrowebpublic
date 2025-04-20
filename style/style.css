@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 800px;
+  height: 850px; /* próbáld 850-900 között, amíg nem stimmel pontosan */
 }
 
 .process-chart img.full-height {
@@ -10,7 +10,6 @@
   width: auto;
   object-fit: contain;
 }
-
 .image-wrapper img {
   max-height: 100%;
   width: auto;
