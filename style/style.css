@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 600px; /* vagy amennyit szeretnél */
+  min-height: 800px; /* vagy amennyit szeretnél */
 }
 
 /* Folyamatábra háttér */
