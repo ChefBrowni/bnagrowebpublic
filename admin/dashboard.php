@@ -84,39 +84,40 @@ $page = $_GET['page'] ?? '';
     </div>
 
 <?php elseif ($page === 'kampany_megnyitasok' && isset($_GET['kuldes_id'])): ?>
+<?php elseif ($page === 'kampany_kattintasok' && isset($_GET['kuldes_id'])): ?>
 
     <?php
     $kuldes_id = (int)$_GET['kuldes_id'];
 
     $stmt = $pdo->prepare("
-        SELECT email, COUNT(*) AS megnyitas_db
-        FROM megnyitasok
+        SELECT email, COUNT(*) AS kattintas_db
+        FROM kattintasok
         WHERE kuldes_id = ?
         GROUP BY email
-        ORDER BY megnyitas_db DESC
+        ORDER BY kattintas_db DESC
     ");
     $stmt->execute([$kuldes_id]);
-    $megnyitok = $stmt->fetchAll();
+    $kattintok = $stmt->fetchAll();
     ?>
 
-    <h2 class="mb-4">📬 Megnyitók – kampány #<?= $kuldes_id ?></h2>
+    <h2 class="mb-4">🖱️ Kattintók – kampány #<?= $kuldes_id ?></h2>
     <a href="dashboard.php?page=kampanyok" class="btn btn-secondary btn-sm mb-3">⬅️ Vissza</a>
     <div class="table-responsive">
         <table class="table table-dark table-bordered table-striped">
             <thead>
                 <tr>
                     <th>E-mail cím</th>
-                    <th>Megnyitások száma</th>
+                    <th>Kattintások száma</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($megnyitok)): ?>
+                <?php if (empty($kattintok)): ?>
                     <tr><td colspan="2" class="text-center">Nincs adat ehhez a kampányhoz.</td></tr>
                 <?php else: ?>
-                    <?php foreach ($megnyitok as $m): ?>
+                    <?php foreach ($kattintok as $k): ?>
                         <tr>
-                            <td><?= htmlspecialchars($m['email']) ?></td>
-                            <td><?= $m['megnyitas_db'] ?></td>
+                            <td><?= htmlspecialchars($k['email']) ?></td>
+                            <td><?= $k['kattintas_db'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
