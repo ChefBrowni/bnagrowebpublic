@@ -25,7 +25,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 /* --- frissítés + napló ----------------------------------------- */
 try {
   $stmt = $pdo->prepare("
-      UPDATE kontaktok_test
+      UPDATE kontaktok
       SET    leiratkozott = 1
            , leiratkozas_datuma = NOW()     -- töröld, ha nincs ilyen oszlop
       WHERE  email = ?

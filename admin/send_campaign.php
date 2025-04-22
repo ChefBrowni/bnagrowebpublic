@@ -26,12 +26,14 @@ if (!$kampany) {
 }
 
 /* --- 2. Kontaktok betöltése ------------------------------------- */
-$kontakts = $pdo->query("SELECT nev, email
-  FROM kontaktok_test
-  WHERE email IS NOT NULL
-    AND (leiratkozott = 0 OR leiratkozott IS NULL)
-")
-                ->fetchAll(PDO::FETCH_ASSOC);
+$kontakts = $pdo->query("
+    SELECT nev, email
+    FROM kontaktok
+    WHERE email IS NOT NULL
+      AND (leiratkozott = 0 OR leiratkozott IS NULL)
+      AND megye IN ('Hajdú-Bihar', 'Békés', 'Szabolcs-Szatmár-Bereg')
+    ORDER BY FIELD(megye, 'Hajdú-Bihar', 'Békés', 'Szabolcs-Szatmár-Bereg')
+")->fetchAll(PDO::FETCH_ASSOC);
 if (!$kontakts) {
     exit('❌ Nincsenek címzettek.');
 }
@@ -44,7 +46,7 @@ foreach ($kontakts as $c) {
 
     $mail = new PHPMailer(true);
     try {
-        /* SMTP beállítások */
+        // SMTP beállítások
         $mail->isSMTP();
         $mail->Host       = SMTP_HOST;
         $mail->SMTPAuth   = true;
@@ -57,11 +59,10 @@ foreach ($kontakts as $c) {
         $mail->setFrom(MAIL_FROM, MAIL_FROM_NAME);
         $mail->addAddress($email, $nev);
 
-        /* ----- 3. HTML levél ------------------------------------ */
         $mail->isHTML(true);
         $mail->Subject = $kampany['targy'];
 
-        /* Kattintás‑ és megnyitás‑tracking */
+        // Kattintás- és megnyitás-követés
         $eredeti_url = 'https://bnbk.hu/aloldalak/ajanlatkeres.php';
         $click_url   = 'https://bnbk.hu/admin/click.php'
                      . '?email=' . urlencode($email)
@@ -71,7 +72,7 @@ foreach ($kontakts as $c) {
                      . '?email=' . urlencode($email)
                      . '&kuldes_id=' . $kuldes_id;
 
-        /* Beágyazott kép (ha van) */
+        // Beágyazott kép (ha van)
         $cid = '';
         if ($kampany['kep_url']) {
             $filename   = basename($kampany['kep_url']);
@@ -82,7 +83,7 @@ foreach ($kontakts as $c) {
             }
         }
 
-        /* ----- 4. E‑mail törzs összeállítása -------------------- */
+        // E-mail törzs
         $body  = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>';
         $body .= '<h1 style="font-family:Arial,Helvetica,sans-serif;">'
               .  htmlspecialchars($kampany['nev'])
@@ -94,15 +95,14 @@ foreach ($kontakts as $c) {
         }
 
         $body .= '<p><a href="' . $click_url . '" '
-
-              . '</a></p>';
+              . 'style="background:#198754;color:#fff;padding:10px 18px;'
+              . 'text-decoration:none;border-radius:4px;display:inline-block;">'
+              . 'Ajánlatkérés</a></p>';
 
         $body .= '<p>' . nl2br(htmlspecialchars($kampany['utotartalom'])) . '</p>';
         $body .= '<img src="' . $pixel_url . '" width="1" height="1" style="display:none;">';
 
-        /* ----- 5. LÁBLÉC HOZZÁFŰZÉSE --------------------------- */
         $body .= email_footer($email, $kuldes_id);
-
         $body .= '</body></html>';
 
         $mail->Body    = $body;
@@ -111,10 +111,14 @@ foreach ($kontakts as $c) {
         $mail->send();
         $ok[] = $email;
 
+        // ⏱️ Várakozás 3 másodpercig
+        sleep(3);
+
     } catch (Exception $e) {
         $hiba[$email] = $mail->ErrorInfo;
     }
 }
+
 
 /* --- 6. Visszajelző UI ----------------------------------------- */
 ?>
