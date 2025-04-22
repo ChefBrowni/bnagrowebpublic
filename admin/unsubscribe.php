@@ -6,7 +6,7 @@
  *      kuldes_id  – opcionális, analytic
  * ----------------------------------------------------------------*/
 declare(strict_types=1);
-ini_set('display_errors', 1);          // 0-ra kapcsold élesben
+ini_set('display_errors', "1");          // 0-ra kapcsold élesben
 error_reporting(E_ALL);
 
 /* --- adatbázis kapcsolat --------------------------------------- */
