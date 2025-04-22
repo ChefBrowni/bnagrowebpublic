@@ -70,3 +70,6 @@
   text-decoration:underline;
 }
 .opacity-10{ opacity:.1; }     /* finom elválasztó vonal */
+
+.footer-dark a.footer-link .bi { transition: transform .2s ease; }
+.footer-dark a.footer-link:hover .bi { transform: scale(1.15); }
