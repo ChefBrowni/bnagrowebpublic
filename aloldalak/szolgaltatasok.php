@@ -193,7 +193,7 @@ require '../partials/navbar.php';
 
       <!-- BAL: hatszög kép -->
       <div class="col-12 col-md-4 text-center">
-        <div class="overflow-hidden" style="height:300px;">
+        <div class="overflow-hidden" style="height:150px;">
           <img src="../images/1_hex.png" alt="Drón permetezés"
                class="w-100 h-100 object-fit-cover">
         </div>
