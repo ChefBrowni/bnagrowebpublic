@@ -129,20 +129,23 @@ $stmt = $pdo->query("
   SELECT
     k.id,
     k.nev,
-    (
-      SELECT COUNT(DISTINCT email)
-      FROM megnyitasok
-      WHERE kuldes_id = k.id
-    ) AS megnyitasok,
-    (
-      SELECT COUNT(DISTINCT email)
-      FROM kattintasok
-      WHERE kuldes_id = k.id
-    ) AS kattintasok
+    COALESCE(m.megnyitasok, 0) AS megnyitasok,
+    COALESCE(c.kattintasok, 0) AS kattintasok
   FROM kuldesek k
+  LEFT JOIN (
+    SELECT kuldes_id, COUNT(DISTINCT email) AS megnyitasok
+    FROM megnyitasok
+    GROUP BY kuldes_id
+  ) AS m ON m.kuldes_id = k.id
+  LEFT JOIN (
+    SELECT kuldes_id, COUNT(DISTINCT email) AS kattintasok
+    FROM kattintasok
+    GROUP BY kuldes_id
+  ) AS c ON c.kuldes_id = k.id
   ORDER BY k.id DESC
-  LIMIT 0, 25
+  LIMIT 25
 ");
+
 $kampanyok = $stmt->fetchAll();
  ?>
  <h2 class="mb-4">Kampányok</h2>
