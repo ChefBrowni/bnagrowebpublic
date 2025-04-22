@@ -50,29 +50,28 @@
   </section>
   <!-- ===== KÉPES SZEKCIÓ ===== -->
   <section id="process" class="py-5 bg-light">
-    <div class="container">
+  <div class="container">
 
-      <!-- képek -->
-      <div class="d-flex flex-column flex-lg-row gap-4 justify-content-center">
-        <!-- bal kép (infografika / SVG) -->
-        <div class="equal-height-box">
-          <img src="images/folyamat_abra.svg" alt="Lépések infografika" class="full-height">
-        </div>
-
-        <!-- jobb kép (fotó)  -->
-        <div class="equal-height-box">
-          <img src="images/dron_allo.jpg" alt="Drón permetezés közben" class="full-height">
-        </div>
+    <!-- ===== Két kép ===== -->
+    <div class="row g-4 align-items-stretch process-row">
+      <div class="col-12 col-lg-6">
+        <img src="images/folyamat_abra.svg"
+             alt="Lépések infografika"
+             class="img-fluid w-100 h-100 object-contain">
       </div>
 
-      <!-- ↓ a korábbi űrlap, változatlanul ↓ -->
-      <h2 class="my-5 text-center">Kérj ingyenes ajánlatot!</h2>
-      <form method="POST" action="aloldalak/ajanlatkeres.php" class="mx-auto" style="max-width:600px;">
-        <!-- … a mezők maradnak … -->
-      </form>
-
+      <div class="col-12 col-lg-6">
+        <img src="images/dron_allo.jpg"
+             alt="Drón permetezés közben"
+             class="img-fluid w-100 h-100 object-cover">
+      </div>
     </div>
-  </section>
+
+    <!-- ide kerül be az ajánlatkérő űrlap -->
+    <div id="quote-form-container" class="mt-5"></div>
+
+  </div>
+</section>
 
 
   <!-- FOOTER -->
@@ -81,7 +80,7 @@
       © <?= date('Y') ?> BNBK Agro Kft. – Minden jog fenntartva
     </div>
   </footer>
-
+  <script src="script/hero-animated.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

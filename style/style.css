@@ -1,21 +1,23 @@
-/* ======= styles.css ======= */
-.equal-height-box{
-  /* a flex‑gyerek magassága tablet/asztali nézetben 340 px */
-  height:340px;
-  flex:1 1 0;          /* mindkét doboz azonos szélesség */
-  display:flex;        /* hogy a benne lévő img 100%‑ban kitölthesse */
+/* ===== képek magassága ===== */
+.process-row {
+  min-height: 480px;      /* nagyjából két „hajtásnyi” szekció, igény szerint */
 }
 
-@media (max-width:991.98px){   /* <‑lg: mobil / tablet álló nézet */
-  .equal-height-box{
-    height:260px;      /* mobilon alacsonyabb lehet, ízlés szerint */
+@media (max-width: 991.98px) {   /* < lg  => mobil/tablet álló */
+  .process-row {
+    min-height: 360px;    /* mobilon lehet alacsonyabb */
   }
 }
 
-/* a képek */
-.full-height{
-  width:100%;
-  height:100%;
-  object-fit:cover;    /* vág, ha kell, de nem torzít */
-  display:block;       /* kiveszi a sor‑alapú rést */
+/* ========== képek illesztése ========== */
+.object-contain {        /* infografika: minden pixel látszódjon */
+  object-fit: contain;
+}
+
+.object-cover {          /* fotó: kitölti a teret, ha kell vág */
+  object-fit: cover;
+}
+
+.img-fluid {
+  display: block;        /* eltünteti az inline‑elem whitespace‑t */
 }
