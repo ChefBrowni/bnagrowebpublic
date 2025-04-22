@@ -89,17 +89,14 @@ foreach ($kontakts as $c) {
             $body .= '<p><img src="cid:' . $cid . '" alt="" style="max-width:100%;"></p>';
         }
 
-        $body .= '<p><a href="' . $click_url . '" '
-              . 'style="background:#198754;color:#fff;padding:10px 18px;'
-              . 'text-decoration:none;border-radius:4px;display:inline-block;">'
-              . 'Ajánlatkérés</a></p>';
+  
 
         $body .= '<p>' . nl2br(htmlspecialchars($kampany['utotartalom'])) . '</p>';
         $body .= '<img src="' . $pixel_url . '" width="1" height="1" style="display:none;">';
 
         /* ----- 5. LÁBLÉC HOZZÁFŰZÉSE --------------------------- */
         $body .= email_footer($email, $kuldes_id);
-        
+
         $body .= '</body></html>';
 
         $mail->Body    = $body;
