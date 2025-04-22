@@ -13,6 +13,8 @@
  /* ===========================================================
     Mailer‑lábléc  –  széltől szélig háttér
  =========================================================== */
+ require_once __DIR__.'/../config.php';
+
  function email_footer(string $email, int $kuldes_id): string
  {
      /* ===== Linkek összeállítása ================================= */
