@@ -91,8 +91,8 @@
               <li class="list-inline-item"><a href="/#home"             class="footer-link">Főoldal</a></li>
               <li class="list-inline-item"><a href="/#process"          class="footer-link">Szolgáltatások</a></li>
               <li class="list-inline-item"><a href="/aloldalak/ajanlatkeres.php" class="footer-link">Ajánlatkérés</a></li>
-              <li class="list-inline-item"><a href="/aszf.php"          class="footer-link">ÁSZF</a></li>
-              <li class="list-inline-item"><a href="/adatvedelem.php"   class="footer-link">Adatkezelés</a></li>
+              <li class="list-inline-item"><a href="/gdpr/aszf.html"          class="footer-link">ÁSZF</a></li>
+              <li class="list-inline-item"><a href="/gdpr/adatkezeles.php"   class="footer-link">Adatkezelés</a></li>
             </ul>
           </nav>
 
