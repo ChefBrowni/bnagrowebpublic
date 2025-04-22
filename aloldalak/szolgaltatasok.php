@@ -193,7 +193,7 @@ require '../partials/navbar.php';
 
       <!-- BAL: hatszög kép -->
       <div class="col-12 col-md-4 text-center">
-        <div class="ratio ratio-21x9">
+        <div class="overflow-hidden" style="height:300px;">
           <img src="../images/1_hex.png" alt="Drón permetezés"
                class="w-100 h-100 object-fit-cover">
         </div>
@@ -258,7 +258,7 @@ require '../partials/navbar.php';
       <!-- Hexagon BALRA -->
       <div class="col-12 col-md-4 text-center">
         <div class="hexagon mx-auto">
-          <img src="../images/3_hex.jpg" alt="Drón a táblán" class="w-100 h-100 object-fit-cover">
+          <img src="../images/3_hex.png" alt="Drón a táblán" class="w-100 h-100 object-fit-cover">
         </div>
       </div>
 
