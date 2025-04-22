@@ -10,7 +10,6 @@
  * @param int    $kuldes_id  Kampány ID (trackinghez)
  * @return string            Táblás, inlinesített HTML
  */
- <?php
  /* ===========================================================
     Mailer‑lábléc  –  széltől szélig háttér
  =========================================================== */
@@ -55,3 +54,5 @@
    </tr>
  </table>';
  }
+
+ ?>
