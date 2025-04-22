@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BNBK Agro</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <!-- külső stíluslap -->
   <link href="style/style.css" rel="stylesheet">
 </head>
@@ -102,7 +103,9 @@
       <p class="text-center small mb-0">
         © <?= date('Y') ?> BNBK Agro Kft. – Minden jog fenntartva
       </p>
-
+      <a href="/admin/login.php" class="footer-link" title="Admin bejelentkezés">
+         <i class="bi bi-person-circle fs-4"></i>
+     </a>
     </div>
   </footer>
 
