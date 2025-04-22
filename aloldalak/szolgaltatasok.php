@@ -20,6 +20,14 @@ require '../partials/navbar.php';
     Fedezd fel drónos felmérési és permetezési megoldásainkat, amelyekkel időt, költséget és energiát spórolhatsz.
   </p>
 
+  <div class="ratio ratio-16x9 mb-5">
+  <img
+    src="../images/boritokep.jpg"
+    alt="Multispektrális felmérés illusztráció"
+    class="w-100 h-100 object-fit-cover rounded shadow"
+    loading="lazy" decoding="async">
+</div>
+
   <section class="bg-light py-5">
   <div class="container">
     <h2 class="mb-5 text-center fw-bold">
@@ -33,35 +41,35 @@ require '../partials/navbar.php';
         <ul class="list-unstyled d-grid gap-4">
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/tapanyag.svg" alt="" class="img-fluid">
+              <img src="../images/icons/1.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Tápanyag‑ellátottság felmérés</span>
           </li>
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/novenyallomany.svg" alt="" class="img-fluid">
+              <img src="../images/icons/2.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Növényállomány felmérés</span>
           </li>
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/stressz.svg" alt="" class="img-fluid">
+              <img src="../images/icons/3.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Stresszállapot felmérés</span>
           </li>
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/gyom.svg" alt="" class="img-fluid">
+              <img src="../images/icons/5.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Gyomosodás felmérés</span>
           </li>
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/toszamlas.svg" alt="" class="img-fluid">
+              <img src="../images/icons/4.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Tőszámlálás</span>
           </li>
@@ -73,35 +81,35 @@ require '../partials/navbar.php';
         <ul class="list-unstyled d-grid gap-4">
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/vadkar.svg" alt="" class="img-fluid">
+              <img src="../images/icons/5.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Vadkár felmérés</span>
           </li>
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/gyumolcs.svg" alt="" class="img-fluid">
+              <img src="../images/icons/6.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Szőlő‑ és gyümölcs ültetvény felmérés</span>
           </li>
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/zoldseg.svg" alt="" class="img-fluid">
+              <img src="../images/icons/7.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Zöldségültetvény felmérés</span>
           </li>
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/talajindex.svg" alt="" class="img-fluid">
+              <img src="../images/icons/10.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Talajindex</span>
           </li>
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="images/icons/vegetacio.svg" alt="" class="img-fluid">
+              <img src="../images/icons/11.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Vegetáció diagnosztika</span>
           </li>
