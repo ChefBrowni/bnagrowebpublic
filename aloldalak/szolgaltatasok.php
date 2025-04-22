@@ -144,7 +144,7 @@ require '../partials/navbar.php';
       <!-- MONITOR KÉP JOBBRA -->
       <div class="col-12 col-md-4 text-center">
         <figure class="device-frame m-auto">
-          <img src="../images/monitor_szanto.png" alt="Szántóföldi felmérés" class="img-fluid">
+          <img src="../images/image-11.png" alt="Szántóföldi felmérés" class="img-fluid">
           <figcaption class="device-stand"></figcaption>
         </figure>
       </div>
