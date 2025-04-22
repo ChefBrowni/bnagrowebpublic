@@ -19,3 +19,37 @@
 /* finomhangolás: bal oldali SVG teljes tartalom, jobb oldali fotó kitölt */
 .object-contain { object-fit: contain; }
 .object-cover   { object-fit: cover;   }
+
+/* ===== HERO overlay ================================================= */
+.overlay{
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(0,0,0,.55);
+  color: #fff;
+
+  /* alapbeállítás – mobil (xs) */
+  width: 90%;
+  max-width: 600px;          /* sose menjen 600 px fölé */
+  padding: 1rem;
+  border-radius: .5rem;
+}
+
+@media (min-width: 576px){   /* ≥ sm */
+  .overlay{ width: 80%; }
+}
+@media (min-width: 768px){   /* ≥ md */
+  .overlay{ width: 60%; padding: 1.25rem; }
+}
+@media (min-width: 992px){   /* ≥ lg */
+  .overlay{ width: 45%; padding: 2rem; }
+}
+
+/* ---- Typo: fluid méretek ------------------------------------------ */
+.overlay h1{
+  /* 1.5rem–3rem közt skálázódik:    clamp(min, preferred, max) */
+  font-size: clamp(1.5rem, 3vw + 1rem, 3rem);
+}
+.overlay p{
+  font-size: clamp(1rem,   2vw + .5rem, 1.25rem);
+}

@@ -16,23 +16,21 @@
 
 
   <!-- FŐOLDAL VIDEÓS SZEKCIÓ -->
-  <section id="video" class="py-0 position-relative">
+  <section id="home" class="py-0 position-relative">
     <div class="ratio ratio-16x9">
       <video
         autoplay muted loop playsinline preload="metadata"
         poster="images/videos/menu_video_poster.jpg"
-        style="object-fit:cover; width:100%; height:100%;"
-      >
+        style="object-fit:cover; width:100%; height:100%;">
         <source src="images/videos/menu_video1.mp4" type="video/mp4">
         A böngésződ nem támogatja a HTML5 videót.
       </video>
     </div>
 
-    <!-- IDE JÖN AZ OVERLAY -->
-    <div class="position-absolute top-50 start-50 translate-middle text-center text-white px-3"
-         style="background: rgba(0,0,0,0.5); max-width: 80%; border-radius: 0.5rem;">
-      <h1>Drónpilóta szolgáltatások</h1>
-      <p class="lead">Mi segítünk a mezőgazdaság és más ipari területek modernizációjában drónos megoldásokkal.</p>
+    <!-- RESPONSIVE OVERLAY -->
+    <div class="overlay text-center text-white">
+      <h1 class="display-6 display-md-5 display-lg-4 mb-2">Drónpilóta szolgáltatások</h1>
+      <p class="lead fs-6 fs-md-5">Mi segítünk a mezőgazdaság modernizációjában drónos megoldásokkal.</p>
     </div>
   </section>
   <!-- ===== KÉPES SZEKCIÓ ===== -->
