@@ -1,6 +1,6 @@
 <?php
 // szolgaltatasok.php – Szolgáltatások bemutató oldal
-require 'partials/navbar.php';
+require '../partials/navbar.php';
 ?>
 
 <!DOCTYPE html>
