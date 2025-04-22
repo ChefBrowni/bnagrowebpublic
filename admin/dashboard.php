@@ -125,17 +125,25 @@ $page = $_GET['page'] ?? '';
 
 <?php elseif ($page === 'kampanyok'): ?>
 <?php
-  $stmt = $pdo->query("
-     SELECT k.id, k.nev,
-            COUNT(DISTINCT m.id) AS megnyitasok,
-            COUNT(DISTINCT c.id) AS kattintasok
-       FROM kuldesek k
-       LEFT JOIN megnyitasok m ON k.id = m.kuldes_id
-       LEFT JOIN kattintasok c ON m.email COLLATE utf8mb4_hungarian_ci = c.email COLLATE utf8mb4_hungarian_ci
-       GROUP BY k.id
-       LIMIT 0, 25
-     ");
-     $kampanyok = $stmt->fetchAll();
+$stmt = $pdo->query("
+  SELECT
+    k.id,
+    k.nev,
+    (
+      SELECT COUNT(DISTINCT email)
+      FROM megnyitasok
+      WHERE kuldes_id = k.id
+    ) AS megnyitasok,
+    (
+      SELECT COUNT(DISTINCT email)
+      FROM kattintasok
+      WHERE kuldes_id = k.id
+    ) AS kattintasok
+  FROM kuldesek k
+  ORDER BY k.id DESC
+  LIMIT 0, 25
+");
+$kampanyok = $stmt->fetchAll();
  ?>
  <h2 class="mb-4">Kampányok</h2>
  <a href="../aloldalak/kampany_szerkeszto.php" class="btn btn-success mb-3">Új kampány hozzáadása</a>
