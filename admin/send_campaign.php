@@ -2,7 +2,7 @@
 require 'session_check.php';
 require 'db.php';
 require 'smtp_config.php';
-
+set_time_limit(0);  
 /* ===== LÁBLÉC‑SEGÉDFÜGGVÉNY betöltése ============================= */
 require_once __DIR__ . '/../includes/mailer_helpers.php';
 
