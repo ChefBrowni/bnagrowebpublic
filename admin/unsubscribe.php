@@ -31,7 +31,7 @@ try {
         WHERE  email = ?
     ")->execute([$email]);
 
-    if ($pdo->rowCount()) {
+     if ($stmt->rowCount()) {
         if ($kuldes_id !== null && is_numeric($kuldes_id)) {
             $pdo->prepare("
               INSERT INTO unsubscribe_log (email, kuldes_id, datum)
