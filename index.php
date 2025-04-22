@@ -69,9 +69,14 @@
           <div class="ratio ratio-16x9 rounded overflow-hidden">
             <!-- cseréld a “q” paramétert a pontos címre, ha megvan -->
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10708.833067721622!2d19.0402352!3d47.497913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4740dc18c8df03fb%3A0x676eebeb7b6e3b9c!2sBudapest!5e0!3m2!1shu!2shu!4v1713716400000!5m2!1shu!2shu"
-              loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              title="BNBK Agro térkép‑előnézet"></iframe>
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10708.833067721622!2d21.6111!3d47.5333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4747b9e3c8df03fb%3A0x676eebeb7b6e3b9c!2s4225%20Debrecen%2C%20Szirom%20utca%2033!5e0!3m2!1shu!2shu!4v1713716400000!5m2!1shu!2shu"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
           </div>
         </div>
 
