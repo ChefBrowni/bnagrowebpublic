@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="/#home">Főoldal</a></li>
-        <li class="nav-item"><a class="nav-link" href="/#process">Szolgáltatások</a></li>
+        <li class="nav-item"><a class="nav-link" href="/aloldalak/szolgaltatasok.php">Szolgáltatások</a></li>
         <li class="nav-item"><a class="nav-link" href="/aloldalak/ajanlatkeres.php">Ajánlatkérés</a></li>
       </ul>
     </div>
