@@ -193,7 +193,7 @@ require '../partials/navbar.php';
 
       <!-- BAL: hatszög kép -->
       <div class="col-12 col-md-4 text-center">
-        <div class="hexagon mx-auto">
+        <div class="ratio ratio-21x9">
           <img src="../images/1_hex.png" alt="Drón permetezés"
                class="w-100 h-100 object-fit-cover">
         </div>
@@ -216,6 +216,73 @@ require '../partials/navbar.php';
   </div><!-- /.container -->
 </section>
 
+<section class="py-5" style="background:#f3f0e9;">
+  <div class="container">
+
+    <!-- CÍMSOR + ALÁÍRÁS  -->
+    <div class="text-center border-top border-dark pt-4 mb-4">
+      <h2 class="fw-bold mb-3">
+        Több termés, kevesebb kiesés,<br class="d-none d-md-block">
+        kevesebb erőfeszítés
+      </h2>
+      <p class="fs-5 mb-0">
+        Legyen szó szántóföldről, szőlőről, vagy gyümölcsösről, pontosan
+        ezt hozhatja el Önnek a drónos permetezés bevezetése. Itt a
+        lehetőség, hogy az eddigi problémákat (tapodási kár, nehéz
+        megközelíthetőség) maga mögött hagyja, és terepviszonytól
+        függetlenül, centiméter pontossággal végezhesse a permetezést.
+        Ezzel egy gazdagabban termő, egészségesebb és környezetbarátabb
+        gazdaságot hozhat létre.
+      </p>
+    </div>
+
+    <!-- HEXAGON JOBBRA  –  SZÖVEG BALRA  -->
+    <div class="row align-items-center gy-4 pb-4 border-bottom border-dark flex-md-row-reverse">
+
+      <!-- HEXAGON jobbra -->
+      <div class="col-12 col-md-4 text-center">
+        <div class="hexagon mx-auto">
+          <img src="../images/2_hex.jpg" alt="Drón permetezés" class="w-100 h-100 object-fit-cover">
+        </div>
+      </div>
+
+      <!-- Szöveg balra -->
+      <div class="col-12 col-md-8">
+        <!-- üres: a fenti bekezdés már tartalmazza a leírást -->
+      </div>
+    </div>
+
+    <!-- ÁRAK BLOKK – HEXAGON BALRA  -->
+    <div class="row align-items-center gy-4 pt-4">
+
+      <!-- Hexagon BALRA -->
+      <div class="col-12 col-md-4 text-center">
+        <div class="hexagon mx-auto">
+          <img src="../images/3_hex.jpg" alt="Drón a táblán" class="w-100 h-100 object-fit-cover">
+        </div>
+      </div>
+
+      <!-- Árképzés szöveg JOBBRA -->
+      <div class="col-12 col-md-8">
+        <p class="mb-2">
+          Szolgáltatásaink ára a terület nagyságától, annak tagoltságától,
+          a szükséges lémenynyiségtől, valamint a feladat összetettségétől
+          függ. Minden projekt egyedi, ezért pontos árajánlatot az Ön
+          igényei alapján készítünk. Az alábbiakban tájékoztató jelleggel
+          közöljük általános árainkat:
+        </p>
+        <ul class="mb-0">
+          <li>Szántóföldi növények, zöldségek: <br>
+              <strong>Ár tartomány: 7 000 Ft – 12 000 Ft/ha + ÁFA (27 %)</strong></li>
+          <li>Gyümölcsösök, szőlőültetvények: <br>
+              <strong>Ár tartomány: 15 000 Ft – 20 000 Ft/ha + ÁFA (27 %)</strong></li>
+          <li>Kedvezmények: egyedi megállapodás szerint</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+</section>
 
 </div>
 
