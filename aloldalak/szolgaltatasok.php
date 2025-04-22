@@ -119,6 +119,61 @@ require '../partials/navbar.php';
   </div>
 </section>
 
+<!-- =============================================
+     Váltott soros bemutató – Szántóföld / Gyümölcsös
+================================================ -->
+<section class="py-5" style="background:#f3f0e9;">
+  <div class="container">
+
+    <!-- ===== Sor 1 : Szántóföldeken ========================= -->
+    <div class="row align-items-center gy-4 py-4 border-top border-dark">
+
+      <!-- SZÖVEG BALRA -->
+      <div class="col-12 col-md-8">
+        <h3 class="fw-bold mb-3">Szántóföldeken</h3>
+        <p class="mb-0">
+          Visszaigazolást kaphat a talajművelési technológiák hatékonyságáról.
+          Ellenőrizheti a vetés, kultivátorozás és a kijuttatás pontosságát, sikerességét,
+          definiálhatja a gyengébb tápanyag‑ellátottságú területeket. Megfigyelheti az
+          aszály vagy taposás okozta stresszt. Belvizes területeket deríthet fel.
+          Összehasonlíthatja a különböző fajták genetikai potenciálját, ellenálló
+          képességét és stressztűrését. Megvizsgálhatja kezelései eredményességét.
+        </p>
+      </div>
+
+      <!-- MONITOR KÉP JOBBRA -->
+      <div class="col-12 col-md-4 text-center">
+        <figure class="device-frame m-auto">
+          <img src="images/monitor_szanto.jpg" alt="Szántóföldi felmérés" class="img-fluid">
+          <figcaption class="device-stand"></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ===== Sor 2 : Gyümölcsösben =========================== -->
+    <div class="row align-items-center gy-4 py-4 border-top border-dark flex-md-row-reverse">
+
+      <!-- SZÖVEG JOBBRA (mobilon felül) -->
+      <div class="col-12 col-md-8">
+        <h3 class="fw-bold mb-3">Gyümölcsösben, szőlőben</h3>
+        <p class="mb-0">
+          Támpontot ad a tápanyag‑utánpótlási tervek elkészítésében és kivitelezésében.
+          Az egyed szintjén segít meghatározni a tápanyaghiányt és a károsító tényezőket.
+          Segít beazonosítani a növényvédelmi és öntözési problémákat.
+        </p>
+      </div>
+
+      <!-- MONITOR KÉP BALRA -->
+      <div class="col-12 col-md-4 text-center">
+        <figure class="device-frame m-auto">
+          <img src="images/monitor_gyumolcs.jpg" alt="Gyümölcsös felmérés" class="img-fluid">
+          <figcaption class="device-stand"></figcaption>
+        </figure>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
 </div>
