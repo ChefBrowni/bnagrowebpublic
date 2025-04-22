@@ -22,8 +22,11 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#home">Főoldal</a></li>
           <li class="nav-item"><a class="nav-link" href="#process">Folyamatábra</a></li>
-          <li class="nav-item"><a class="nav-link" href="#quote">Ajánlatkérés</a></li>
-        </ul>
+          <li class="nav-item">
+           <a class="nav-link" href="#quote">Ajánlatkérés</a>
+            <a class="nav-link" href="aloldalak/ajanlatkeres.php">Ajánlatkérés</a>
+          </li>
+         </ul>
       </div>
     </div>
   </nav>
@@ -69,38 +72,7 @@
     </div>
   </div>
 
-      <!-- AJÁNLATKÉRŐ ŰRLAP -->
-      <h2 id="quote" class="my-5 text-center">Kérj ingyenes ajánlatot!</h2>
-      <form method="POST" action="aloldalak/ajanlatkeres.php"
-            class="mx-auto" style="max-width:600px;">
-        <div class="mb-3">
-          <label for="nev" class="form-label">Név</label>
-          <input type="text" class="form-control" id="nev" name="nev" required>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">E-mail</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="mb-3">
-          <label for="telefon" class="form-label">Telefonszám</label>
-          <input type="text" class="form-control" id="telefon" name="telefon" required>
-        </div>
-        <div class="mb-3">
-          <label for="szolgaltatas" class="form-label">Szolgáltatás</label>
-          <select class="form-select" id="szolgaltatas" name="szolgaltatas" required>
-            <option value="">Válassz...</option>
-            <option value="Permetezés">Permetezés</option>
-            <option value="Felmérés">Felmérés</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="esedekesseg" class="form-label">Esedékesség</label>
-          <input type="date" class="form-control" id="esedekesseg" name="esedekesseg" required>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-success px-5">Ajánlatkérés</button>
-        </div>
-      </form>
+  
 
     </div>
   </section>
