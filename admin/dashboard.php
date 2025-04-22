@@ -83,7 +83,46 @@ $page = $_GET['page'] ?? '';
         </table>
     </div>
 
-<?php elseif ($page === 'kampany_megnyitasok' && isset($_GET['kuldes_id'])): ?>
+  <?php elseif ($page === 'kampany_megnyitasok' && isset($_GET['kuldes_id'])): ?>
+
+      <?php
+      $kuldes_id = (int)$_GET['kuldes_id'];
+
+      $stmt = $pdo->prepare("
+          SELECT email, COUNT(*) AS megnyitas_db
+          FROM megnyitasok
+          WHERE kuldes_id = ?
+          GROUP BY email
+          ORDER BY megnyitas_db DESC
+      ");
+      $stmt->execute([$kuldes_id]);
+      $megnyitok = $stmt->fetchAll();
+      ?>
+
+      <h2 class="mb-4">📬 Megnyitók – kampány #<?= $kuldes_id ?></h2>
+      <a href="dashboard.php?page=kampanyok" class="btn btn-secondary btn-sm mb-3">⬅️ Vissza</a>
+      <div class="table-responsive">
+          <table class="table table-dark table-bordered table-striped">
+              <thead>
+                  <tr>
+                      <th>E-mail cím</th>
+                      <th>Megnyitások száma</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <?php if (empty($megnyitok)): ?>
+                      <tr><td colspan="2" class="text-center">Nincs adat ehhez a kampányhoz.</td></tr>
+                  <?php else: ?>
+                      <?php foreach ($megnyitok as $m): ?>
+                          <tr>
+                              <td><?= htmlspecialchars($m['email']) ?></td>
+                              <td><?= $m['megnyitas_db'] ?></td>
+                          </tr>
+                      <?php endforeach; ?>
+                  <?php endif; ?>
+              </tbody>
+          </table>
+      </div>
 <?php elseif ($page === 'kampany_kattintasok' && isset($_GET['kuldes_id'])): ?>
 
     <?php
