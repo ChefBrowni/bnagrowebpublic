@@ -35,7 +35,7 @@ require '../partials/navbar.php';
       dróntechnológiával?
     </h2>
 
-    <div class="row gy-4 justify-content-center">
+    <div class="row gy-4 justify-content-center mx-auto" style="max-width:1040px;">
       <!-- BAL OSZLOP ------------------------------------------------>
       <div class="col-12 col-md-6">
         <ul class="list-unstyled d-grid gap-4">
@@ -62,7 +62,7 @@ require '../partials/navbar.php';
 
           <li class="d-flex align-items-start">
             <span class="icon-box me-3">
-              <img src="../images/icons/5.png" alt="" class="img-fluid">
+              <img src="../images/icons/9.png" alt="" class="img-fluid">
             </span>
             <span class="fw-bold">Gyomosodás felmérés</span>
           </li>
