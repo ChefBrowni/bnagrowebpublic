@@ -28,7 +28,7 @@ require '../partials/navbar.php';
     loading="lazy" decoding="async">
 </div>
 
-  <section class="bg-light py-5">
+  <section class="bg-light py-5" style="background:#f3f0e9;">
   <div class="container">
     <h2 class="mb-5 text-center fw-bold">
       Milyen felmérések végezhetők multispektrális<br class="d-none d-md-block">
@@ -144,7 +144,7 @@ require '../partials/navbar.php';
       <!-- MONITOR KÉP JOBBRA -->
       <div class="col-12 col-md-4 text-center">
         <figure class="device-frame m-auto">
-          <img src="images/monitor_szanto.jpg" alt="Szántóföldi felmérés" class="img-fluid">
+          <img src="images/monitor_szanto.png" alt="Szántóföldi felmérés" class="img-fluid">
           <figcaption class="device-stand"></figcaption>
         </figure>
       </div>
@@ -166,7 +166,7 @@ require '../partials/navbar.php';
       <!-- MONITOR KÉP BALRA -->
       <div class="col-12 col-md-4 text-center">
         <figure class="device-frame m-auto">
-          <img src="images/monitor_gyumolcs.jpg" alt="Gyümölcsös felmérés" class="img-fluid">
+          <img src="../images/image-12.png" alt="Gyümölcsös felmérés" class="img-fluid">
           <figcaption class="device-stand"></figcaption>
         </figure>
       </div>
