@@ -1,23 +1,21 @@
-/* ===== képek magassága ===== */
-.process-row {
-  min-height: 480px;      /* nagyjából két „hajtásnyi” szekció, igény szerint */
+/* ===== PROCESS SZEKCIÓ ===== */
+.process-row               { min-height: 480px; }          /* közös „keret” */
+@media (max-width: 991.98px){
+  .process-row             { min-height: 360px; }
 }
 
-@media (max-width: 991.98px) {   /* < lg  => mobil/tablet álló */
-  .process-row {
-    min-height: 360px;    /* mobilon lehet alacsonyabb */
-  }
+/* a két oszlop rugalmas – a benne lévő kép kitölti a helyet */
+.process-row > [class*="col-"]{
+  display: flex;
 }
 
-/* ========== képek illesztése ========== */
-.object-contain {        /* infografika: minden pixel látszódjon */
-  object-fit: contain;
+/* közös kép‑szabályok */
+.process-row img{
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.object-cover {          /* fotó: kitölti a teret, ha kell vág */
-  object-fit: cover;
-}
-
-.img-fluid {
-  display: block;        /* eltünteti az inline‑elem whitespace‑t */
-}
+/* finomhangolás: bal oldali SVG teljes tartalom, jobb oldali fotó kitölt */
+.object-contain{ object-fit: contain; }
+.object-cover { object-fit: cover;   }

@@ -1,7 +1,7 @@
-/* ===== AJAX‑osan betöltjük az ajánlatkérő űrlapot ===== */
+/* ===== AJAX form betöltés ===== */
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('quote-form-container');
-  if (!container) return;             // ha nincs ilyen elem, kilépünk
+  if (!container) return;          // ha kézzel beillesztetted a formot, nincs konténer
 
   fetch('aloldalak/ajanlatkeres.php')
     .then(res  => res.text())
