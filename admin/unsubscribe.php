@@ -24,24 +24,25 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 /* --- frissítés + napló ----------------------------------------- */
 try {
-    $pdo->prepare("
-        UPDATE kontaktok_test
-        SET    leiratkozott = 1,
-               leiratkozas_datuma = NOW()
-        WHERE  email = ?
-    ")->execute([$email]);
+  $stmt = $pdo->prepare("
+      UPDATE kontaktok_test
+      SET    leiratkozott = 1
+           , leiratkozas_datuma = NOW()     -- töröld, ha nincs ilyen oszlop
+      WHERE  email = ?
+  ");
+  $stmt->execute([$email]);
 
-     if ($stmt->rowCount()) {
-        if ($kuldes_id !== null && is_numeric($kuldes_id)) {
-            $pdo->prepare("
-              INSERT INTO unsubscribe_log (email, kuldes_id, datum)
-              VALUES (?, ?, NOW())
-            ")->execute([$email, $kuldes_id]);
-        }
-        showResponse(true, 'Sikeresen leiratkoztál hírlevelünkről.');
-    } else {
-        showResponse(false, 'Ez az e‑mail cím már nem szerepel a listánkon.');
-    }
+  if ($stmt->rowCount()) {                  // <<< itt a $stmt‑en hívjuk!
+      if ($kuldes_id !== null && is_numeric($kuldes_id)) {
+          $pdo->prepare("
+            INSERT INTO unsubscribe_log (email, kuldes_id, datum)
+            VALUES (?, ?, NOW())
+          ")->execute([$email, $kuldes_id]);
+      }
+      showResponse(true, 'Sikeresen leiratkoztál hírlevelünkről.');
+  } else {
+      showResponse(false, 'Ez az e‑mail cím már nem szerepel a listánkon.');
+  }
 
 } catch (PDOException $e) {
     error_log('Unsubscribe error: '.$e->getMessage());
