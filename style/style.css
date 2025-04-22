@@ -57,11 +57,16 @@
 
 
 /*footer */
-/* ===== Kompakt grafitszürke footer ===== */
-.footer-dark        { background:#2b2b2b; color:#f8f9fa; }
-.footer-link        { color:#f8f9fa; text-decoration:none; }
-.footer-link:hover  { text-decoration:underline; }
-.opacity-10         { opacity:.1; }          /* halvány elválasztó vonal */
-
-/* Kártya‑árnyék csak sötétben látszik finoman */
-.footer-dark .card  { background:transparent; }
+/* ===== Footer dizájn ============================================== */
+.footer-dark{
+  background:#2b2b2b;          /* grafitszürke */
+  color:#f8f9fa;
+}
+.footer-link{
+  color:#f8f9fa;
+  text-decoration:none;
+}
+.footer-link:hover{
+  text-decoration:underline;
+}
+.opacity-10{ opacity:.1; }     /* finom elválasztó vonal */
