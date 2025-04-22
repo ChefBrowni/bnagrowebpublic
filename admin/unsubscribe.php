@@ -74,5 +74,5 @@ function showResponse(bool $ok, string $msg): void
         </p>
       </div>
     </body></html>
-    <?php
+
 }
