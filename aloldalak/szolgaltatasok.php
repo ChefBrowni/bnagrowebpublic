@@ -135,7 +135,7 @@ require '../partials/navbar.php';
           Visszaigazolást kaphat a talajművelési technológiák hatékonyságáról.
           Ellenőrizheti a vetés, kultivátorozás és a kijuttatás pontosságát, sikerességét,
           definiálhatja a gyengébb tápanyag‑ellátottságú területeket. Megfigyelheti az
-          aszály vagy taposás okozta stresszt. Belvizes területeket deríthet fel.
+          aszály vagy taposás okozta kárt. Belvizes területeket deríthet fel.
           Összehasonlíthatja a különböző fajták genetikai potenciálját, ellenálló
           képességét és stressztűrését. Megvizsgálhatja kezelései eredményességét.
         </p>
@@ -173,6 +173,47 @@ require '../partials/navbar.php';
     </div>
 
   </div>
+</section>
+
+<!-- ==========================================================
+     DRÓNOS PERMETEZÉS ELŐNYEI
+========================================================== -->
+<section class="py-5" style="background:#f3f0e9;">
+  <div class="container-fluid px-0">
+    <!-- HERO 16:9 -->
+    <div class="ratio ratio-16x9">
+      <img src="../images/banner.jpg"
+           alt="Drónok permetezés közben"
+           class="w-100 h-100 object-fit-cover">
+    </div>
+  </div>
+
+  <div class="container py-5">
+    <div class="row align-items-center gy-4">
+
+      <!-- BAL: hatszög kép -->
+      <div class="col-12 col-md-4 text-center">
+        <div class="hexagon mx-auto">
+          <img src="../images/1_hex.png" alt="Drón permetezés"
+               class="w-100 h-100 object-fit-cover">
+        </div>
+      </div>
+
+      <!-- JOBB: címsor + bullet lista -->
+      <div class="col-12 col-md-8">
+        <h2 class="fw-bold mb-4">A drónos permetezés előnyei:</h2>
+        <ul class="list-unstyled fs-5 lh-lg">
+          <li>🎯 Célzott, hatékony és precíz foltkezelés.</li>
+          <li>🌱 Beavatkozás kizárólag ott, ahol tényleg szükséges.</li>
+          <li>💧 Akár 90 %-os víz‑ és 50 %-os permetszer‑megtakarítás.</li>
+          <li>🚜 Belvizes, sáros területek is könnyen megközelíthetők.</li>
+          <li>⛰️ Akadálymentesen kezelhetők meredek lejtők.</li>
+          <li>⏱️ Csökkentett munkaigény a jól elkészített repülési tervvel.</li>
+        </ul>
+      </div>
+
+    </div><!-- /.row -->
+  </div><!-- /.container -->
 </section>
 
 
