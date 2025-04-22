@@ -214,8 +214,11 @@ $page = $_GET['page'] ?? '';
                                 </a>
                             </td>
                             <td><?= (int)$k['megnyitasok'] ?></td>
-                            <td><?= (int)$k['kattintasok'] ?></td>
                             <td>
+                              <a href="dashboard.php?page=kampany_kattintasok&kuldes_id=<?= $k['id'] ?>">
+                                <?= (int)$k['kattintasok'] ?>
+                              </a>
+                            </td>                            <td>
                                 <a href="send_campaign.php?id=<?= $k['id'] ?>"
                                    class="btn btn-primary btn-sm">Küldés</a>
                             </td>
