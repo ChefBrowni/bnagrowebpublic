@@ -4,7 +4,7 @@ require 'db.php';
 require 'smtp_config.php';
 
 /* ===== LÁBLÉC‑SEGÉDFÜGGVÉNY betöltése ============================= */
-require_once __DIR__ . '../includes/mailer_helpers.php';
+require_once __DIR__ . '/../includes/mailer_helpers.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
