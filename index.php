@@ -41,13 +41,13 @@
     <div class="row g-4 process-row">
     <div class="col-12 col-lg-6">
       <div class="ratio ratio-4x3">                 <!-- <<< FIX 4:3 ARÁNY -->
-        <img src="images/folyamat_abra.svg" loading="lazy" decoding="async" class="object-contain w-100 h-100" >
+        <img src="images/folyamat_abra.svg" loading="lazy" decoding="async" class="object-contain w-100 h-100" alt="Permetezés folyamatábra" >
       </div>
     </div>
 
     <div class="col-12 col-lg-6">
       <div class="ratio ratio-4x3">
-        <img src="images/dron_allo.jpg" loading="lazy" decoding="async"   class="object-cover w-100 h-100" >
+        <img src="images/dron_allo.jpg" loading="lazy" decoding="async"   class="object-cover w-100 h-100" alt="Permetező drón munka közben">
       </div>
     </div>
   </div>
