@@ -98,8 +98,8 @@ foreach ($kontakts as $c) {
         $body .= '<img src="' . $pixel_url . '" width="1" height="1" style="display:none;">';
 
         /* ----- 5. LÁBLÉC HOZZÁFŰZÉSE --------------------------- */
-        $body .= email_footer(date('Y'));
-
+        $body .= email_footer($email, $kuldes_id);
+        
         $body .= '</body></html>';
 
         $mail->Body    = $body;
