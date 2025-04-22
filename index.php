@@ -12,23 +12,8 @@
 
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-    <div class="container">
-      <a class="navbar-brand" href="bnbk.hu">BNBK Agro</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#home">Rólunk</a></li>
-          <li class="nav-item"><a class="nav-link" href="#process">Szolgáltatások</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="aloldalak/ajanlatkeres.php">Ajánlatkérés</a>
-          </li>
-         </ul>
-      </div>
-    </div>
-  </nav>
+  <?php include 'partials/navbar.php'; ?>
+
 
   <!-- FŐOLDAL VIDEÓS SZEKCIÓ -->
   <section id="video" class="py-0 position-relative">
