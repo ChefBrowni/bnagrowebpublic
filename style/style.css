@@ -113,3 +113,14 @@
   background: #ccc;
   border-radius: 0 0 4px 4px;
 }
+/* ---- Hatszög (hexagon) képkeret ---------------------------- */
+.hexagon {
+  width: 260px;               /* igény szerint */
+  aspect-ratio: 1;
+  clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%);
+  overflow: hidden;
+  background: #000;
+}
+@media (min-width: 768px) {
+  .hexagon { width: 300px; }
+}
