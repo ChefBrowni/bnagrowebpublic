@@ -83,6 +83,47 @@ $page = $_GET['page'] ?? '';
         </table>
     </div>
 
+<?php elseif ($page === 'kampany_megnyitasok' && isset($_GET['kuldes_id'])): ?>
+
+    <?php
+    $kuldes_id = (int)$_GET['kuldes_id'];
+
+    $stmt = $pdo->prepare("
+        SELECT email, COUNT(*) AS megnyitas_db
+        FROM megnyitasok
+        WHERE kuldes_id = ?
+        GROUP BY email
+        ORDER BY megnyitas_db DESC
+    ");
+    $stmt->execute([$kuldes_id]);
+    $megnyitok = $stmt->fetchAll();
+    ?>
+
+    <h2 class="mb-4">📬 Megnyitók – kampány #<?= $kuldes_id ?></h2>
+    <a href="dashboard.php?page=kampanyok" class="btn btn-secondary btn-sm mb-3">⬅️ Vissza</a>
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>E-mail cím</th>
+                    <th>Megnyitások száma</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($megnyitok)): ?>
+                    <tr><td colspan="2" class="text-center">Nincs adat ehhez a kampányhoz.</td></tr>
+                <?php else: ?>
+                    <?php foreach ($megnyitok as $m): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($m['email']) ?></td>
+                            <td><?= $m['megnyitas_db'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+
 <?php elseif ($page === 'megnyitasok'): ?>
 
     <?php
@@ -124,66 +165,67 @@ $page = $_GET['page'] ?? '';
     </div>
 
 <?php elseif ($page === 'kampanyok'): ?>
-<?php
-$stmt = $pdo->query("
-  SELECT
-    k.id,
-    k.nev,
-    COALESCE(m.megnyitasok, 0) AS megnyitasok,
-    COALESCE(c.kattintasok, 0) AS kattintasok
-  FROM kuldesek k
-  LEFT JOIN (
-    SELECT kuldes_id, COUNT(DISTINCT email) AS megnyitasok
-    FROM megnyitasok
-    GROUP BY kuldes_id
-  ) AS m ON m.kuldes_id = k.id
-  LEFT JOIN (
-    SELECT kuldes_id, COUNT(DISTINCT email) AS kattintasok
-    FROM kattintasok
-    GROUP BY kuldes_id
-  ) AS c ON c.kuldes_id = k.id
-  ORDER BY k.id DESC
-  LIMIT 25
-");
 
-$kampanyok = $stmt->fetchAll();
- ?>
- <h2 class="mb-4">Kampányok</h2>
- <a href="../aloldalak/kampany_szerkeszto.php" class="btn btn-success mb-3">Új kampány hozzáadása</a>
- <div class="table-responsive">
-     <table class="table table-dark table-bordered table-striped">
-         <thead>
-             <tr>
-                 <th>Kampány neve</th>
-                 <th>Megnyitások</th>
-                 <th>Kattintások</th>
-                 <th>Művelet</th>
-             </tr>
-         </thead>
-         <tbody>
-             <?php if (empty($kampanyok)): ?>
-                 <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
-             <?php else: ?>
-                 <?php foreach ($kampanyok as $k): ?>
-                     <tr>
-                         <td><?= htmlspecialchars($k['nev']) ?></td>
-                         <td><?= (int)$k['megnyitasok'] ?></td>
-                         <td><?= (int)$k['kattintasok'] ?></td>
-                         <td>
-                             <!-- Küldés gomb -->
-                             <a href="send_campaign.php?id=<?= $k['id'] ?>"
-                                class="btn btn-primary btn-sm">
-                                 Küldés
-                             </a>
-                         </td>
-                     </tr>
-                 <?php endforeach; ?>
-             <?php endif; ?>
-         </tbody>
-     </table>
- </div>
+    <?php
+    $stmt = $pdo->query("
+      SELECT
+        k.id,
+        k.nev,
+        COALESCE(m.megnyitasok, 0) AS megnyitasok,
+        COALESCE(c.kattintasok, 0) AS kattintasok
+      FROM kuldesek k
+      LEFT JOIN (
+        SELECT kuldes_id, COUNT(DISTINCT email) AS megnyitasok
+        FROM megnyitasok
+        GROUP BY kuldes_id
+      ) AS m ON m.kuldes_id = k.id
+      LEFT JOIN (
+        SELECT kuldes_id, COUNT(DISTINCT email) AS kattintasok
+        FROM kattintasok
+        GROUP BY kuldes_id
+      ) AS c ON c.kuldes_id = k.id
+      ORDER BY k.id DESC
+      LIMIT 25
+    ");
+    $kampanyok = $stmt->fetchAll();
+    ?>
+    <h2 class="mb-4">Kampányok</h2>
+    <a href="../aloldalak/kampany_szerkeszto.php" class="btn btn-success mb-3">Új kampány hozzáadása</a>
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Kampány neve</th>
+                    <th>Megnyitások</th>
+                    <th>Kattintások</th>
+                    <th>Művelet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($kampanyok)): ?>
+                    <tr><td colspan="4" class="text-center">Nincs kampányadat</td></tr>
+                <?php else: ?>
+                    <?php foreach ($kampanyok as $k): ?>
+                        <tr>
+                            <td>
+                                <a href="dashboard.php?page=kampany_megnyitasok&kuldes_id=<?= $k['id'] ?>">
+                                    <?= htmlspecialchars($k['nev']) ?>
+                                </a>
+                            </td>
+                            <td><?= (int)$k['megnyitasok'] ?></td>
+                            <td><?= (int)$k['kattintasok'] ?></td>
+                            <td>
+                                <a href="send_campaign.php?id=<?= $k['id'] ?>"
+                                   class="btn btn-primary btn-sm">Küldés</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 
- <?php elseif ($page === 'ajanlatkeresek'): ?>
+<?php elseif ($page === 'ajanlatkeresek'): ?>
 
     <?php
     $stmt = $pdo->query("SELECT * FROM ajanlatkeresek ORDER BY id DESC");
