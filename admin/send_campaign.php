@@ -90,8 +90,7 @@ foreach ($kontakts as $c) {
         }
 
         $body .= '<p><a href="' . $click_url . '" '
-              . 'style="background:#198754;color:#fff;padding:10px 18px;'
-              . 'text-decoration:none;border-radius:4px;display:inline-block;">'
+              
               . '</a></p>';
 
         $body .= '<p>' . nl2br(htmlspecialchars($kampany['utotartalom'])) . '</p>';
