@@ -26,7 +26,11 @@ if (!$kampany) {
 }
 
 /* --- 2. Kontaktok betöltése ------------------------------------- */
-$kontakts = $pdo->query("SELECT nev, email FROM kontaktok_test WHERE email IS NOT NULL")
+$kontakts = $pdo->query("SELECT nev, email
+  FROM kontaktok_test
+  WHERE email IS NOT NULL
+    AND (leiratkozott = 0 OR leiratkozott IS NULL)
+")
                 ->fetchAll(PDO::FETCH_ASSOC);
 if (!$kontakts) {
     exit('❌ Nincsenek címzettek.');
@@ -90,7 +94,7 @@ foreach ($kontakts as $c) {
         }
 
         $body .= '<p><a href="' . $click_url . '" '
-              
+
               . '</a></p>';
 
         $body .= '<p>' . nl2br(htmlspecialchars($kampany['utotartalom'])) . '</p>';
