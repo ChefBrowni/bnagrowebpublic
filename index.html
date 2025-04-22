@@ -51,22 +51,23 @@
   <!-- ===== KÉPES SZEKCIÓ ===== -->
   <!-- ============ KÉPES SZEKCIÓ + FORM ============ -->
   <section id="process" class="py-5 bg-light">
-    <div class="container">
-
-      <!-- Két kép -->
-      <div class="row g-4 align-items-stretch process-row">
-        <div class="col-12 col-lg-6">
-          <img src="images/folyamat_abra.svg"
-               alt="Lépések infografika"
-               class="img-fluid w-100 h-100 object-contain">
-        </div>
-
-        <div class="col-12 col-lg-6">
-          <img src="images/dron_allo.jpg"
-               alt="Drón permetezés közben"
-               class="img-fluid w-100 h-100 object-cover">
-        </div>
+    <div class="row g-4 process-row">
+    <div class="col-12 col-lg-6">
+      <div class="ratio ratio-4x3">                 <!-- <<< FIX 4:3 ARÁNY -->
+        <img src="images/folyamat_abra.svg"
+             class="object-contain w-100 h-100"     <!-- teljes tartalom látszik -->
+             alt="Lépések infografika">
       </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="ratio ratio-4x3">
+        <img src="images/dron_allo.jpg"
+             class="object-cover w-100 h-100"       <!-- látványos kitöltés -->
+             alt="Drón permetezés közben">
+      </div>
+    </div>
+  </div>
 
       <!-- AJÁNLATKÉRŐ ŰRLAP -->
       <h2 id="quote" class="my-5 text-center">Kérj ingyenes ajánlatot!</h2>

@@ -17,5 +17,5 @@
 }
 
 /* finomhangolás: bal oldali SVG teljes tartalom, jobb oldali fotó kitölt */
-.object-contain{ object-fit: contain; }
-.object-cover { object-fit: cover;   }
+.object-contain { object-fit: contain; }
+.object-cover   { object-fit: cover;   }
