@@ -57,11 +57,55 @@
 
 
   <!-- FOOTER -->
-  <footer class="py-4 bg-success text-white text-center">
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer-dark text-white pt-5 pb-4">
     <div class="container">
-      © <?= date('Y') ?> BNBK Agro Kft. – Minden jog fenntartva
+
+      <div class="row gy-4">
+
+        <div class="col-12 col-md-6">
+          <h2 class="h5 mb-3">Hol találsz meg minket?</h2>
+          <div class="ratio ratio-16x9 rounded overflow-hidden">
+            <!-- cseréld a “q” paramétert a pontos címre, ha megvan -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10708.833067721622!2d19.0402352!3d47.497913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4740dc18c8df03fb%3A0x676eebeb7b6e3b9c!2sBudapest!5e0!3m2!1shu!2shu!4v1713716400000!5m2!1shu!2shu"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="BNBK Agro térkép‑előnézet"></iframe>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-between">
+
+          <!-- Kapcsolat -->
+          <section itemscope itemtype="https://schema.org/LocalBusiness">
+            <h2 class="h5 mb-3">Kapcsolat</h2>
+            <p class="mb-1" itemprop="name">BNBK&nbsp;Agro Mezőgazdasági Kft.</p>
+            <p class="mb-1">Telefon: <a href="tel:+36704277957" class="text-white text-decoration-none" itemprop="telephone">+36 70 427 7957</a></p>
+            <p class="mb-3">E‑mail: <a href="mailto:info@bnbkagro.hu" class="text-white text-decoration-none" itemprop="email">info@bnbk.hu</a></p>
+          </section>
+
+          <!-- Mini navigáció -->
+          <nav class="mt-auto">
+            <ul class="list-inline small mb-0">
+              <li class="list-inline-item"><a href="/#home"             class="footer-link">Főoldal</a></li>
+              <li class="list-inline-item"><a href="/#process"          class="footer-link">Szolgáltatások</a></li>
+              <li class="list-inline-item"><a href="/aloldalak/ajanlatkeres.php" class="footer-link">Ajánlatkérés</a></li>
+              <li class="list-inline-item"><a href="/aszf.php"          class="footer-link">ÁSZF</a></li>
+              <li class="list-inline-item"><a href="/adatvedelem.php"   class="footer-link">Adatkezelés</a></li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+
+      <hr class="border-light opacity-10 my-4">
+      <p class="text-center small mb-0">
+        © <?= date('Y') ?> BNBK Agro Kft. – Minden jog fenntartva
+      </p>
+
     </div>
   </footer>
+
   <script src="script/hero-animated.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
