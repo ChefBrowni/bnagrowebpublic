@@ -146,6 +146,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Google reCAPTCHA API-->
 <script src="https://www.google.com/recaptcha/api.js?render=6LeS3BwrAAAAALjcg68UGnwQ3CBOHjIHXvPhnlZO"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8G2V922EFE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8G2V922EFE');
+</script>
 
  <!--Egyedi JS-->-->
 <script src="../scripts/ajanlatkeres.js"></script>
